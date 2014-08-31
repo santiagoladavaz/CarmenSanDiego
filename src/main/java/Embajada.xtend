@@ -1,5 +1,3 @@
-import java.util.ArrayList
-
 class Embajada extends Lugar {
 	
 	new(String nom){
@@ -8,8 +6,10 @@ class Embajada extends Lugar {
 
 	}
 	
-	override pasoLadron(Villano villano) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+
+	override dameLasPistas(Villano villano) {
+		//Dar 2 pistas sobre el proximo destino
 	}
+
 	
 }

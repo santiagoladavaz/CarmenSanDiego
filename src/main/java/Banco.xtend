@@ -8,8 +8,13 @@ class Banco extends Lugar {
 	}
 
 	
-	override pasoLadron(Villano villano) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	
+	override dameLasPistas(Villano villano){
+		val pistas = new ArrayList<String>()
+		pistas+=villano.señas.get(0)
+		//Dar pista sobre el proximo pais a visitar
+		return pistas
 	}
 	
+
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("all")
 public class Banco extends Lugar {
   public Banco(final String nom) {
@@ -6,7 +9,11 @@ public class Banco extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public void pasoLadron(final Villano villano) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  public List<String> dameLasPistas(final Villano villano) {
+    final ArrayList<String> pistas = new ArrayList<String>();
+    List<String> _señas = villano.getSeñas();
+    String _get = _señas.get(0);
+    pistas.add(_get);
+    return pistas;
   }
 }

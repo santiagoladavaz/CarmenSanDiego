@@ -13,13 +13,7 @@ public class Club extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public void pasoLadron(final Villano villano) {
-    ArrayList<String> pistas = this.dameLasPistas(villano);
-    Informante _informante = new Informante(pistas);
-    this._okupa = _informante;
-  }
-  
-  public ArrayList<String> dameLasPistas(final Villano villano) {
+  public List<String> dameLasPistas(final Villano villano) {
     final ArrayList<String> list = new ArrayList<String>();
     List<String> _señas = villano.getSeñas();
     String _get = _señas.get(0);
@@ -31,10 +25,6 @@ public class Club extends Lugar {
     String _get_2 = _hobbie.get(0);
     list.add(_get_2);
     return list;
-  }
-  
-  public String ocupanteInforma() {
-    return this._okupa.informar();
   }
   
   public static void main(final String[] args) {

@@ -8,17 +8,11 @@ class Biblioteca extends Lugar {
 
 	}
 	
-
-	override pasoLadron(Villano villano) {
-		var pistas = dameLasPistas(villano)
-		_okupa = new Informante(pistas);
-	}
-	
-	def dameLasPistas(Villano villano){
+	override dameLasPistas(Villano villano){
 		val list = new ArrayList<String>()
 		list+=villano.señas.get(0)
-		list+=villano.señas.get(1)
-		list+=villano.hobbie.get(0)
+		// Da una pista sobre el proximo destino
+		// 50% da una pista de Hobbie -> list+=villano.hobbie.get(0)
 		return list
 	}
 	

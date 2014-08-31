@@ -1,3 +1,5 @@
+import java.util.List;
+
 @SuppressWarnings("all")
 public class Embajada extends Lugar {
   public Embajada(final String nom) {
@@ -6,7 +8,7 @@ public class Embajada extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public void pasoLadron(final Villano villano) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  public List<String> dameLasPistas(final Villano villano) {
+    return null;
   }
 }

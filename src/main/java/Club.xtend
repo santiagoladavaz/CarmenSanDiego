@@ -8,12 +8,8 @@ class Club extends Lugar {
 		_okupa = new Cuidador()
 	}
 	
-	override pasoLadron(Villano villano) {
-		var pistas = dameLasPistas(villano)
-		_okupa = new Informante(pistas);
-	}
 	
-	def dameLasPistas(Villano villano){
+	override dameLasPistas(Villano villano){
 		val list = new ArrayList<String>()
 		list+=villano.señas.get(0)
 		list+=villano.señas.get(1)
@@ -21,9 +17,18 @@ class Club extends Lugar {
 		return list
 	}
 	
-	def ocupanteInforma(){
-		_okupa.informar()
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	def static void main(String[] args) {
 		val club = new Club("lala")
