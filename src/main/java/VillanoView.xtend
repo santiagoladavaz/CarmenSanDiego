@@ -5,6 +5,10 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.MainWindow
+import java.awt.Color
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.widgets.tables.Column
+import dominio.Villano
 
 class VillanoView extends MainWindow<Villano>{
 
@@ -35,26 +39,43 @@ class VillanoView extends MainWindow<Villano>{
 			onClick [ | modelObject]
 			//bindEnabled(new NotNullObservable("conversion"))
 		]
-	
-	new Label(mainPanel).setText("Seña")
-	
+
+
+	var Table<String> x = new Table<String>(mainPanel,String)
+	x.bindItemsToProperty("señas")
+	x.heigth = 100
+	new Column<String>(x)=>[
+ 		title='''Seña'''
+ 		bindContentsToTransformer([senia|senia])
+	]
+		
 	
 	
 	new Label(mainPanel).setText("Hobbie:")
 	
-//	new Button(mainPanel) => [ 
-//			caption = "Editar Hobbies"
-//			//onClick [ | modelObject.convertir ]
-//			//bindEnabled(new NotNullObservable("conversion"))
-//		]	
 	
-	//Lista de hobbies
+	
+	
+	new Button(mainPanel) => [ 
+			caption = "Editar Hobbies"
+		//	onClick [ | modelObject.convertir ]
+			//bindEnabled(new NotNullObservable("conversion"))
+		]	
+	
+	var Table<String> y = new Table<String>(mainPanel,String)
+	y.bindItemsToProperty("hobbie")
+	y.heigth = 100
+	new Column<String>(y)=>[
+ 		title='''Hobbies'''
+ 		bindContentsToTransformer([hobbies|hobbies])
+	]
 	
 	
 	new Button(mainPanel) => [ 
 			caption = "Aceptar"
 			onClick [ | print(modelObject.nombre)
 				        print(modelObject)
+				        print(modelObject.sexo)
 			]
 			//bindEnabled(new NotNullObservable("conversion"))
 		]	
