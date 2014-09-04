@@ -31,7 +31,7 @@ public class Pais {
     this._caract = caract;
   }
   
-  private List<String> _conexiones;
+  private List<String> _conexiones = new ArrayList<String>();
   
   public List<String> getConexiones() {
     return this._conexiones;
@@ -41,7 +41,7 @@ public class Pais {
     this._conexiones = conexiones;
   }
   
-  private List<Lugar> _lugares;
+  private List<Lugar> _lugares = new ArrayList<Lugar>();
   
   public List<Lugar> getLugares() {
     return this._lugares;

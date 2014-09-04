@@ -11,8 +11,8 @@ class Pais {
 	
 	@Property String nombre
 	@Property List<String> caract = new ArrayList<String>()
-	@Property List<String> conexiones
-	@Property List<Lugar> lugares
+	@Property List<String> conexiones = new ArrayList<String>()
+	@Property List<Lugar> lugares = new ArrayList<Lugar>()
 	@Property String caractAAgregar
 	
 	
