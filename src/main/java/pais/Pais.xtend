@@ -13,8 +13,8 @@ class Pais {
 	@Property List<String> caract = new ArrayList<String>()
 	@Property List<String> conexiones = new ArrayList<String>()
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
-	@Property String caractAAgregar
-	
+	@Property String caracteristica 
+
 	
 	def void visitar(Villano villano){
 		lugares.forEach[pasoLadron(villano)]
@@ -29,7 +29,10 @@ class Pais {
 	
 	
 	def void eliminarCaract(String c){
-		caract-=c
+		if(caract.contains(c))
+			caract.remove(c)
+		ObservableUtils.firePropertyChanged(this,"caract",caract);
+ 
 	}
 	
 	
