@@ -51,14 +51,14 @@ public class Pais {
     this._lugares = lugares;
   }
   
-  private String _caractAAgregar;
+  private String _caracteristica;
   
-  public String getCaractAAgregar() {
-    return this._caractAAgregar;
+  public String getCaracteristica() {
+    return this._caracteristica;
   }
   
-  public void setCaractAAgregar(final String caractAAgregar) {
-    this._caractAAgregar = caractAAgregar;
+  public void setCaracteristica(final String caracteristica) {
+    this._caracteristica = caracteristica;
   }
   
   public void visitar(final Villano villano) {
@@ -80,6 +80,12 @@ public class Pais {
   
   public void eliminarCaract(final String c) {
     List<String> _caract = this.getCaract();
-    _caract.remove(c);
+    boolean _contains = _caract.contains(c);
+    if (_contains) {
+      List<String> _caract_1 = this.getCaract();
+      _caract_1.remove(c);
+    }
+    List<String> _caract_2 = this.getCaract();
+    ObservableUtils.firePropertyChanged(this, "caract", _caract_2);
   }
 }

@@ -1,7 +1,9 @@
 package persona;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
 
@@ -58,15 +60,34 @@ public class Villano {
     this._planDeEscape = planDeEscape;
   }
   
-  public Villano() {
+  private String _valor;
+  
+  public String getValor() {
+    return this._valor;
   }
   
-  public Villano(final String n, final String s, final List<String> h, final List<String> señas, final List<Pais> planDeEscape) {
+  public void setValor(final String valor) {
+    this._valor = valor;
+  }
+  
+  public Villano() {
+    ArrayList<String> _arrayList = new ArrayList<String>();
+    this._hobbie = _arrayList;
+    ArrayList<String> _arrayList_1 = new ArrayList<String>();
+    this._señas = _arrayList_1;
+    ArrayList<Pais> _arrayList_2 = new ArrayList<Pais>();
+    this._planDeEscape = _arrayList_2;
+  }
+  
+  public Villano(final String n, final String s) {
     this._nombre = n;
     this._sexo = s;
-    this._hobbie = h;
-    this._señas = señas;
-    this._planDeEscape = planDeEscape;
+    ArrayList<String> _arrayList = new ArrayList<String>();
+    this._hobbie = _arrayList;
+    ArrayList<String> _arrayList_1 = new ArrayList<String>();
+    this._señas = _arrayList_1;
+    ArrayList<Pais> _arrayList_2 = new ArrayList<Pais>();
+    this._planDeEscape = _arrayList_2;
   }
   
   public void visitarPais() {
@@ -81,5 +102,18 @@ public class Villano {
   
   public Object dameLasPistas() {
     return null;
+  }
+  
+  public void agregarValor(final String s, final String propertyName, final List<String> lista) {
+    lista.add(s);
+    ObservableUtils.firePropertyChanged(this, propertyName, lista);
+  }
+  
+  public void eliminarValor(final String s, final List<String> lista) {
+    boolean _contains = lista.contains(s);
+    if (_contains) {
+      lista.remove(s);
+    }
+    ObservableUtils.firePropertyChanged(this, "lista", lista);
   }
 }
