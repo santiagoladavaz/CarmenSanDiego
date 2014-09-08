@@ -1,5 +1,6 @@
 package pais;
 
+import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -64,14 +65,24 @@ public class Pais {
     this._caracteristica = caracteristica;
   }
   
-  private Pais _PaisElegido;
+  private Pais _paisElegido;
   
   public Pais getPaisElegido() {
-    return this._PaisElegido;
+    return this._paisElegido;
   }
   
-  public void setPaisElegido(final Pais PaisElegido) {
-    this._PaisElegido = PaisElegido;
+  public void setPaisElegido(final Pais paisElegido) {
+    this._paisElegido = paisElegido;
+  }
+  
+  private Lugar _lugarElegido;
+  
+  public Lugar getLugarElegido() {
+    return this._lugarElegido;
+  }
+  
+  public void setLugarElegido(final Lugar lugarElegido) {
+    this._lugarElegido = lugarElegido;
   }
   
   public Pais() {
@@ -92,10 +103,29 @@ public class Pais {
   }
   
   public void agregarCaract(final String c) {
-    List<String> _caract = this.getCaract();
-    _caract.add(c);
-    List<String> _caract_1 = this.getCaract();
-    ObservableUtils.firePropertyChanged(this, "caract", _caract_1);
+    boolean _and = false;
+    boolean _equals = Objects.equal(c, null);
+    boolean _not = (!_equals);
+    if (!_not) {
+      _and = false;
+    } else {
+      boolean _startsWith = c.startsWith(" ");
+      boolean _not_1 = (!_startsWith);
+      _and = _not_1;
+    }
+    if (_and) {
+      List<String> _caract = this.getCaract();
+      _caract.add(c);
+      List<String> _caract_1 = this.getCaract();
+      ObservableUtils.firePropertyChanged(this, "caract", _caract_1);
+    }
+  }
+  
+  public void agregarLugar(final Lugar l) {
+    List<Lugar> _lugares = this.getLugares();
+    _lugares.add(l);
+    List<Lugar> _lugares_1 = this.getLugares();
+    ObservableUtils.firePropertyChanged(this, "lugares", _lugares_1);
   }
   
   public void eliminarCaract(final String c) {
@@ -119,14 +149,30 @@ public class Pais {
     return ListExtensions.<Pais, String>map(_conexiones, _function);
   }
   
-  public void agregarConexion(final Pais p) {
+  public void eliminarConexion(final Pais p) {
     List<Pais> _conexiones = this.getConexiones();
-    _conexiones.add(p);
+    _conexiones.remove(p);
     List<Pais> _conexiones_1 = this.getConexiones();
     ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_1);
   }
   
+  public void agregarConexion(final Pais p) {
+    boolean _equals = Objects.equal(p, null);
+    boolean _not = (!_equals);
+    if (_not) {
+      List<Pais> _conexiones = this.getConexiones();
+      _conexiones.add(p);
+      List<Pais> _conexiones_1 = this.getConexiones();
+      ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_1);
+    }
+  }
+  
   public String toString() {
     return this.getNombre();
+  }
+  
+  public boolean eliminarLugar(final Lugar lugar) {
+    List<Lugar> _lugares = this.getLugares();
+    return _lugares.remove(lugar);
   }
 }

@@ -21,4 +21,8 @@ public class Banco extends Lugar {
     pistas.add(_get);
     return pistas;
   }
+  
+  public String toString() {
+    return this.getNombre();
+  }
 }

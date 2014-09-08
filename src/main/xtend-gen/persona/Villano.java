@@ -1,7 +1,9 @@
 package persona;
 
+import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
@@ -102,8 +104,21 @@ public class Villano {
   }
   
   public void agregarValor(final String s, final String propertyName, final List<String> lista) {
-    lista.add(s);
-    ObservableUtils.firePropertyChanged(this, propertyName, lista);
+    InputOutput.<String>print(s);
+    boolean _and = false;
+    boolean _equals = Objects.equal(s, null);
+    boolean _not = (!_equals);
+    if (!_not) {
+      _and = false;
+    } else {
+      boolean _startsWith = s.startsWith(" ");
+      boolean _not_1 = (!_startsWith);
+      _and = _not_1;
+    }
+    if (_and) {
+      lista.add(s);
+      ObservableUtils.firePropertyChanged(this, propertyName, lista);
+    }
   }
   
   public void eliminarValor(final String s, final String propertyName, final List<String> lista) {

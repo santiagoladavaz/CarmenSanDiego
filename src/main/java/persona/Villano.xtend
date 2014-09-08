@@ -36,8 +36,11 @@ class Villano {
 	}
 	
 	def agregarValor(String s,String propertyName, List<String> lista){
-		lista+=s
-		ObservableUtils.firePropertyChanged(this,propertyName,lista);
+		print(s)
+		if( !(s == null) && !(s.startsWith(" "))){
+			lista+=s
+			ObservableUtils.firePropertyChanged(this,propertyName,lista)
+		}
 	}
 	
 	def eliminarValor(String s,String propertyName, List<String> lista){

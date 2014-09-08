@@ -14,7 +14,8 @@ class Pais {
 	@Property List<Pais> conexiones = new ArrayList<Pais>()
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
 	@Property String caracteristica 
-	@Property Pais PaisElegido
+	@Property Pais paisElegido
+	@Property Lugar lugarElegido   // por el momento agregada para que sea polimorfico el selector
 	
 	
 	new(){
@@ -31,11 +32,17 @@ class Pais {
 	
 	
 	def void agregarCaract(String c){
-		caract+=c
-		ObservableUtils.firePropertyChanged(this,"caract",caract);
-	}
-	
-	
+		if (! (c==null) && !c.startsWith(" ")){
+			caract+=c
+			ObservableUtils.firePropertyChanged(this,"caract",caract);
+		}
+		
+   }
+   
+   def void agregarLugar(Lugar l){
+   		lugares+=l
+   		ObservableUtils.firePropertyChanged(this,"lugares",lugares)
+   }
 	
 	def void eliminarCaract(String c){
 		if(caract.contains(c))
@@ -48,13 +55,24 @@ class Pais {
 		conexiones.map[p|p.nombre]
 	}
 	
-	def agregarConexion(Pais p) {
-		conexiones+=p
+	def eliminarConexion(Pais p){
+		conexiones -=p
 		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
+	}
+	
+	def agregarConexion(Pais p) {
+		if (! (p == null)){
+			conexiones+=p
+			ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
+		}
 	}
 	
 	override toString(){
 		return nombre
+	}
+	
+	def eliminarLugar(Lugar lugar) {
+		lugares.remove(lugar)
 	}
 	
 	

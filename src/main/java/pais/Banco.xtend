@@ -19,5 +19,9 @@ class Banco extends Lugar {
 		return pistas
 	}
 	
+	override toString(){
+		return nombre
+	}
+	
 
 }
