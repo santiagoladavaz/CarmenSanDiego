@@ -2,7 +2,10 @@ package pais;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Lugar;
@@ -31,13 +34,13 @@ public class Pais {
     this._caract = caract;
   }
   
-  private List<String> _conexiones = new ArrayList<String>();
+  private List<Pais> _conexiones = new ArrayList<Pais>();
   
-  public List<String> getConexiones() {
+  public List<Pais> getConexiones() {
     return this._conexiones;
   }
   
-  public void setConexiones(final List<String> conexiones) {
+  public void setConexiones(final List<Pais> conexiones) {
     this._conexiones = conexiones;
   }
   
@@ -61,14 +64,31 @@ public class Pais {
     this._caracteristica = caracteristica;
   }
   
+  private Pais _PaisElegido;
+  
+  public Pais getPaisElegido() {
+    return this._PaisElegido;
+  }
+  
+  public void setPaisElegido(final Pais PaisElegido) {
+    this._PaisElegido = PaisElegido;
+  }
+  
+  public Pais() {
+  }
+  
+  public Pais(final String string) {
+    this.setNombre(string);
+  }
+  
   public void visitar(final Villano villano) {
     List<Lugar> _lugares = this.getLugares();
-    final Consumer<Lugar> _function = new Consumer<Lugar>() {
-      public void accept(final Lugar it) {
+    final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
+      public void apply(final Lugar it) {
         it.pasoLadron(villano);
       }
     };
-    _lugares.forEach(_function);
+    IterableExtensions.<Lugar>forEach(_lugares, _function);
   }
   
   public void agregarCaract(final String c) {
@@ -87,5 +107,26 @@ public class Pais {
     }
     List<String> _caract_2 = this.getCaract();
     ObservableUtils.firePropertyChanged(this, "caract", _caract_2);
+  }
+  
+  public List<String> conexionesToString() {
+    List<Pais> _conexiones = this.getConexiones();
+    final Function1<Pais, String> _function = new Function1<Pais, String>() {
+      public String apply(final Pais p) {
+        return p.getNombre();
+      }
+    };
+    return ListExtensions.<Pais, String>map(_conexiones, _function);
+  }
+  
+  public void agregarConexion(final Pais p) {
+    List<Pais> _conexiones = this.getConexiones();
+    _conexiones.add(p);
+    List<Pais> _conexiones_1 = this.getConexiones();
+    ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_1);
+  }
+  
+  public String toString() {
+    return this.getNombre();
   }
 }

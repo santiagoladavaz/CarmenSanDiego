@@ -27,7 +27,7 @@ public abstract class Lugar {
   }
   
   public void pasoLadron(final Villano villano) {
-    Object pistas = villano.dameLasPistas();
+    List<String> pistas = this.dameLasPistas(villano);
   }
   
   public String ocupanteInforma() {

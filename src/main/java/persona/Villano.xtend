@@ -35,19 +35,15 @@ class Villano {
 		planDeEscape.forEach[visitar(this)]
 	}
 	
-	def dameLasPistas(){
-		
-	}
-	
 	def agregarValor(String s,String propertyName, List<String> lista){
 		lista+=s
 		ObservableUtils.firePropertyChanged(this,propertyName,lista);
 	}
 	
-	def eliminarValor(String s, List<String> lista){
+	def eliminarValor(String s,String propertyName, List<String> lista){
 		if(lista.contains(s))
 			lista-=s
-		ObservableUtils.firePropertyChanged(this,"lista",lista);
+		ObservableUtils.firePropertyChanged(this,propertyName,lista);
 	}
 	
 

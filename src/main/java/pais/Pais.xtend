@@ -11,9 +11,18 @@ class Pais {
 	
 	@Property String nombre
 	@Property List<String> caract = new ArrayList<String>()
-	@Property List<String> conexiones = new ArrayList<String>()
+	@Property List<Pais> conexiones = new ArrayList<Pais>()
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
 	@Property String caracteristica 
+	@Property Pais PaisElegido
+	
+	
+	new(){
+		
+	}
+	new(String string) {
+		nombre=string
+	}
 
 	
 	def void visitar(Villano villano){
@@ -33,6 +42,19 @@ class Pais {
 			caract.remove(c)
 		ObservableUtils.firePropertyChanged(this,"caract",caract);
  
+	}
+	
+	def conexionesToString(){
+		conexiones.map[p|p.nombre]
+	}
+	
+	def agregarConexion(Pais p) {
+		conexiones+=p
+		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
+	}
+	
+	override toString(){
+		return nombre
 	}
 	
 	

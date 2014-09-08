@@ -2,7 +2,8 @@ package persona;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
@@ -92,16 +93,12 @@ public class Villano {
   
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
-    final Consumer<Pais> _function = new Consumer<Pais>() {
-      public void accept(final Pais it) {
+    final Procedure1<Pais> _function = new Procedure1<Pais>() {
+      public void apply(final Pais it) {
         it.visitar(Villano.this);
       }
     };
-    _planDeEscape.forEach(_function);
-  }
-  
-  public Object dameLasPistas() {
-    return null;
+    IterableExtensions.<Pais>forEach(_planDeEscape, _function);
   }
   
   public void agregarValor(final String s, final String propertyName, final List<String> lista) {
@@ -109,11 +106,11 @@ public class Villano {
     ObservableUtils.firePropertyChanged(this, propertyName, lista);
   }
   
-  public void eliminarValor(final String s, final List<String> lista) {
+  public void eliminarValor(final String s, final String propertyName, final List<String> lista) {
     boolean _contains = lista.contains(s);
     if (_contains) {
       lista.remove(s);
     }
-    ObservableUtils.firePropertyChanged(this, "lista", lista);
+    ObservableUtils.firePropertyChanged(this, propertyName, lista);
   }
 }
