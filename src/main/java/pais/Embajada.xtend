@@ -14,6 +14,7 @@ class Embajada extends Lugar {
 
 	override dameLasPistas(Villano villano) {
 		//Dar 2 pistas sobre el proximo destino
+		// prueba para que vea marcos
 	}
 
 	
