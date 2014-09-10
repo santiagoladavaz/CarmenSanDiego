@@ -31,22 +31,23 @@ class Pais {
 	}
 	
 	
-	def void agregarCaract(String c){
-		if (! (c==null) && !c.startsWith(" ")){
-			caract+=c
+	def void agregarCaract(){
+		if (! (this.caracteristica==null) && !this.caracteristica.startsWith(" ")){
+			caract+=this.caracteristica
 			ObservableUtils.firePropertyChanged(this,"caract",caract);
 		}
 		
    }
+   
    
    def void agregarLugar(Lugar l){
    		lugares+=l
    		ObservableUtils.firePropertyChanged(this,"lugares",lugares)
    }
 	
-	def void eliminarCaract(String c){
-		if(caract.contains(c))
-			caract.remove(c)
+	def void eliminarCaract(){
+		if(caract.contains(this.caracteristica))
+			caract.remove(this.caracteristica)
 		ObservableUtils.firePropertyChanged(this,"caract",caract);
  
 	}
