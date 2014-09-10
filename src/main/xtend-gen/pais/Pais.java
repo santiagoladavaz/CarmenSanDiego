@@ -175,4 +175,37 @@ public class Pais {
     List<Lugar> _lugares = this.getLugares();
     return _lugares.remove(lugar);
   }
+  
+  public boolean isConsistente() {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _and_2 = false;
+    String _nombre = this.getNombre();
+    boolean _notEquals = (!Objects.equal(_nombre, null));
+    if (!_notEquals) {
+      _and_2 = false;
+    } else {
+      List<String> _caract = this.getCaract();
+      boolean _isEmpty = _caract.isEmpty();
+      boolean _not = (!_isEmpty);
+      _and_2 = _not;
+    }
+    if (!_and_2) {
+      _and_1 = false;
+    } else {
+      List<Lugar> _lugares = this.getLugares();
+      boolean _isEmpty_1 = _lugares.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      _and_1 = _not_1;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      List<Pais> _conexiones = this.getConexiones();
+      boolean _isEmpty_2 = _conexiones.isEmpty();
+      boolean _not_2 = (!_isEmpty_2);
+      _and = _not_2;
+    }
+    return _and;
+  }
 }

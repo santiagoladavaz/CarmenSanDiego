@@ -75,6 +75,10 @@ class Pais {
 		lugares.remove(lugar)
 	}
 	
+	def isConsistente(){
+		return nombre != null && ! caract.empty &&
+			   ! lugares.empty && ! conexiones.empty
+	}
 	
 	
 	
