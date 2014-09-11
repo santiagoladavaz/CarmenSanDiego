@@ -8,17 +8,11 @@ abstract class Lugar {
 	@Property protected String nombre
 	@Property protected Persona okupa
 	
-	def pasoLadron(Villano villano) {
-		var pistas = villano.dameLasPistas
-//		_okupa = new Informante(pistas);
-	}
+    def abstract void pasoLadron(Villano villano,List<String>pistas)
 	
 	
 	def ocupanteInforma(){
 		_okupa.informar()
 	}
-	
-	
-	def abstract List<String> dameLasPistas(Villano villano)
 	
 }

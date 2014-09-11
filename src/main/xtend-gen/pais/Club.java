@@ -6,9 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import pais.Embajada;
 import pais.Lugar;
 import pais.Pais;
 import persona.Cuidador;
+import persona.Informante;
 import persona.Villano;
 
 @SuppressWarnings("all")
@@ -19,27 +21,19 @@ public class Club extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public List<String> dameLasPistas(final Villano villano) {
-    final ArrayList<String> list = new ArrayList<String>();
-    List<String> _señas = villano.getSeñas();
-    String _get = _señas.get(0);
-    list.add(_get);
-    List<String> _señas_1 = villano.getSeñas();
-    String _get_1 = _señas_1.get(1);
-    list.add(_get_1);
-    List<String> _hobbie = villano.getHobbie();
-    String _get_2 = _hobbie.get(0);
-    list.add(_get_2);
-    return list;
+  public void pasoLadron(final Villano villano, final List<String> pistas) {
+    final List<String> x = villano.dameLasPistas();
+    Informante _informante = new Informante(x);
+    this.setOkupa(_informante);
   }
   
   public static void main(final String[] args) {
     final Club club = new Club("lala");
-    final Club club2 = new Club("tranca");
+    final Embajada embajada = new Embajada("tranca");
     final ArrayList<Lugar> lugaress = new ArrayList<Lugar>();
     lugaress.add(club);
     final ArrayList<Lugar> lugaresSinPasar = new ArrayList<Lugar>();
-    lugaresSinPasar.add(club2);
+    lugaresSinPasar.add(embajada);
     Pais _pais = new Pais();
     final Procedure1<Pais> _function = new Procedure1<Pais>() {
       public void apply(final Pais it) {
@@ -73,6 +67,6 @@ public class Club extends Lugar {
     final Villano villano = ObjectExtensions.<Villano>operator_doubleArrow(_villano, _function_3);
     villano.visitarPais();
     club.ocupanteInforma();
-    club2.ocupanteInforma();
+    embajada.ocupanteInforma();
   }
 }

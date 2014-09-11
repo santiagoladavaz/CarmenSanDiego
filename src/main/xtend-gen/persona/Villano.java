@@ -1,9 +1,11 @@
 package persona;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
@@ -103,8 +105,21 @@ public class Villano {
     IterableExtensions.<Pais>forEach(_planDeEscape, _function);
   }
   
+  public Pais obtenerSiguientePais(final Pais p) {
+    List<Pais> _planDeEscape = this.getPlanDeEscape();
+    final int x = _planDeEscape.indexOf(p);
+    List<Pais> _planDeEscape_1 = this.getPlanDeEscape();
+    int _length = ((Object[])Conversions.unwrapArray(_planDeEscape_1, Object.class)).length;
+    int _minus = (_length - 1);
+    boolean _lessThan = (x < _minus);
+    if (_lessThan) {
+      List<Pais> _planDeEscape_2 = this.getPlanDeEscape();
+      return _planDeEscape_2.get((x + 1));
+    }
+    return null;
+  }
+  
   public void agregarValor(final String s, final String propertyName, final List<String> lista) {
-    InputOutput.<String>print(s);
     boolean _and = false;
     boolean _equals = Objects.equal(s, null);
     boolean _not = (!_equals);
@@ -117,6 +132,7 @@ public class Villano {
     }
     if (_and) {
       lista.add(s);
+      this.setValor(null);
       ObservableUtils.firePropertyChanged(this, propertyName, lista);
     }
   }
@@ -127,5 +143,13 @@ public class Villano {
       lista.remove(s);
     }
     ObservableUtils.firePropertyChanged(this, propertyName, lista);
+  }
+  
+  public List<String> dameLasPistas() {
+    List<String> _hobbie = this.getHobbie();
+    String _get = _hobbie.get(0);
+    List<String> _señas = this.getSeñas();
+    String _get_1 = _señas.get(0);
+    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_get, _get_1));
   }
 }

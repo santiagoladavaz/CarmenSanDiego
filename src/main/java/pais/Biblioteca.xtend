@@ -2,6 +2,8 @@ package pais
 import java.util.ArrayList
 import persona.Cuidador
 import persona.Villano
+import java.util.List
+import persona.Informante
 
 class Biblioteca extends Lugar {
 	
@@ -11,12 +13,12 @@ class Biblioteca extends Lugar {
 
 	}
 	
-	override dameLasPistas(Villano villano){
-		val list = new ArrayList<String>()
-		list+=villano.señas.get(0)
-		// Da una pista sobre el proximo destino
-		// 50% da una pista de Hobbie -> list+=villano.hobbie.get(0)
-		return list
+	override pasoLadron(Villano villano, List<String> pistas) {
+		val x = villano.dameLasPistas
+		x.addAll(pistas)
+		okupa= new Informante(x)
 	}
+	
+
 	
 }

@@ -26,13 +26,9 @@ public abstract class Lugar {
     this._okupa = okupa;
   }
   
-  public void pasoLadron(final Villano villano) {
-    List<String> pistas = this.dameLasPistas(villano);
-  }
+  public abstract void pasoLadron(final Villano villano, final List<String> pistas);
   
   public String ocupanteInforma() {
     return this._okupa.informar();
   }
-  
-  public abstract List<String> dameLasPistas(final Villano villano);
 }

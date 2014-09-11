@@ -2,6 +2,8 @@ package pais
 
 import persona.Cuidador
 import persona.Villano
+import java.util.List
+import persona.Informante
 
 class Embajada extends Lugar {
 	
@@ -11,11 +13,10 @@ class Embajada extends Lugar {
 
 	}
 	
-
-	override dameLasPistas(Villano villano) {
-		//Dar 2 pistas sobre el proximo destino
-		// prueba para que vea marcos
+	override pasoLadron(Villano villano, List<String> pistas) {
+		okupa = new Informante(pistas)
 	}
+
 
 	
 }

@@ -1,7 +1,9 @@
 package pais 
-import java.util.ArrayList
 import persona.Cuidador
 import persona.Villano
+import java.util.List
+import persona.Informante
+import java.util.ArrayList
 
 class Club extends Lugar {
 	
@@ -10,35 +12,18 @@ class Club extends Lugar {
 		_okupa = new Cuidador()
 	}
 	
-	
-	override dameLasPistas(Villano villano){
-		val list = new ArrayList<String>()
-		list+=villano.señas.get(0)
-		list+=villano.señas.get(1)
-		list+=villano.hobbie.get(0)
-		return list
+	override pasoLadron(Villano villano,List<String>pistas){
+			val x = villano.dameLasPistas
+			this.setOkupa(new Informante(x))
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	def static void main(String[] args) {
 		val club = new Club("lala")
-		val club2 = new Club("tranca")
+		val embajada = new Embajada("tranca")
 		val lugaress = new ArrayList<Lugar>()
 		lugaress+=club
 		val lugaresSinPasar= new ArrayList<Lugar>()
-		lugaresSinPasar+=club2
+		lugaresSinPasar+=embajada
 		val pais = new Pais() =>[lugares = lugaress]
 		pais => [nombre = "Argentina"]
 		val pais2 = new Pais() =>[lugares = lugaresSinPasar]
@@ -50,10 +35,7 @@ class Club extends Lugar {
 					]
 		villano.visitarPais()
 		club.ocupanteInforma()
-		club2.ocupanteInforma()
-	}
-	
-		
-	
+		embajada.ocupanteInforma()
+	}	
 	
 }

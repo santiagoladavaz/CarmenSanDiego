@@ -1,6 +1,5 @@
 package pais;
 
-import java.util.ArrayList;
 import java.util.List;
 import pais.Lugar;
 import persona.Cuidador;
@@ -14,15 +13,11 @@ public class Banco extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public List<String> dameLasPistas(final Villano villano) {
-    final ArrayList<String> pistas = new ArrayList<String>();
-    List<String> _señas = villano.getSeñas();
-    String _get = _señas.get(0);
-    pistas.add(_get);
-    return pistas;
-  }
-  
   public String toString() {
     return this.getNombre();
+  }
+  
+  public void pasoLadron(final Villano villano, final List<String> pistas) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

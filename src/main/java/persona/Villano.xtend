@@ -35,10 +35,18 @@ class Villano {
 		planDeEscape.forEach[visitar(this)]
 	}
 	
+	def obtenerSiguientePais(Pais p){
+		val x = planDeEscape.indexOf(p)
+		if(x < planDeEscape.length - 1){
+			return planDeEscape.get(x+1)
+		}
+		return null
+	}
+	
 	def agregarValor(String s,String propertyName, List<String> lista){
-		print(s)
 		if( !(s == null) && !(s.startsWith(" "))){
 			lista+=s
+			valor = null
 			ObservableUtils.firePropertyChanged(this,propertyName,lista)
 		}
 	}
@@ -47,6 +55,10 @@ class Villano {
 		if(lista.contains(s))
 			lista-=s
 		ObservableUtils.firePropertyChanged(this,propertyName,lista);
+	}
+	
+	def dameLasPistas(){
+		#[hobbie.get(0),señas.get(0)]
 	}
 	
 

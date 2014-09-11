@@ -3,6 +3,7 @@ package pais;
 import java.util.List;
 import pais.Lugar;
 import persona.Cuidador;
+import persona.Informante;
 import persona.Villano;
 
 @SuppressWarnings("all")
@@ -13,7 +14,8 @@ public class Embajada extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public List<String> dameLasPistas(final Villano villano) {
-    return null;
+  public void pasoLadron(final Villano villano, final List<String> pistas) {
+    Informante _informante = new Informante(pistas);
+    this.setOkupa(_informante);
   }
 }

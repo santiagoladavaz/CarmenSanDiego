@@ -27,28 +27,38 @@ class Pais {
 
 	
 	def void visitar(Villano villano){
-		lugares.forEach[pasoLadron(villano)]
+		val List<String>pistas = villano.obtenerSiguientePais(this).dame2Pistas()
+		lugares.forEach[pasoLadron(villano,pistas)]
 	}
 	
 	
 	def void agregarCaract(){
 		if (! (this.caracteristica==null) && !this.caracteristica.startsWith(" ")){
 			caract+=this.caracteristica
+			this.caracteristica = null
 			ObservableUtils.firePropertyChanged(this,"caract",caract);
+			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 		}
-		
+   }
+   
+   def dame2Pistas(){
+   	return #[caract.get(0), caract.get(1)]
    }
    
    
    def void agregarLugar(Lugar l){
-   		lugares+=l
-   		ObservableUtils.firePropertyChanged(this,"lugares",lugares)
-   }
-	
+   		if (l != null){
+   			lugares+=l
+   			ObservableUtils.firePropertyChanged(this,"lugares",lugares)
+   			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+   		}
+   	}
+   		
 	def void eliminarCaract(){
 		if(caract.contains(this.caracteristica))
 			caract.remove(this.caracteristica)
-		ObservableUtils.firePropertyChanged(this,"caract",caract);
+		ObservableUtils.firePropertyChanged(this,"caract",caract)
+		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
  
 	}
 	
@@ -59,12 +69,14 @@ class Pais {
 	def eliminarConexion(Pais p){
 		conexiones -=p
 		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
+		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
 	
 	def agregarConexion(Pais p) {
 		if (! (p == null)){
 			conexiones+=p
 			ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
+			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 		}
 	}
 	
@@ -72,8 +84,14 @@ class Pais {
 		return nombre
 	}
 	
+	def setNombre(String nombre){
+		_nombre = nombre
+		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+	}
+	
 	def eliminarLugar(Lugar lugar) {
 		lugares.remove(lugar)
+		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
 	
 	def isConsistente(){

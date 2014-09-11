@@ -1,9 +1,9 @@
 package pais;
 
-import java.util.ArrayList;
 import java.util.List;
 import pais.Lugar;
 import persona.Cuidador;
+import persona.Informante;
 import persona.Villano;
 
 @SuppressWarnings("all")
@@ -14,11 +14,10 @@ public class Biblioteca extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public List<String> dameLasPistas(final Villano villano) {
-    final ArrayList<String> list = new ArrayList<String>();
-    List<String> _señas = villano.getSeñas();
-    String _get = _señas.get(0);
-    list.add(_get);
-    return list;
+  public void pasoLadron(final Villano villano, final List<String> pistas) {
+    final List<String> x = villano.dameLasPistas();
+    x.addAll(pistas);
+    Informante _informante = new Informante(x);
+    this.setOkupa(_informante);
   }
 }
