@@ -8,12 +8,21 @@ import org.uqbar.commons.model.ObservableUtils
 @Observable
 class Villano extends Persona{
 	
-	@Property String nombre
-	@Property String sexo
-	@Property List<String> hobbie
-	@Property List<String> señas
-	@Property List<Pais> planDeEscape; 
-	@Property String valor
+	@Property 
+	String nombre
+	
+	@Property 
+	String sexo
+	
+	@Property 
+	List<String> hobbie
+	
+	@Property
+	 List<String> señas
+	
+	@Property
+	 List<Pais> planDeEscape; 
+	
 
 	new (){
 		_hobbie = new ArrayList<String> 
@@ -64,7 +73,6 @@ class Villano extends Persona{
 	def agregarValor(String s,String propertyName, List<String> lista){
 		if( !(s == null) && !(s.startsWith(" "))){
 			lista+=s
-			valor = null
 			ObservableUtils.firePropertyChanged(this,propertyName,lista)
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 		}

@@ -3,11 +3,10 @@ package persona;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
@@ -58,16 +57,6 @@ public class Villano extends Persona {
     this._planDeEscape = planDeEscape;
   }
   
-  private String _valor;
-  
-  public String getValor() {
-    return this._valor;
-  }
-  
-  public void setValor(final String valor) {
-    this._valor = valor;
-  }
-  
   public Villano() {
     ArrayList<String> _arrayList = new ArrayList<String>();
     this._hobbie = _arrayList;
@@ -93,12 +82,12 @@ public class Villano extends Persona {
    */
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
-    final Procedure1<Pais> _function = new Procedure1<Pais>() {
-      public void apply(final Pais it) {
+    final Consumer<Pais> _function = new Consumer<Pais>() {
+      public void accept(final Pais it) {
         it.visitar(Villano.this);
       }
     };
-    IterableExtensions.<Pais>forEach(_planDeEscape, _function);
+    _planDeEscape.forEach(_function);
   }
   
   public Pais obtenerSiguientePais(final Pais p) {
@@ -150,7 +139,6 @@ public class Villano extends Persona {
     }
     if (_and) {
       lista.add(s);
-      this.setValor(null);
       ObservableUtils.firePropertyChanged(this, propertyName, lista);
       boolean _isConsistente = this.isConsistente();
       ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
