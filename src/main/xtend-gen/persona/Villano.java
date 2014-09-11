@@ -1,38 +1,31 @@
 package persona;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
+import persona.Persona;
 
 @Observable
 @SuppressWarnings("all")
-public class Villano {
+public class Villano extends Persona {
   private String _nombre;
   
   public String getNombre() {
     return this._nombre;
   }
   
-  public void setNombre(final String nombre) {
-    this._nombre = nombre;
-  }
-  
   private String _sexo;
   
   public String getSexo() {
     return this._sexo;
-  }
-  
-  public void setSexo(final String sexo) {
-    this._sexo = sexo;
   }
   
   private List<String> _hobbie;
@@ -95,6 +88,9 @@ public class Villano {
     this._planDeEscape = _arrayList_2;
   }
   
+  /**
+   * @METODOS DEL DOMINIO
+   */
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
     final Procedure1<Pais> _function = new Procedure1<Pais>() {
@@ -119,6 +115,28 @@ public class Villano {
     return null;
   }
   
+  public ArrayList<String> dameLasPistas() {
+    ArrayList<String> _xblockexpression = null;
+    {
+      final ArrayList<String> x = CollectionLiterals.<String>newArrayList();
+      List<String> _señas = this.getSeñas();
+      String _get = _señas.get(0);
+      x.add(_get);
+      List<String> _señas_1 = this.getSeñas();
+      String _get_1 = _señas_1.get(1);
+      x.add(_get_1);
+      _xblockexpression = x;
+    }
+    return _xblockexpression;
+  }
+  
+  public String informar() {
+    return InputOutput.<String>print("Felicidades me atrapaste");
+  }
+  
+  /**
+   * @METODOS DE LA INTERFAZ
+   */
   public void agregarValor(final String s, final String propertyName, final List<String> lista) {
     boolean _and = false;
     boolean _equals = Objects.equal(s, null);
@@ -134,6 +152,8 @@ public class Villano {
       lista.add(s);
       this.setValor(null);
       ObservableUtils.firePropertyChanged(this, propertyName, lista);
+      boolean _isConsistente = this.isConsistente();
+      ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
     }
   }
   
@@ -143,13 +163,77 @@ public class Villano {
       lista.remove(s);
     }
     ObservableUtils.firePropertyChanged(this, propertyName, lista);
+    boolean _isConsistente = this.isConsistente();
+    ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
   }
   
-  public List<String> dameLasPistas() {
-    List<String> _hobbie = this.getHobbie();
-    String _get = _hobbie.get(0);
-    List<String> _señas = this.getSeñas();
-    String _get_1 = _señas.get(0);
-    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_get, _get_1));
+  public boolean cumpleCondicion(final String n) {
+    boolean _and = false;
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _equals = Objects.equal(n, "Femenino");
+    if (_equals) {
+      _or_1 = true;
+    } else {
+      boolean _equals_1 = Objects.equal(n, "Masculino");
+      _or_1 = _equals_1;
+    }
+    if (_or_1) {
+      _or = true;
+    } else {
+      boolean _equals_2 = Objects.equal(n, "Hermafrodita");
+      _or = _equals_2;
+    }
+    if (!_or) {
+      _and = false;
+    } else {
+      boolean _notEquals = (!Objects.equal(n, null));
+      _and = _notEquals;
+    }
+    return _and;
+  }
+  
+  public void setSexo(final String n) {
+    this._sexo = n;
+    boolean _isConsistente = this.isConsistente();
+    ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+  }
+  
+  public void setNombre(final String n) {
+    this._nombre = n;
+    boolean _isConsistente = this.isConsistente();
+    ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+  }
+  
+  public boolean isConsistente() {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _and_2 = false;
+    String _nombre = this.getNombre();
+    boolean _notEquals = (!Objects.equal(_nombre, null));
+    if (!_notEquals) {
+      _and_2 = false;
+    } else {
+      String _sexo = this.getSexo();
+      boolean _cumpleCondicion = this.cumpleCondicion(_sexo);
+      _and_2 = _cumpleCondicion;
+    }
+    if (!_and_2) {
+      _and_1 = false;
+    } else {
+      List<String> _señas = this.getSeñas();
+      boolean _isEmpty = _señas.isEmpty();
+      boolean _not = (!_isEmpty);
+      _and_1 = _not;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      List<String> _hobbie = this.getHobbie();
+      boolean _isEmpty_1 = _hobbie.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      _and = _not_1;
+    }
+    return _and;
   }
 }

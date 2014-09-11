@@ -24,7 +24,7 @@ public class Informante extends Persona {
     String s = "";
     List<String> _pistas = this.getPistas();
     for (final String p : _pistas) {
-      s = (s + p);
+      s = ((s + " , ") + p);
     }
     InputOutput.<String>print(s);
     return s;

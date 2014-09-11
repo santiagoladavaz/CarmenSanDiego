@@ -14,28 +14,44 @@ class Club extends Lugar {
 	
 	override pasoLadron(Villano villano,List<String>pistas){
 			val x = villano.dameLasPistas
-			this.setOkupa(new Informante(x))
+			okupa = new Informante(x)
 	}
 
 	def static void main(String[] args) {
 		val club = new Club("lala")
 		val embajada = new Embajada("tranca")
+		val embajada2 = new Embajada("tranca2")
+		val biblio = new Biblioteca("opa")
 		val lugaress = new ArrayList<Lugar>()
 		lugaress+=club
+		lugaress+=embajada2
+		lugaress+=biblio
+		
 		val lugaresSinPasar= new ArrayList<Lugar>()
 		lugaresSinPasar+=embajada
-		val pais = new Pais() =>[lugares = lugaress]
-		pais => [nombre = "Argentina"]
-		val pais2 = new Pais() =>[lugares = lugaresSinPasar]
+		val pais = new Pais() =>[lugares = lugaress
+				 nombre = "Argentina"
+				 caract.add("hablan español")
+				 caract.add("son gays")
+		]
+		val pais2 = new Pais() =>[ nombre = "sarasa"
+								   lugares = lugaresSinPasar
+								   caract.add("sarasa1")
+								   caract.add("sarasa2")
+		]
 		val villano = new Villano() => [nombre="Pepe"
 										sexo="Masculino"
-										hobbie = #["juego tennis"]	
-										señas = #["soy un trolaso ","no tengo idea de la vida"]
-										planDeEscape = #[pais]
+										hobbie = #["el ladron juega tennis"," el ladron come manzanas"]	
+										señas = #["es un trolaso ","no tiene idea de la vida"]
+										planDeEscape = #[pais,pais2]
 					]
 		villano.visitarPais()
 		club.ocupanteInforma()
-		embajada.ocupanteInforma()
+		embajada2.ocupanteInforma()
+		biblio.ocupanteInforma()
+		print("\n")
+		print(embajada + "\n")
+		embajada.ocupanteInforma
 	}	
 	
 }

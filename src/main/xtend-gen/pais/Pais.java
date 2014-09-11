@@ -90,18 +90,39 @@ public class Pais {
     this.setNombre(string);
   }
   
+  /**
+   * @METODOS DEL DOMINIO
+   */
   public void visitar(final Villano villano) {
-    Pais _obtenerSiguientePais = villano.obtenerSiguientePais(this);
-    final List<String> pistas = _obtenerSiguientePais.dame2Pistas();
-    List<Lugar> _lugares = this.getLugares();
-    final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
-      public void apply(final Lugar it) {
-        it.pasoLadron(villano, pistas);
-      }
-    };
-    IterableExtensions.<Lugar>forEach(_lugares, _function);
+    final Pais pais = villano.obtenerSiguientePais(this);
+    boolean _notEquals = (!Objects.equal(pais, null));
+    if (_notEquals) {
+      List<Lugar> _lugares = this.getLugares();
+      final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
+        public void apply(final Lugar it) {
+          List<String> _dame2Pistas = pais.dame2Pistas();
+          it.pasoLadron(villano, _dame2Pistas);
+        }
+      };
+      IterableExtensions.<Lugar>forEach(_lugares, _function);
+    } else {
+      List<Lugar> _lugares_1 = this.getLugares();
+      Lugar _get = _lugares_1.get(0);
+      _get.esconderVillano(villano);
+    }
   }
   
+  public List<String> dame2Pistas() {
+    List<String> _caract = this.getCaract();
+    String _get = _caract.get(0);
+    List<String> _caract_1 = this.getCaract();
+    String _get_1 = _caract_1.get(1);
+    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_get, _get_1));
+  }
+  
+  /**
+   * @METODOS DE LA INTERFAZ
+   */
   public void agregarCaract() {
     boolean _and = false;
     String _caracteristica = this.getCaracteristica();
@@ -125,14 +146,6 @@ public class Pais {
       boolean _isConsistente = this.isConsistente();
       ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
     }
-  }
-  
-  public List<String> dame2Pistas() {
-    List<String> _caract = this.getCaract();
-    String _get = _caract.get(0);
-    List<String> _caract_1 = this.getCaract();
-    String _get_1 = _caract_1.get(1);
-    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_get, _get_1));
   }
   
   public void agregarLugar(final Lugar l) {

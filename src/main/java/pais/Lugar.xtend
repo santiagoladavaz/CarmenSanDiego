@@ -12,7 +12,13 @@ abstract class Lugar {
 	
 	
 	def ocupanteInforma(){
+		 print(this)
 		_okupa.informar()
+		print("\n")
+	}
+	
+	def void esconderVillano(Villano villano){
+		okupa = villano
 	}
 	
 }

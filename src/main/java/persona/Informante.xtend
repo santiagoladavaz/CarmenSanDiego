@@ -14,7 +14,7 @@ class Informante extends Persona {
 	override informar() {
 		var s = "" 
 		for(p:pistas){
-			s = s+p
+			s = s+" , "+p
 		}
 		print(s)
 		return s

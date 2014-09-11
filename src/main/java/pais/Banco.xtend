@@ -1,8 +1,8 @@
-package pais 
-import java.util.ArrayList
+package pais
+
+import java.util.List
 import persona.Cuidador
 import persona.Villano
-import java.util.List
 
 class Banco extends Lugar {
 	

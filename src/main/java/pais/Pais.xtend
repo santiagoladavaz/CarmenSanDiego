@@ -24,13 +24,27 @@ class Pais {
 	new(String string) {
 		nombre=string
 	}
+	
+	/**
+	 * @METODOS DEL DOMINIO
+	 */
 
 	
 	def void visitar(Villano villano){
-		val List<String>pistas = villano.obtenerSiguientePais(this).dame2Pistas()
-		lugares.forEach[pasoLadron(villano,pistas)]
+		val pais = villano.obtenerSiguientePais(this)
+		if(pais != null)
+			lugares.forEach[pasoLadron(villano,pais.dame2Pistas)]
+		else
+			lugares.get(0).esconderVillano(villano)
 	}
 	
+   def  dame2Pistas(){
+   		return #[caract.get(0), caract.get(1)]
+   }
+   
+   /**
+    * @METODOS DE LA INTERFAZ
+    */
 	
 	def void agregarCaract(){
 		if (! (this.caracteristica==null) && !this.caracteristica.startsWith(" ")){
@@ -41,9 +55,6 @@ class Pais {
 		}
    }
    
-   def dame2Pistas(){
-   	return #[caract.get(0), caract.get(1)]
-   }
    
    
    def void agregarLugar(Lugar l){
