@@ -23,10 +23,7 @@ class VillanoApplicationModel {
 	}
 	
 	def agregarValor(String propertyName,List<String> lista ){
-		this.villano.agregarValor(this.valorAAgregar,propertyName,lista)
-		this.valorAAgregar = null
-		
-		
+		this.villano.agregarValor(this.valorAAgregar,propertyName,lista)		
 	}
 	
 	def eliminarValor(String propertyName,List<String> lista ){

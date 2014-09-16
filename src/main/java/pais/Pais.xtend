@@ -14,8 +14,6 @@ class Pais {
 	@Property List<Pais> conexiones = new ArrayList<Pais>()
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
 	@Property String caracteristica 
-	@Property Pais paisElegido
-	@Property Lugar lugarElegido   // por el momento agregada para que sea polimorfico el selector
 	
 	
 	new(){
