@@ -14,7 +14,7 @@ class Juego {
 	private static Juego JUEGO = new Juego
 	@Property  List<Pais> conexiones = new ArrayList<Pais>
 	@Property List<Lugar>lugares = new ArrayList<Lugar>
-	@Property List<Villano> expedientes = new ArrayList<Villano>
+	@Property List<Villano> villanos = new ArrayList<Villano>
  	
   def static Juego getInstance(){
  	return  JUEGO
@@ -31,6 +31,11 @@ class Juego {
 					add(new Banco("BIBLIOTECA - Quilmes"))
 			
 		            ]
+		villanos =>[
+				add(new Villano("Bonnie","Femenino",#["Jugar tenis","Pintar cuadros"],#["Alta","Flaca"],#[]))
+				add(new Villano("Al Capone","Masculino",#["Comer pizza","Extorcionar"],#["Barrigon","Pelado"],#[]))
+				add(new Villano("Gordo Valor","Masculino",#["Andar en bici"],#["Tartamudo","Bajito"],#[]))
+			]
 		
 	}
 	

@@ -58,6 +58,14 @@ public class Villano extends Persona {
     this._planDeEscape = planDeEscape;
   }
   
+  public Villano(final String n, final String s, final List<String> hobbies, final List<String> señas, final List<Pais> plan) {
+    this._nombre = n;
+    this._sexo = s;
+    this._hobbie = hobbies;
+    this._señas = señas;
+    this._planDeEscape = plan;
+  }
+  
   public Villano() {
     ArrayList<String> _arrayList = new ArrayList<String>();
     this._hobbie = _arrayList;
@@ -89,6 +97,10 @@ public class Villano extends Persona {
       }
     };
     IterableExtensions.<Pais>forEach(_planDeEscape, _function);
+  }
+  
+  public String toString() {
+    return this._nombre;
   }
   
   public Pais obtenerSiguientePais(final Pais p) {

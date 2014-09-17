@@ -1,23 +1,21 @@
 package persona
 
+import Juego.Juego
 import java.util.List
 import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 class VillanoApplicationModel {
 	
 	
-	@Property 
-	Villano villano
+	@Property Villano villano	
+	@Property String valorAAgregar
+	@Property String valorAEliminar
+	@Property Juego juego = Juego.getInstance
 	
-	@Property 
-	String valorAAgregar
-	
-	@Property 
-	String valorAEliminar
-	
-	
+	new(){
+		
+	}
 	new(Villano villano){
 		this.villano = villano
 	}

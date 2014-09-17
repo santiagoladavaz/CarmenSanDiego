@@ -1,7 +1,9 @@
 package Juego;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -40,14 +42,14 @@ public class Juego {
     this._lugares = lugares;
   }
   
-  private List<Villano> _expedientes = new ArrayList<Villano>();
+  private List<Villano> _villanos = new ArrayList<Villano>();
   
-  public List<Villano> getExpedientes() {
-    return this._expedientes;
+  public List<Villano> getVillanos() {
+    return this._villanos;
   }
   
-  public void setExpedientes(final List<Villano> expedientes) {
-    this._expedientes = expedientes;
+  public void setVillanos(final List<Villano> villanos) {
+    this._villanos = villanos;
   }
   
   public static Juego getInstance() {
@@ -77,6 +79,18 @@ public class Juego {
       }
     };
     ObjectExtensions.<List<Lugar>>operator_doubleArrow(_lugares, _function_1);
+    List<Villano> _villanos = this.getVillanos();
+    final Procedure1<List<Villano>> _function_2 = new Procedure1<List<Villano>>() {
+      public void apply(final List<Villano> it) {
+        Villano _villano = new Villano("Bonnie", "Femenino", Collections.<String>unmodifiableList(Lists.<String>newArrayList("Jugar tenis", "Pintar cuadros")), Collections.<String>unmodifiableList(Lists.<String>newArrayList("Alta", "Flaca")), Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        it.add(_villano);
+        Villano _villano_1 = new Villano("Al Capone", "Masculino", Collections.<String>unmodifiableList(Lists.<String>newArrayList("Comer pizza", "Extorcionar")), Collections.<String>unmodifiableList(Lists.<String>newArrayList("Barrigon", "Pelado")), Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        it.add(_villano_1);
+        Villano _villano_2 = new Villano("Gordo Valor", "Masculino", Collections.<String>unmodifiableList(Lists.<String>newArrayList("Andar en bici")), Collections.<String>unmodifiableList(Lists.<String>newArrayList("Tartamudo", "Bajito")), Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        it.add(_villano_2);
+      }
+    };
+    ObjectExtensions.<List<Villano>>operator_doubleArrow(_villanos, _function_2);
   }
   
   public Pais buscarPais(final Pais string) {

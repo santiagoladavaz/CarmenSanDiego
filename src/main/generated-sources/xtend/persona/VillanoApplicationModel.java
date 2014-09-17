@@ -1,5 +1,6 @@
 package persona;
 
+import Juego.Juego;
 import java.util.List;
 import org.uqbar.commons.utils.Observable;
 import persona.Villano;
@@ -35,6 +36,19 @@ public class VillanoApplicationModel {
   
   public void setValorAEliminar(final String valorAEliminar) {
     this._valorAEliminar = valorAEliminar;
+  }
+  
+  private Juego _juego = Juego.getInstance();
+  
+  public Juego getJuego() {
+    return this._juego;
+  }
+  
+  public void setJuego(final Juego juego) {
+    this._juego = juego;
+  }
+  
+  public VillanoApplicationModel() {
   }
   
   public VillanoApplicationModel(final Villano villano) {

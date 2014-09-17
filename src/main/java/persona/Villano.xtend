@@ -8,20 +8,19 @@ import org.uqbar.commons.model.ObservableUtils
 @Observable
 class Villano extends Persona{
 	
-	@Property 
-	String nombre
-	
-	@Property 
-	String sexo
-	
-	@Property 
-	List<String> hobbie
-	
-	@Property
-	 List<String> señas
-	
-	@Property
-	 List<Pais> planDeEscape; 
+	@Property String nombre
+	@Property String sexo
+	@Property List<String> hobbie
+	@Property List<String> señas
+	@Property List<Pais> planDeEscape; 
+	 
+	 new (String n, String s,List<String> hobbies,List<String>señas,List<Pais> plan){
+		_nombre = n
+		_sexo = s
+		_hobbie = hobbies 
+		_señas = señas  
+		_planDeEscape = plan 
+	}
 	
 
 	new (){
@@ -44,6 +43,10 @@ class Villano extends Persona{
 	
 	def visitarPais(){
 		planDeEscape.forEach[visitar(this)]
+	}
+	
+	override def toString(){
+		return _nombre
 	}
 	
 	def obtenerSiguientePais(Pais p){
