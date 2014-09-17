@@ -1,12 +1,14 @@
 package Juego;
 
 import Juego.Juego;
+import org.uqbar.commons.utils.Observable;
 import pais.Pais;
 import persona.Villano;
 
+@Observable
 @SuppressWarnings("all")
 public class JuegoAppModel {
-  private Juego _juego;
+  private Juego _juego = Juego.getInstance();
   
   public Juego getJuego() {
     return this._juego;
