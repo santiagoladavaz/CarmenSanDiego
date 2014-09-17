@@ -13,6 +13,7 @@ import org.uqbar.commons.utils.Observable;
 import pais.Banco;
 import pais.Lugar;
 import pais.Pais;
+import persona.Villano;
 
 @Observable
 @SuppressWarnings("all")
@@ -39,6 +40,16 @@ public class Juego {
     this._lugares = lugares;
   }
   
+  private List<Villano> _expedientes = new ArrayList<Villano>();
+  
+  public List<Villano> getExpedientes() {
+    return this._expedientes;
+  }
+  
+  public void setExpedientes(final List<Villano> expedientes) {
+    this._expedientes = expedientes;
+  }
+  
   public static Juego getInstance() {
     return Juego.JUEGO;
   }
@@ -61,6 +72,8 @@ public class Juego {
       public void apply(final List<Lugar> it) {
         Banco _banco = new Banco("BANCO - Provincia");
         it.add(_banco);
+        Banco _banco_1 = new Banco("BIBLIOTECA - Quilmes");
+        it.add(_banco_1);
       }
     };
     ObjectExtensions.<List<Lugar>>operator_doubleArrow(_lugares, _function_1);
@@ -82,5 +95,16 @@ public class Juego {
       _xblockexpression = ((Pais[])Conversions.unwrapArray(_filter, Pais.class))[0];
     }
     return _xblockexpression;
+  }
+  
+  public boolean eliminarPais(final Pais pais) {
+    boolean _xifexpression = false;
+    List<Pais> _conexiones = this.getConexiones();
+    boolean _contains = _conexiones.contains(pais);
+    if (_contains) {
+      List<Pais> _conexiones_1 = this.getConexiones();
+      _xifexpression = _conexiones_1.remove(pais);
+    }
+    return _xifexpression;
   }
 }
