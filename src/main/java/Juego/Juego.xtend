@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable
 import pais.Lugar
 import pais.Banco
 import persona.Villano
+import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 class Juego {
@@ -31,10 +32,14 @@ class Juego {
 					add(new Banco("BIBLIOTECA - Quilmes"))
 			
 		            ]
+		 val hobbies1 = newArrayList("Jugar tenis","Pintar Cuadros")
+		 val señas1 = newArrayList("Alta","Flaca")
+		 val hobbies2 = newArrayList("comer pizza","extorsionar")
+		 val señas2 = newArrayList("barrigon","pelado")
 		villanos =>[
-				add(new Villano("Bonnie","Femenino",#["Jugar tenis","Pintar cuadros"],#["Alta","Flaca"],#[]))
-				add(new Villano("Al Capone","Masculino",#["Comer pizza","Extorcionar"],#["Barrigon","Pelado"],#[]))
-				add(new Villano("Gordo Valor","Masculino",#["Andar en bici"],#["Tartamudo","Bajito"],#[]))
+				add(new Villano("Bonnie","Femenino",hobbies1,señas1,#[]))
+				add(new Villano("Al Capone","Masculino",hobbies2,señas2,#[]))
+				//add(new Villano("Gordo Valor","Masculino",#["Andar en bici"],#["Tartamudo","Bajito"],#[]))
 			]
 		
 	}
@@ -51,6 +56,16 @@ class Juego {
 			}
 				
 		}
+	
+	def agregarPais(Pais pais) {
+		conexiones += pais
+		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
+	}
+	
+	def agregarVillano(Villano villano) {
+		villanos += villano
+		ObservableUtils.firePropertyChanged(this,"villanos",villanos)
+	}
 	
 	
 }

@@ -5,12 +5,14 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Banco;
 import pais.Lugar;
@@ -79,15 +81,17 @@ public class Juego {
       }
     };
     ObjectExtensions.<List<Lugar>>operator_doubleArrow(_lugares, _function_1);
+    final ArrayList<String> hobbies1 = CollectionLiterals.<String>newArrayList("Jugar tenis", "Pintar Cuadros");
+    final ArrayList<String> señas1 = CollectionLiterals.<String>newArrayList("Alta", "Flaca");
+    final ArrayList<String> hobbies2 = CollectionLiterals.<String>newArrayList("comer pizza", "extorsionar");
+    final ArrayList<String> señas2 = CollectionLiterals.<String>newArrayList("barrigon", "pelado");
     List<Villano> _villanos = this.getVillanos();
     final Procedure1<List<Villano>> _function_2 = new Procedure1<List<Villano>>() {
       public void apply(final List<Villano> it) {
-        Villano _villano = new Villano("Bonnie", "Femenino", Collections.<String>unmodifiableList(Lists.<String>newArrayList("Jugar tenis", "Pintar cuadros")), Collections.<String>unmodifiableList(Lists.<String>newArrayList("Alta", "Flaca")), Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        Villano _villano = new Villano("Bonnie", "Femenino", hobbies1, señas1, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
         it.add(_villano);
-        Villano _villano_1 = new Villano("Al Capone", "Masculino", Collections.<String>unmodifiableList(Lists.<String>newArrayList("Comer pizza", "Extorcionar")), Collections.<String>unmodifiableList(Lists.<String>newArrayList("Barrigon", "Pelado")), Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        Villano _villano_1 = new Villano("Al Capone", "Masculino", hobbies2, señas2, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
         it.add(_villano_1);
-        Villano _villano_2 = new Villano("Gordo Valor", "Masculino", Collections.<String>unmodifiableList(Lists.<String>newArrayList("Andar en bici")), Collections.<String>unmodifiableList(Lists.<String>newArrayList("Tartamudo", "Bajito")), Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
-        it.add(_villano_2);
       }
     };
     ObjectExtensions.<List<Villano>>operator_doubleArrow(_villanos, _function_2);
@@ -120,5 +124,19 @@ public class Juego {
       _xifexpression = _conexiones_1.remove(pais);
     }
     return _xifexpression;
+  }
+  
+  public void agregarPais(final Pais pais) {
+    List<Pais> _conexiones = this.getConexiones();
+    _conexiones.add(pais);
+    List<Pais> _conexiones_1 = this.getConexiones();
+    ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_1);
+  }
+  
+  public void agregarVillano(final Villano villano) {
+    List<Villano> _villanos = this.getVillanos();
+    _villanos.add(villano);
+    List<Villano> _villanos_1 = this.getVillanos();
+    ObservableUtils.firePropertyChanged(this, "villanos", _villanos_1);
   }
 }
