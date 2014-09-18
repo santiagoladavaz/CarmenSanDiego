@@ -2,13 +2,12 @@ package pais;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Lugar;
@@ -23,7 +22,7 @@ public class Pais {
     return this._nombre;
   }
   
-  private List<String> _caract = new ArrayList<String>();
+  private List<String> _caract = CollectionLiterals.<String>newArrayList();
   
   public List<String> getCaract() {
     return this._caract;
@@ -33,7 +32,7 @@ public class Pais {
     this._caract = caract;
   }
   
-  private List<Pais> _conexiones = new ArrayList<Pais>();
+  private List<Pais> _conexiones = CollectionLiterals.<Pais>newArrayList();
   
   public List<Pais> getConexiones() {
     return this._conexiones;
@@ -43,7 +42,7 @@ public class Pais {
     this._conexiones = conexiones;
   }
   
-  private List<Lugar> _lugares = new ArrayList<Lugar>();
+  private List<Lugar> _lugares = CollectionLiterals.<Lugar>newArrayList();
   
   public List<Lugar> getLugares() {
     return this._lugares;
@@ -63,11 +62,22 @@ public class Pais {
     this._caracteristica = caracteristica;
   }
   
+  public Pais(final String n, final List<String> caracts, final List<Pais> conex, final List<Lugar> l) {
+    this.setNombre(n);
+    this.setCaract(caracts);
+    this.setConexiones(conex);
+    this.setLugares(l);
+  }
+  
   public Pais() {
   }
   
   public Pais(final String string) {
     this.setNombre(string);
+  }
+  
+  public String toString() {
+    return this.getNombre();
   }
   
   /**
@@ -78,13 +88,13 @@ public class Pais {
     boolean _notEquals = (!Objects.equal(pais, null));
     if (_notEquals) {
       List<Lugar> _lugares = this.getLugares();
-      final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
-        public void apply(final Lugar it) {
+      final Consumer<Lugar> _function = new Consumer<Lugar>() {
+        public void accept(final Lugar it) {
           List<String> _dame2Pistas = pais.dame2Pistas();
           it.pasoLadron(villano, _dame2Pistas);
         }
       };
-      IterableExtensions.<Lugar>forEach(_lugares, _function);
+      _lugares.forEach(_function);
     } else {
       List<Lugar> _lugares_1 = this.getLugares();
       Lugar _get = _lugares_1.get(0);
@@ -185,10 +195,6 @@ public class Pais {
       boolean _isConsistente = this.isConsistente();
       ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
     }
-  }
-  
-  public String toString() {
-    return this.getNombre();
   }
   
   public void setNombre(final String nombre) {

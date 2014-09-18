@@ -1,6 +1,7 @@
 package persona;
 
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
 import persona.Villano;
@@ -28,7 +29,7 @@ public class Detective {
     this._ordenDeArresto = ordenDeArresto;
   }
   
-  private List<String> _recorridoCriminal;
+  private List<String> _recorridoCriminal = CollectionLiterals.<String>newArrayList();
   
   public List<String> getRecorridoCriminal() {
     return this._recorridoCriminal;
@@ -38,7 +39,7 @@ public class Detective {
     this._recorridoCriminal = recorridoCriminal;
   }
   
-  private List<String> _destinosFallidos;
+  private List<String> _destinosFallidos = CollectionLiterals.<String>newArrayList();
   
   public List<String> getDestinosFallidos() {
     return this._destinosFallidos;

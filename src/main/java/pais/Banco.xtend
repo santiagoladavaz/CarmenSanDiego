@@ -12,12 +12,6 @@ class Banco extends Lugar {
 	}
 
 	
-
-	
-	override toString(){
-		return nombre
-	}
-	
 	override pasoLadron(Villano villano, List<String> pistas) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}

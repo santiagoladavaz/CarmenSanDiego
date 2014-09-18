@@ -12,6 +12,9 @@ class Club extends Lugar {
 		_okupa = new Cuidador()
 	}
 	
+
+	
+	
 	override pasoLadron(Villano villano,List<String>pistas){
 			val x = villano.dameLasPistas
 			okupa = new Informante(x)

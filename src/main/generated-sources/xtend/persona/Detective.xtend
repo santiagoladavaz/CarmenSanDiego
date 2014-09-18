@@ -14,11 +14,12 @@ class Detective {
 	Villano ordenDeArresto
 	
 	@Property
-	List<String> recorridoCriminal
+	List<String> recorridoCriminal = newArrayList
 	
 	@Property
-	List<String> destinosFallidos
+	List<String> destinosFallidos = newArrayList
 	
 	
+
 	
 }

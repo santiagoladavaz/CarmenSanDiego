@@ -13,6 +13,8 @@ class Biblioteca extends Lugar {
 
 	}
 	
+
+	
 	override pasoLadron(Villano villano, List<String> pistas) {
 		val x = villano.dameLasPistas
 	    for (p:pistas){

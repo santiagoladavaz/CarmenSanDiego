@@ -10,17 +10,32 @@ import persona.Villano
 class Pais {
 	
 	@Property String nombre
-	@Property List<String> caract = new ArrayList<String>()
-	@Property List<Pais> conexiones = new ArrayList<Pais>()
-	@Property List<Lugar> lugares = new ArrayList<Lugar>()
-	@Property String caracteristica 
+	@Property List<String> caract = newArrayList
+	@Property List<Pais> conexiones = newArrayList
+	@Property List<Lugar> lugares = newArrayList
+	@Property String caracteristica  // Hay que sacarlo y usar modelAPP !! 
 	
+	
+	// Constructor completo para pais
+	new(String n,List<String> caracts,List<Pais>conex,List<Lugar>l){
+		nombre = n
+		caract = caracts
+		conexiones = conex
+		lugares = l
+	}
 	
 	new(){
 		
 	}
+	
+	
 	new(String string) {
 		nombre=string
+	}
+	
+	
+	override toString(){
+		return nombre
 	}
 	
 	/**
@@ -89,9 +104,7 @@ class Pais {
 		}
 	}
 	
-	override toString(){
-		return nombre
-	}
+	
 	
 	def setNombre(String nombre){
 		_nombre = nombre

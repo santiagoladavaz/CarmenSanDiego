@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -16,6 +17,9 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Banco;
+import pais.Biblioteca;
+import pais.Club;
+import pais.Embajada;
 import pais.Lugar;
 import pais.Pais;
 import persona.Detective;
@@ -94,12 +98,49 @@ public class Juego {
     List<Pais> _conexiones = this.getConexiones();
     final Procedure1<List<Pais>> _function = new Procedure1<List<Pais>>() {
       public void apply(final List<Pais> it) {
-        Pais _pais = new Pais("Argentina");
-        it.add(_pais);
-        Pais _pais_1 = new Pais("Brasil");
-        it.add(_pais_1);
-        Pais _pais_2 = new Pais("Uruguay");
-        it.add(_pais_2);
+        ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("Grande", "Inseguro");
+        ArrayList<Pais> _newArrayList_1 = CollectionLiterals.<Pais>newArrayList();
+        Banco _banco = new Banco("Rio");
+        Biblioteca _biblioteca = new Biblioteca("Moreno");
+        Club _club = new Club("E3D");
+        ArrayList<Lugar> _newArrayList_2 = CollectionLiterals.<Lugar>newArrayList(_banco, _biblioteca, _club);
+        final Pais arg = new Pais("Argentina", _newArrayList, _newArrayList_1, _newArrayList_2);
+        ArrayList<String> _newArrayList_3 = CollectionLiterals.<String>newArrayList("Caluroso", "Festivo");
+        ArrayList<Pais> _newArrayList_4 = CollectionLiterals.<Pais>newArrayList(arg);
+        Banco _banco_1 = new Banco("Brasuca");
+        Biblioteca _biblioteca_1 = new Biblioteca("Pele");
+        Embajada _embajada = new Embajada("Garoto");
+        ArrayList<Lugar> _newArrayList_5 = CollectionLiterals.<Lugar>newArrayList(_banco_1, _biblioteca_1, _embajada);
+        final Pais bra = new Pais("Brasil", _newArrayList_3, _newArrayList_4, _newArrayList_5);
+        ArrayList<String> _newArrayList_6 = CollectionLiterals.<String>newArrayList("Lluvioso", "Extensos campos");
+        ArrayList<Pais> _newArrayList_7 = CollectionLiterals.<Pais>newArrayList(arg);
+        Banco _banco_2 = new Banco("Croat");
+        Club _club_1 = new Club("Clubic");
+        Biblioteca _biblioteca_2 = new Biblioteca("Suker");
+        ArrayList<Lugar> _newArrayList_8 = CollectionLiterals.<Lugar>newArrayList(_banco_2, _club_1, _biblioteca_2);
+        final Pais cro = new Pais("Croacia", _newArrayList_6, _newArrayList_7, _newArrayList_8);
+        ArrayList<String> _newArrayList_9 = CollectionLiterals.<String>newArrayList("Pobre", "Poca poblacion", "Cultivan cocos");
+        ArrayList<Pais> _newArrayList_10 = CollectionLiterals.<Pais>newArrayList(bra, arg);
+        Embajada _embajada_1 = new Embajada("Hatianos");
+        Club _club_2 = new Club("Pobreton");
+        Biblioteca _biblioteca_3 = new Biblioteca("Sin Libros");
+        ArrayList<Lugar> _newArrayList_11 = CollectionLiterals.<Lugar>newArrayList(_embajada_1, _club_2, _biblioteca_3);
+        final Pais hai = new Pais("Haiti", _newArrayList_9, _newArrayList_10, _newArrayList_11);
+        ArrayList<String> _newArrayList_12 = CollectionLiterals.<String>newArrayList("Forma de bota", "Comen pizza");
+        ArrayList<Pais> _newArrayList_13 = CollectionLiterals.<Pais>newArrayList(cro, hai);
+        Embajada _embajada_2 = new Embajada("Ita");
+        Banco _banco_3 = new Banco("Mama mia");
+        Biblioteca _biblioteca_4 = new Biblioteca("Buffon");
+        ArrayList<Lugar> _newArrayList_14 = CollectionLiterals.<Lugar>newArrayList(_embajada_2, _banco_3, _biblioteca_4);
+        final Pais ita = new Pais("Italia", _newArrayList_12, _newArrayList_13, _newArrayList_14);
+        ArrayList<String> _newArrayList_15 = CollectionLiterals.<String>newArrayList("Materos", "Con muchas playas");
+        ArrayList<Pais> _newArrayList_16 = CollectionLiterals.<Pais>newArrayList(ita);
+        Embajada _embajada_3 = new Embajada("Uru");
+        Club _club_3 = new Club("La yerba");
+        Biblioteca _biblioteca_5 = new Biblioteca("Luisito Suarez");
+        ArrayList<Lugar> _newArrayList_17 = CollectionLiterals.<Lugar>newArrayList(_embajada_3, _club_3, _biblioteca_5);
+        final Pais uru = new Pais("Uruguay", _newArrayList_15, _newArrayList_16, _newArrayList_17);
+        CollectionExtensions.<Pais>addAll(it, arg, bra, cro, hai, ita, uru);
       }
     };
     ObjectExtensions.<List<Pais>>operator_doubleArrow(_conexiones, _function);
@@ -108,31 +149,35 @@ public class Juego {
       public void apply(final List<Lugar> it) {
         Banco _banco = new Banco("BANCO - Provincia");
         it.add(_banco);
-        Banco _banco_1 = new Banco("BIBLIOTECA - Quilmes");
-        it.add(_banco_1);
+        Biblioteca _biblioteca = new Biblioteca("BIBLIOTECA - Quilmes");
+        it.add(_biblioteca);
       }
     };
     ObjectExtensions.<List<Lugar>>operator_doubleArrow(_lugares, _function_1);
-    final ArrayList<String> hobbies1 = CollectionLiterals.<String>newArrayList("Jugar tenis", "Pintar Cuadros");
-    final ArrayList<String> señas1 = CollectionLiterals.<String>newArrayList("Alta", "Flaca");
-    final ArrayList<String> hobbies2 = CollectionLiterals.<String>newArrayList("comer pizza", "extorsionar");
-    final ArrayList<String> señas2 = CollectionLiterals.<String>newArrayList("barrigon", "pelado");
     List<Villano> _villanos = this.getVillanos();
     final Procedure1<List<Villano>> _function_2 = new Procedure1<List<Villano>>() {
       public void apply(final List<Villano> it) {
-        Villano _villano = new Villano("Bonnie", "Femenino", hobbies1, señas1, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("Jugar tenis", "Pintar Cuadros");
+        ArrayList<String> _newArrayList_1 = CollectionLiterals.<String>newArrayList("Alta", "Flaca");
+        Villano _villano = new Villano("Bonnie", "Femenino", _newArrayList, _newArrayList_1, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
         it.add(_villano);
-        Villano _villano_1 = new Villano("Al Capone", "Masculino", hobbies2, señas2, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        ArrayList<String> _newArrayList_2 = CollectionLiterals.<String>newArrayList("comer pizza", "extorsionar");
+        ArrayList<String> _newArrayList_3 = CollectionLiterals.<String>newArrayList("barrigon", "pelado");
+        Villano _villano_1 = new Villano("Al Capone", "Masculino", _newArrayList_2, _newArrayList_3, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
         it.add(_villano_1);
+        ArrayList<String> _newArrayList_4 = CollectionLiterals.<String>newArrayList("Andar en bici");
+        ArrayList<String> _newArrayList_5 = CollectionLiterals.<String>newArrayList("Tartamudo", "Bajito");
+        Villano _villano_2 = new Villano("Gordo Valor", "Masculino", _newArrayList_4, _newArrayList_5, Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList()));
+        it.add(_villano_2);
       }
     };
     ObjectExtensions.<List<Villano>>operator_doubleArrow(_villanos, _function_2);
     List<Caso> _casos = this.getCasos();
     final Procedure1<List<Caso>> _function_3 = new Procedure1<List<Caso>>() {
       public void apply(final List<Caso> it) {
-        Caso _caso = new Caso("Robo del trillon", "Se robaron un trillon de dolares");
+        Caso _caso = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron un trillon de dolares.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es desifrar el responsable de tal crimen y apresarlo");
         it.add(_caso);
-        Caso _caso_1 = new Caso("Robo al rey de copas - INDEPENDIENTE", "Se robaron la libertadores");
+        Caso _caso_1 = new Caso("Robo de las joyas", "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es desifrar el responsable de tal crimen y apresarlo");
         it.add(_caso_1);
       }
     };
@@ -144,6 +189,12 @@ public class Juego {
     List<Pais> _conexiones_1 = this.getConexiones();
     Pais _get = _conexiones_1.get(0);
     _detective_1.setPaisActual(_get);
+    Detective _detective_2 = this.getDetective();
+    List<String> _recorridoCriminal = _detective_2.getRecorridoCriminal();
+    CollectionExtensions.<String>addAll(_recorridoCriminal, "Brasil,Uruguay");
+    Detective _detective_3 = this.getDetective();
+    List<String> _destinosFallidos = _detective_3.getDestinosFallidos();
+    CollectionExtensions.<String>addAll(_destinosFallidos, "Japon", "Alemania");
   }
   
   public Pais buscarPais(final Pais string) {

@@ -13,10 +13,6 @@ public class Banco extends Lugar {
     this._okupa = _cuidador;
   }
   
-  public String toString() {
-    return this.getNombre();
-  }
-  
   public void pasoLadron(final Villano villano, final List<String> pistas) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

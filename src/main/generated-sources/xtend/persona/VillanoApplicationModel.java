@@ -59,6 +59,7 @@ public class VillanoApplicationModel {
     Villano _villano = this.getVillano();
     String _valorAAgregar = this.getValorAAgregar();
     _villano.agregarValor(_valorAAgregar, propertyName, lista);
+    this.setValorAAgregar(null);
   }
   
   public void eliminarValor(final String propertyName, final List<String> lista) {

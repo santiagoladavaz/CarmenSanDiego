@@ -10,6 +10,9 @@ abstract class Lugar {
 	
     def abstract void pasoLadron(Villano villano,List<String>pistas)
 	
+	override toString(){
+		return nombre
+	}
 	
 	def ocupanteInforma(){
 		 print(this)

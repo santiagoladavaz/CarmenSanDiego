@@ -29,6 +29,10 @@ public abstract class Lugar {
   
   public abstract void pasoLadron(final Villano villano, final List<String> pistas);
   
+  public String toString() {
+    return this.getNombre();
+  }
+  
   public String ocupanteInforma() {
     String _xblockexpression = null;
     {
