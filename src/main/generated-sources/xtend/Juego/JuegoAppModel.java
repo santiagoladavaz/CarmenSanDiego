@@ -38,9 +38,9 @@ public class JuegoAppModel {
     this._expedienteSeleccionado = expedienteSeleccionado;
   }
   
-  public boolean eliminarPais() {
+  public void eliminarPais() {
     Juego _juego = this.getJuego();
     Pais _paisSeleccionado = this.getPaisSeleccionado();
-    return _juego.eliminarPais(_paisSeleccionado);
+    _juego.eliminarPais(_paisSeleccionado);
   }
 }

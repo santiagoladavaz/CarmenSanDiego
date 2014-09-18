@@ -1,5 +1,6 @@
 package Juego;
 
+import Juego.Caso;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import org.uqbar.commons.utils.Observable;
 import pais.Banco;
 import pais.Lugar;
 import pais.Pais;
+import persona.Detective;
 import persona.Villano;
 
 @Observable
@@ -52,6 +54,36 @@ public class Juego {
   
   public void setVillanos(final List<Villano> villanos) {
     this._villanos = villanos;
+  }
+  
+  private List<Caso> _casos = new ArrayList<Caso>();
+  
+  public List<Caso> getCasos() {
+    return this._casos;
+  }
+  
+  public void setCasos(final List<Caso> casos) {
+    this._casos = casos;
+  }
+  
+  private Caso _casoSeleccionado;
+  
+  public Caso getCasoSeleccionado() {
+    return this._casoSeleccionado;
+  }
+  
+  public void setCasoSeleccionado(final Caso casoSeleccionado) {
+    this._casoSeleccionado = casoSeleccionado;
+  }
+  
+  private Detective _detective;
+  
+  public Detective getDetective() {
+    return this._detective;
+  }
+  
+  public void setDetective(final Detective detective) {
+    this._detective = detective;
   }
   
   public static Juego getInstance() {
@@ -95,6 +127,23 @@ public class Juego {
       }
     };
     ObjectExtensions.<List<Villano>>operator_doubleArrow(_villanos, _function_2);
+    List<Caso> _casos = this.getCasos();
+    final Procedure1<List<Caso>> _function_3 = new Procedure1<List<Caso>>() {
+      public void apply(final List<Caso> it) {
+        Caso _caso = new Caso("Robo del trillon", "Se robaron un trillon de dolares");
+        it.add(_caso);
+        Caso _caso_1 = new Caso("Robo al rey de copas - INDEPENDIENTE", "Se robaron la libertadores");
+        it.add(_caso_1);
+      }
+    };
+    ObjectExtensions.<List<Caso>>operator_doubleArrow(_casos, _function_3);
+    this.seleccionarCaso();
+    Detective _detective = new Detective();
+    this.setDetective(_detective);
+    Detective _detective_1 = this.getDetective();
+    List<Pais> _conexiones_1 = this.getConexiones();
+    Pais _get = _conexiones_1.get(0);
+    _detective_1.setPaisActual(_get);
   }
   
   public Pais buscarPais(final Pais string) {
@@ -115,15 +164,15 @@ public class Juego {
     return _xblockexpression;
   }
   
-  public boolean eliminarPais(final Pais pais) {
-    boolean _xifexpression = false;
+  public void eliminarPais(final Pais pais) {
     List<Pais> _conexiones = this.getConexiones();
     boolean _contains = _conexiones.contains(pais);
     if (_contains) {
       List<Pais> _conexiones_1 = this.getConexiones();
-      _xifexpression = _conexiones_1.remove(pais);
+      _conexiones_1.remove(pais);
+      List<Pais> _conexiones_2 = this.getConexiones();
+      ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_2);
     }
-    return _xifexpression;
   }
   
   public void agregarPais(final Pais pais) {
@@ -138,5 +187,16 @@ public class Juego {
     _villanos.add(villano);
     List<Villano> _villanos_1 = this.getVillanos();
     ObservableUtils.firePropertyChanged(this, "villanos", _villanos_1);
+  }
+  
+  public void seleccionarCaso() {
+    double _random = Math.random();
+    List<Caso> _casos = this.getCasos();
+    int _size = _casos.size();
+    double _multiply = (_random * _size);
+    final int x = ((int) _multiply);
+    List<Caso> _casos_1 = this.getCasos();
+    Caso _get = _casos_1.get(x);
+    this.setCasoSeleccionado(_get);
   }
 }
