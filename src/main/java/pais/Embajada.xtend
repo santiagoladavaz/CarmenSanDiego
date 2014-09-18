@@ -7,8 +7,8 @@ import persona.Informante
 
 class Embajada extends Lugar {
 	
-	new(String nom){
-		_nombre = nom
+	new(){
+		_nombre = "Embajada"
 		_okupa = new Cuidador()
 
 	}

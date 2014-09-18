@@ -3,6 +3,7 @@ package persona
 import pais.Pais
 import java.util.List
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 class Detective {
@@ -19,7 +20,11 @@ class Detective {
 	@Property
 	List<String> destinosFallidos = newArrayList
 	
-	
+	def setPaisActual(Pais p){
+		_paisActual = p
+		ObservableUtils.firePropertyChanged(this,"paisActual",paisActual);
+		
+	}
 
 	
 }

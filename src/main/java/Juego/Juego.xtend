@@ -33,49 +33,52 @@ class Juego {
 		conexiones =>[
 			val arg = new Pais("Argentina",
 								   newArrayList("Grande","Inseguro"),
-								   newArrayList(),
-								   newArrayList(new Banco("Rio"),new Biblioteca("Moreno"),new Club("E3D")))
+								   newArrayList(
+								   		new Pais("Uruguay",
+									    newArrayList("Materos","Con muchas playas"),
+									    newArrayList(),
+								   		newArrayList(new Embajada,new Club,new Biblioteca))
+								    ),
+								   newArrayList(new Banco,new Biblioteca,new Club))
 			
 			val bra = new Pais("Brasil",
 								   newArrayList("Caluroso","Festivo"),
 								   newArrayList(arg),
-								   newArrayList(new Banco("Brasuca"),new Biblioteca("Pele"),new Embajada("Garoto")))
+								   newArrayList(new Banco,new Biblioteca,new Embajada))
 			
 			
 			val cro = new Pais("Croacia",
 								   newArrayList("Lluvioso","Extensos campos"),
 								   newArrayList(arg),
-								   newArrayList(new Banco("Croat"),new Club("Clubic"),new Biblioteca("Suker")))
+								   newArrayList(new Banco,new Club,new Biblioteca))
 			
 				
 			val hai =new Pais("Haiti",
 								   newArrayList("Pobre","Poca poblacion","Cultivan cocos"),
 								   newArrayList(bra,arg),
-								   newArrayList(new Embajada("Hatianos"),new Club("Pobreton"),new Biblioteca("Sin Libros")))
+								   newArrayList(new Embajada,new Club,new Biblioteca))
 			
 			
 			val ita =new Pais("Italia",
 								   newArrayList("Forma de bota","Comen pizza"),
 								   newArrayList(cro,hai),
-								   newArrayList(new Embajada("Ita"),new Banco("Mama mia"),new Biblioteca("Buffon")))
+								   newArrayList(new Embajada,new Banco,new Biblioteca))
 			
 			
 			val uru = new Pais("Uruguay",
 								   newArrayList("Materos","Con muchas playas"),
 								   newArrayList(ita),
-								   newArrayList(new Embajada("Uru"),new Club("La yerba"),new Biblioteca("Luisito Suarez")))
+								   newArrayList(new Embajada,new Club,new Biblioteca))
 			
 			
 			addAll(arg,bra,cro,hai,ita,uru)
 		]
 		
 		
-		lugares =>[ add(new Banco("BANCO - Provincia"))
-					add(new Biblioteca("BIBLIOTECA - Quilmes"))
-					//add(new Club("CLUB - Un Club"))
-					//add(new Embajada("EMBAJADA - La Embajada"))
-				
+		lugares =>[ 
+					addAll(new Banco,new Biblioteca,new Club,new Embajada)
 				  ]
+		
 		
 		villanos =>[
 				add(new Villano
@@ -87,7 +90,7 @@ class Juego {
 			       ]
 			
 		casos => [
-			add(new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron un trillon de dolares.
+			add(new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.
 						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
 						  es desifrar el responsable de tal crimen y apresarlo"))
 			add(new Caso("Robo de las joyas" , "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.

@@ -2,6 +2,7 @@ package persona;
 
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
 import persona.Villano;
@@ -13,10 +14,6 @@ public class Detective {
   
   public Pais getPaisActual() {
     return this._paisActual;
-  }
-  
-  public void setPaisActual(final Pais paisActual) {
-    this._paisActual = paisActual;
   }
   
   private Villano _ordenDeArresto;
@@ -47,5 +44,11 @@ public class Detective {
   
   public void setDestinosFallidos(final List<String> destinosFallidos) {
     this._destinosFallidos = destinosFallidos;
+  }
+  
+  public void setPaisActual(final Pais p) {
+    this._paisActual = p;
+    Pais _paisActual = this.getPaisActual();
+    ObservableUtils.firePropertyChanged(this, "paisActual", _paisActual);
   }
 }

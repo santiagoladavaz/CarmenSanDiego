@@ -17,8 +17,8 @@ import persona.Villano;
 
 @SuppressWarnings("all")
 public class Club extends Lugar {
-  public Club(final String nom) {
-    this._nombre = nom;
+  public Club() {
+    this._nombre = "Club";
     Cuidador _cuidador = new Cuidador();
     this._okupa = _cuidador;
   }
@@ -30,10 +30,10 @@ public class Club extends Lugar {
   }
   
   public static void main(final String[] args) {
-    final Club club = new Club("lala");
-    final Embajada embajada = new Embajada("tranca");
-    final Embajada embajada2 = new Embajada("tranca2");
-    final Biblioteca biblio = new Biblioteca("opa");
+    final Club club = new Club();
+    final Embajada embajada = new Embajada();
+    final Embajada embajada2 = new Embajada();
+    final Biblioteca biblio = new Biblioteca();
     final ArrayList<Lugar> lugaress = new ArrayList<Lugar>();
     lugaress.add(club);
     lugaress.add(embajada2);

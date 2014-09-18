@@ -7,8 +7,8 @@ import java.util.ArrayList
 
 class Club extends Lugar {
 	
-	new(String nom){
-		_nombre = nom
+	new(){
+		_nombre = "Club"
 		_okupa = new Cuidador()
 	}
 	
@@ -21,10 +21,10 @@ class Club extends Lugar {
 	}
 
 	def static void main(String[] args) {
-		val club = new Club("lala")
-		val embajada = new Embajada("tranca")
-		val embajada2 = new Embajada("tranca2")
-		val biblio = new Biblioteca("opa")
+		val club = new Club()
+		val embajada = new Embajada()
+		val embajada2 = new Embajada()
+		val biblio = new Biblioteca()
 		val lugaress = new ArrayList<Lugar>()
 		lugaress+=club
 		lugaress+=embajada2

@@ -2,6 +2,7 @@ package pais;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
@@ -42,7 +43,7 @@ public class Pais {
     this._conexiones = conexiones;
   }
   
-  private List<Lugar> _lugares = CollectionLiterals.<Lugar>newArrayList();
+  private List<Lugar> _lugares = new ArrayList<Lugar>();
   
   public List<Lugar> getLugares() {
     return this._lugares;
@@ -206,6 +207,8 @@ public class Pais {
   public void eliminarLugar(final Lugar lugar) {
     List<Lugar> _lugares = this.getLugares();
     _lugares.remove(lugar);
+    List<Lugar> _lugares_1 = this.getLugares();
+    ObservableUtils.firePropertyChanged(this, "lugares", _lugares_1);
     boolean _isConsistente = this.isConsistente();
     ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
   }

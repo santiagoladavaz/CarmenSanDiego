@@ -1,10 +1,11 @@
 
 package pais
+
 import java.util.List
-import org.uqbar.commons.utils.Observable
-import java.util.ArrayList
 import org.uqbar.commons.model.ObservableUtils
+import org.uqbar.commons.utils.Observable
 import persona.Villano
+import java.util.ArrayList
 
 @Observable
 class Pais {
@@ -12,7 +13,7 @@ class Pais {
 	@Property String nombre
 	@Property List<String> caract = newArrayList
 	@Property List<Pais> conexiones = newArrayList
-	@Property List<Lugar> lugares = newArrayList
+	@Property List<Lugar> lugares = new ArrayList<Lugar>()
 	@Property String caracteristica  // Hay que sacarlo y usar modelAPP !! 
 	
 	
@@ -113,6 +114,7 @@ class Pais {
 	
 	def eliminarLugar(Lugar lugar) {
 		lugares.remove(lugar)
+		ObservableUtils.firePropertyChanged(this,"lugares",lugares)
 		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
 	

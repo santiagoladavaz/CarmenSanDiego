@@ -1,14 +1,14 @@
 package pais
-import java.util.ArrayList
-import persona.Cuidador
-import persona.Villano
+
 import java.util.List
+import persona.Cuidador
 import persona.Informante
+import persona.Villano
 
 class Biblioteca extends Lugar {
 	
-	new(String nom){
-		_nombre = nom
+	new(){
+		_nombre = "Biblioteca"
 		_okupa = new Cuidador
 
 	}

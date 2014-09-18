@@ -8,8 +8,8 @@ import persona.Villano;
 
 @SuppressWarnings("all")
 public class Embajada extends Lugar {
-  public Embajada(final String nom) {
-    this._nombre = nom;
+  public Embajada() {
+    this._nombre = "Embajada";
     Cuidador _cuidador = new Cuidador();
     this._okupa = _cuidador;
   }

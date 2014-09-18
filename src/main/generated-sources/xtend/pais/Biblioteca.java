@@ -9,8 +9,8 @@ import persona.Villano;
 
 @SuppressWarnings("all")
 public class Biblioteca extends Lugar {
-  public Biblioteca(final String nom) {
-    this._nombre = nom;
+  public Biblioteca() {
+    this._nombre = "Biblioteca";
     Cuidador _cuidador = new Cuidador();
     this._okupa = _cuidador;
   }
