@@ -6,6 +6,7 @@ import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
 import persona.Villano
 import java.util.ArrayList
+import org.uqbar.commons.model.UserException
 
 @Observable
 class Pais {
@@ -72,10 +73,13 @@ class Pais {
    
    
    def void agregarLugar(Lugar l){
-   		if (l != null){
+   		if (l != null && lugares.size<3 && !lugares.contains(l)){
    			lugares+=l
    			ObservableUtils.firePropertyChanged(this,"lugares",lugares)
    			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+   		}
+   		else{
+   			throw new UserException("Los lugares deben ser 3 y no deben estar repetidos")
    		}
    	}
    		

@@ -10,6 +10,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 import pais.Lugar;
 import persona.Villano;
@@ -140,14 +141,34 @@ public class Pais {
   }
   
   public void agregarLugar(final Lugar l) {
+    boolean _and = false;
+    boolean _and_1 = false;
     boolean _notEquals = (!Objects.equal(l, null));
-    if (_notEquals) {
+    if (!_notEquals) {
+      _and_1 = false;
+    } else {
       List<Lugar> _lugares = this.getLugares();
-      _lugares.add(l);
+      int _size = _lugares.size();
+      boolean _lessThan = (_size < 3);
+      _and_1 = _lessThan;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
       List<Lugar> _lugares_1 = this.getLugares();
-      ObservableUtils.firePropertyChanged(this, "lugares", _lugares_1);
+      boolean _contains = _lugares_1.contains(l);
+      boolean _not = (!_contains);
+      _and = _not;
+    }
+    if (_and) {
+      List<Lugar> _lugares_2 = this.getLugares();
+      _lugares_2.add(l);
+      List<Lugar> _lugares_3 = this.getLugares();
+      ObservableUtils.firePropertyChanged(this, "lugares", _lugares_3);
       boolean _isConsistente = this.isConsistente();
       ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+    } else {
+      throw new UserException("Los lugares deben ser 3 y no deben estar repetidos");
     }
   }
   
