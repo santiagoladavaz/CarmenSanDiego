@@ -7,7 +7,7 @@ import persona.Villano
 class Banco extends Lugar {
 	
 	new(){
-		_nombre = "Biblioteca"
+		_nombre = "Banco"
 		_okupa = new Cuidador()
 	}
 

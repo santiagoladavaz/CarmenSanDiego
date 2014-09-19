@@ -3,11 +3,10 @@ package persona;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
@@ -91,12 +90,12 @@ public class Villano extends Persona {
    */
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
-    final Procedure1<Pais> _function = new Procedure1<Pais>() {
-      public void apply(final Pais it) {
+    final Consumer<Pais> _function = new Consumer<Pais>() {
+      public void accept(final Pais it) {
         it.visitar(Villano.this);
       }
     };
-    IterableExtensions.<Pais>forEach(_planDeEscape, _function);
+    _planDeEscape.forEach(_function);
   }
   
   public String toString() {
@@ -120,14 +119,14 @@ public class Villano extends Persona {
   public ArrayList<String> dameLasPistas() {
     ArrayList<String> _xblockexpression = null;
     {
-      final ArrayList<String> x = CollectionLiterals.<String>newArrayList();
+      final ArrayList<String> lista = CollectionLiterals.<String>newArrayList();
       List<String> _señas = this.getSeñas();
       String _get = _señas.get(0);
-      x.add(_get);
+      lista.add(_get);
       List<String> _señas_1 = this.getSeñas();
       String _get_1 = _señas_1.get(1);
-      x.add(_get_1);
-      _xblockexpression = x;
+      lista.add(_get_1);
+      _xblockexpression = lista;
     }
     return _xblockexpression;
   }
@@ -196,12 +195,18 @@ public class Villano extends Persona {
   
   public void setSexo(final String n) {
     this._sexo = n;
+    String _sexo = this.getSexo();
+    String _sexo_1 = this.getSexo();
+    ObservableUtils.firePropertyChanged(this, _sexo, _sexo_1);
     boolean _isConsistente = this.isConsistente();
     ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
   }
   
   public void setNombre(final String n) {
     this._nombre = n;
+    String _nombre = this.getNombre();
+    String _nombre_1 = this.getNombre();
+    ObservableUtils.firePropertyChanged(this, _nombre, _nombre_1);
     boolean _isConsistente = this.isConsistente();
     ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
   }

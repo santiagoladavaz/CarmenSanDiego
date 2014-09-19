@@ -59,10 +59,10 @@ class Villano extends Persona{
 	
 	def dameLasPistas(){
 		//modificar para elegir pistas de manera aleatoria
-		val x = newArrayList
-		x.add(señas.get(0))
-		x.add(señas.get(1))
-		x
+		val lista = newArrayList
+		lista.add(señas.get(0))
+		lista.add(señas.get(1))
+		lista
 	}
 	
 	override informar() {
@@ -94,6 +94,7 @@ class Villano extends Persona{
 	
 	def setSexo(String n){
 		_sexo = n
+		ObservableUtils.firePropertyChanged(this,sexo,sexo);
 		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
 	// PREGUNTAR COMO CREAR UN CARTELITO QUE MUESTRE LA EXCEPCION
@@ -103,6 +104,7 @@ class Villano extends Persona{
 	
 	def setNombre(String n){
 			_nombre = n
+			ObservableUtils.firePropertyChanged(this,nombre,nombre);
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}	
 	

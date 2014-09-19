@@ -14,9 +14,7 @@ class DetectiveApplicationModel {
 	Pais nuevoDestino 
 	
 	
-	new(){
-		
-	}
+	new(){}
 	
 	def setNuevoDestino(){
 		juego.detective.setPaisActual(nuevoDestino)
