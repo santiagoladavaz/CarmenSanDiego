@@ -1,7 +1,6 @@
 package persona;
 
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import persona.Persona;
 
 @SuppressWarnings("all")
@@ -26,7 +25,6 @@ public class Informante extends Persona {
     for (final String p : _pistas) {
       s = ((s + " , ") + p);
     }
-    InputOutput.<String>print(s);
     return s;
   }
 }

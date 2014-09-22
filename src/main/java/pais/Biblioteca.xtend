@@ -12,7 +12,6 @@ class Biblioteca extends Lugar {
 		_okupa = new Cuidador
 
 	}
-	
 
 	
 	override pasoLadron(Villano villano, List<String> pistas) {

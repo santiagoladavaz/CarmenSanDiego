@@ -16,7 +16,6 @@ class Informante extends Persona {
 		for(p:pistas){
 			s = s+" , "+p
 		}
-		print(s)
 		return s
 	}
 	

@@ -43,7 +43,7 @@ public class Club extends Lugar {
     Pais _pais = new Pais();
     final Procedure1<Pais> _function = new Procedure1<Pais>() {
       public void apply(final Pais it) {
-        it.setLugares(lugaress);
+        it.lugares(lugaress);
         it.setNombre("Argentina");
         List<String> _caract = it.getCaract();
         _caract.add("hablan español");
@@ -56,7 +56,7 @@ public class Club extends Lugar {
     final Procedure1<Pais> _function_1 = new Procedure1<Pais>() {
       public void apply(final Pais it) {
         it.setNombre("sarasa");
-        it.setLugares(lugaresSinPasar);
+        it.lugares(lugaresSinPasar);
         List<String> _caract = it.getCaract();
         _caract.add("sarasa1");
         List<String> _caract_1 = it.getCaract();

@@ -1,5 +1,7 @@
 package pais;
 
+import com.google.common.base.Objects;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 import pais.Lugar;
 import pais.Pais;
@@ -52,15 +54,32 @@ public class PaisApplicationModel {
   }
   
   public void agregarConexion() {
-    Pais _paisModel = this.getPaisModel();
     Pais _paisElegido = this.getPaisElegido();
-    _paisModel.agregarConexion(_paisElegido);
+    boolean _notEquals = (!Objects.equal(_paisElegido, null));
+    if (_notEquals) {
+      Pais _paisModel = this.getPaisModel();
+      Pais _paisElegido_1 = this.getPaisElegido();
+      _paisModel.agregarConexion(_paisElegido_1);
+      Pais _paisElegido_2 = this.getPaisElegido();
+      Pais _paisModel_1 = this.getPaisModel();
+      _paisElegido_2.agregarConexion(_paisModel_1);
+      this.setPaisElegido(null);
+    } else {
+      throw new UserException("Debes seleccionar un pais para agregar");
+    }
   }
   
   public void eliminarConexion() {
-    Pais _paisModel = this.getPaisModel();
-    Pais _paisElegido = this.getPaisElegido();
-    _paisModel.eliminarConexion(_paisElegido);
+    final Pais p = this.getPaisElegido();
+    boolean _notEquals = (!Objects.equal(p, null));
+    if (_notEquals) {
+      Pais _paisModel = this.getPaisModel();
+      _paisModel.eliminarConexion(p);
+      Pais _paisModel_1 = this.getPaisModel();
+      p.eliminarConexion(_paisModel_1);
+    } else {
+      throw new UserException("Debes seleccionar un pais antes de eliminar");
+    }
   }
   
   public void agregarLugar() {
@@ -70,8 +89,14 @@ public class PaisApplicationModel {
   }
   
   public void eliminarLugar() {
-    Pais _paisModel = this.getPaisModel();
     Lugar _lugarElegido = this.getLugarElegido();
-    _paisModel.eliminarLugar(_lugarElegido);
+    boolean _notEquals = (!Objects.equal(_lugarElegido, null));
+    if (_notEquals) {
+      Pais _paisModel = this.getPaisModel();
+      Lugar _lugarElegido_1 = this.getLugarElegido();
+      _paisModel.eliminarLugar(_lugarElegido_1);
+    } else {
+      throw new UserException("Debes seleccionar un lugar antes de eliminar");
+    }
   }
 }

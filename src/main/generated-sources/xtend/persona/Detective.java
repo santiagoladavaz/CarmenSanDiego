@@ -48,7 +48,11 @@ public class Detective {
   
   public void setPaisActual(final Pais p) {
     this._paisActual = p;
+    String _nombre = p.getNombre();
+    this._recorridoCriminal.add(_nombre);
     Pais _paisActual = this.getPaisActual();
     ObservableUtils.firePropertyChanged(this, "paisActual", _paisActual);
+    List<String> _recorridoCriminal = this.getRecorridoCriminal();
+    ObservableUtils.firePropertyChanged(this, "recorridoCriminal", _recorridoCriminal);
   }
 }

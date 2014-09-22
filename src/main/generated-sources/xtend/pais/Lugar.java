@@ -1,7 +1,6 @@
 package pais;
 
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import persona.Persona;
 import persona.Villano;
 
@@ -34,13 +33,7 @@ public abstract class Lugar {
   }
   
   public String ocupanteInforma() {
-    String _xblockexpression = null;
-    {
-      InputOutput.<Lugar>print(this);
-      this._okupa.informar();
-      _xblockexpression = InputOutput.<String>print("\n");
-    }
-    return _xblockexpression;
+    return this._okupa.informar();
   }
   
   public void esconderVillano(final Villano villano) {

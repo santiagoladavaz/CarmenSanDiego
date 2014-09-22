@@ -20,10 +20,10 @@ class Pais {
 	
 	// Constructor completo para pais
 	new(String n,List<String> caracts,List<Pais>conex,List<Lugar>l){
-		nombre = n
-		caract = caracts
-		conexiones = conex
-		lugares = l
+		_nombre = n
+		_caract = caracts
+		_conexiones = conex
+		_lugares = l
 	}
 	
 	new(){
@@ -32,7 +32,7 @@ class Pais {
 	
 	
 	new(String string) {
-		nombre=string
+		_nombre=string
 	}
 	
 	
@@ -54,7 +54,7 @@ class Pais {
 	}
 	
    def  dame2Pistas(){
-   		return #[caract.get(0), caract.get(1)]
+   		return #["Caracteristica del pais: "+caract.get(0),"Caracteristica del pais: " + caract.get(1)]
    }
    
    /**
@@ -84,11 +84,12 @@ class Pais {
    	}
    		
 	def void eliminarCaract(){
-		if(caract.contains(this.caracteristica))
+		if(caract.contains(this.caracteristica)){
 			caract.remove(this.caracteristica)
-		ObservableUtils.firePropertyChanged(this,"caract",caract)
-		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
- 
+			ObservableUtils.firePropertyChanged(this,"caract",caract)
+			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+ 		}else
+ 			throw new UserException("No existe caracteristica")
 	}
 	
 	def conexionesToString(){
@@ -96,17 +97,18 @@ class Pais {
 	}
 	
 	def eliminarConexion(Pais p){
-		conexiones -=p
+		conexiones -= p
 		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
 		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
 	
 	def agregarConexion(Pais p) {
-		if (! (p == null)){
+		if (!conexiones.contains(p)){
 			conexiones+=p
 			ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
-		}
+		}else
+			throw new UserException("El pais '"+p.nombre+"' "+ "ya existe")
 	}
 	
 	
@@ -117,14 +119,31 @@ class Pais {
 	}
 	
 	def eliminarLugar(Lugar lugar) {
-		lugares.remove(lugar)
-		ObservableUtils.firePropertyChanged(this,"lugares",lugares)
-		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+		if (lugar != null){
+			val l = lugares.filter[it | it.toString() == lugar.toString]
+			if (! l.empty){
+				lugares.remove(l.get(0))
+				ObservableUtils.firePropertyChanged(this,"lugares",lugares)
+				ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+			}
+		}
 	}
 	
 	def isConsistente(){
 		return nombre != null && ! caract.empty &&
 			   ! lugares.empty && ! conexiones.empty
+	}
+	
+	def caract(ArrayList<String> strings) {
+		_caract = strings
+	}
+	
+	def conexiones(ArrayList<Pais> paises) {
+		_conexiones = paises
+	}
+	
+	def lugares(ArrayList<Lugar> lugars) {
+		_lugares = lugars
 	}
 	
 	

@@ -11,7 +11,6 @@ class Club extends Lugar {
 		_nombre = "Club"
 		_okupa = new Cuidador()
 	}
-	
 
 	
 	

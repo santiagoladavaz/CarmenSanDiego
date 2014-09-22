@@ -8,15 +8,18 @@ import org.uqbar.commons.utils.Observable
 class DetectiveApplicationModel {
 	
 	@Property
-	Juego juego = Juego.getInstance
+	Juego juego 
 	
 	@Property
-	Pais nuevoDestino 
+	Pais nuevoDestino
 	
 	
-	new(){}
+	new(Juego j){
+		_juego = j
+	}
 	
-	def setNuevoDestino(){
+	
+	def viajar(){
 		juego.detective.setPaisActual(nuevoDestino)
 		
 	}

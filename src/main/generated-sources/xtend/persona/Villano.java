@@ -3,10 +3,10 @@ package persona;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
@@ -90,12 +90,12 @@ public class Villano extends Persona {
    */
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
-    final Consumer<Pais> _function = new Consumer<Pais>() {
-      public void accept(final Pais it) {
+    final Procedure1<Pais> _function = new Procedure1<Pais>() {
+      public void apply(final Pais it) {
         it.visitar(Villano.this);
       }
     };
-    _planDeEscape.forEach(_function);
+    IterableExtensions.<Pais>forEach(_planDeEscape, _function);
   }
   
   public String toString() {
@@ -122,17 +122,19 @@ public class Villano extends Persona {
       final ArrayList<String> lista = CollectionLiterals.<String>newArrayList();
       List<String> _señas = this.getSeñas();
       String _get = _señas.get(0);
-      lista.add(_get);
+      String _plus = ("Una de mis señas es: " + _get);
+      lista.add(_plus);
       List<String> _señas_1 = this.getSeñas();
       String _get_1 = _señas_1.get(1);
-      lista.add(_get_1);
+      String _plus_1 = ("Una de mis Señas es: " + _get_1);
+      lista.add(_plus_1);
       _xblockexpression = lista;
     }
     return _xblockexpression;
   }
   
   public String informar() {
-    return InputOutput.<String>print("Felicidades me atrapaste");
+    return "Felicidades me atrapaste";
   }
   
   /**

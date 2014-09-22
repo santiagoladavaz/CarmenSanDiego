@@ -60,13 +60,13 @@ class Villano extends Persona{
 	def dameLasPistas(){
 		//modificar para elegir pistas de manera aleatoria
 		val lista = newArrayList
-		lista.add(señas.get(0))
-		lista.add(señas.get(1))
+		lista.add("Una de mis señas es: "+ señas.get(0))
+		lista.add("Una de mis Señas es: "+ señas.get(1))
 		lista
 	}
 	
 	override informar() {
-		print ("Felicidades me atrapaste")
+		return "Felicidades me atrapaste"
 	}
 	
 	/**

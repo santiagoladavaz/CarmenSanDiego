@@ -23,6 +23,7 @@ class Juego {
  	@Property List<Caso> casos = new ArrayList<Caso>
  	@Property Caso casoSeleccionado
 	@Property Detective detective 	
+	@Property Villano villano
  	
   def static Juego getInstance(){
  	return  JUEGO
@@ -30,51 +31,7 @@ class Juego {
 	
 	
 	new(){
-		conexiones =>[
-			val arg = new Pais("Argentina",
-								   newArrayList("Grande","Inseguro"),
-								   newArrayList(
-								   		new Pais("Uruguay",
-									    newArrayList("Materos","Con muchas playas"),
-									    newArrayList(),
-								   		newArrayList(new Embajada,new Club,new Biblioteca))
-								    ),
-								   newArrayList(new Banco,new Biblioteca,new Club))
-			
-			val bra = new Pais("Brasil",
-								   newArrayList("Caluroso","Festivo"),
-								   newArrayList(arg),
-								   newArrayList(new Banco,new Biblioteca,new Embajada))
-			
-			
-			val cro = new Pais("Croacia",
-								   newArrayList("Lluvioso","Extensos campos"),
-								   newArrayList(arg),
-								   newArrayList(new Banco,new Club,new Biblioteca))
-			
-				
-			val hai =new Pais("Haiti",
-								   newArrayList("Pobre","Poca poblacion","Cultivan cocos"),
-								   newArrayList(bra,arg),
-								   newArrayList(new Embajada,new Club,new Biblioteca))
-			
-			
-			val ita =new Pais("Italia",
-								   newArrayList("Forma de bota","Comen pizza"),
-								   newArrayList(cro,hai),
-								   newArrayList(new Embajada,new Banco,new Biblioteca))
-			
-			
-			val uru = new Pais("Uruguay",
-								   newArrayList("Materos","Con muchas playas"),
-								   newArrayList(ita),
-								   newArrayList(new Embajada,new Club,new Biblioteca))
-			
-			
-			addAll(arg,bra,cro,hai,ita,uru)
-		]
-		
-		
+		this.crearPaises		
 		lugares =>[ 
 					addAll(new Banco,new Biblioteca,new Club,new Embajada)
 				  ]
@@ -82,11 +39,11 @@ class Juego {
 		
 		villanos =>[
 				add(new Villano
-				("Bonnie","Femenino",newArrayList("Jugar tenis","Pintar Cuadros"),newArrayList("Alta","Flaca"),#[]))
+				("Bonnie","Femenino",newArrayList("Jugar tenis","Pintar Cuadros"),newArrayList("Alta","Flaca"),newArrayList(seleccionarPais("Argentina"),seleccionarPais("Brasil"),seleccionarPais("Haiti"))))
 				add(new Villano
-					("Al Capone","Masculino",newArrayList("comer pizza","extorsionar"),newArrayList("barrigon","pelado"),#[]))
+					("Al Capone","Masculino",newArrayList("comer pizza","extorsionar"),newArrayList("barrigon","pelado"),newArrayList(seleccionarPais("Argentina"),seleccionarPais("Uruguay"),seleccionarPais("Croacia"))))
 				add(new Villano
-					("Gordo Valor","Masculino",newArrayList("Andar en bici"),newArrayList("Tartamudo","Bajito"),#[]))
+					("Gordo Valor","Masculino",newArrayList("Andar en bici"),newArrayList("Tartamudo","Bajito"),newArrayList(seleccionarPais("Italia"),seleccionarPais("Haiti"),seleccionarPais("Brasil"))))
 			       ]
 			
 		casos => [
@@ -102,13 +59,50 @@ class Juego {
 		seleccionarCaso
 		
 		detective = new Detective()
-		detective.paisActual = this.conexiones.get(0)
-		detective.recorridoCriminal.addAll("Brasil,Uruguay")  // Puesto para probar !
-		detective.destinosFallidos.addAll("Japon","Alemania") // Puesto para probar !
+		this.seleccionarVillano
+		this.iniciarJuego
+	//	detective.recorridoCriminal.addAll("Brasil,Uruguay")  // Puesto para probar !
+	//	detective.destinosFallidos.addAll("Japon","Alemania") // Puesto para probar !
 	}
 	
+	def crearPaises(){
+		val arg = new Pais("Argentina")
+		val bra = new Pais("Brasil")
+		val cro = new Pais("Croacia")
+		val hai = new Pais("Haiti")
+		val ita = new Pais("Italia")
+		val uru = new Pais("Uruguay")
+		arg.caract(newArrayList("Grande","Inseguro","Tiene una provincia Llamada Buenos Aires","se creen el centro del mundo"))
+		arg.conexiones(newArrayList(uru,bra))
+		arg.lugares(newArrayList(new Banco,new Biblioteca,new Club))
+		bra.caract(newArrayList("Caluroso","Festivo","Hablan Portugues","Son Grones!","Usan Reales"))
+		bra.conexiones(newArrayList(arg,hai))
+		bra.lugares(newArrayList(new Embajada,new Biblioteca,new Club))
+		uru.caract(newArrayList("Materos","Con muchas playas","Dicen 'vo'", "tienen a Forlan"))
+		uru.conexiones(newArrayList(arg,cro))
+		uru.lugares(newArrayList(new Embajada,new Club,new Biblioteca))
+		hai.caract(newArrayList("Pobre","Poca poblacion","Cultivan cocos","Les cabio un terremoto"))
+		hai.conexiones(newArrayList(bra,ita))
+		hai.lugares(newArrayList(new Embajada,new Club,new Biblioteca))
+		ita.caract(newArrayList("Forma de bota","Comen pizza","Son Mafiosos"))
+		ita.conexiones(newArrayList(cro,hai))
+		ita.lugares(newArrayList(new Embajada,new Banco,new Biblioteca))
+		cro.conexiones(newArrayList(uru,ita))
+		cro.caract(newArrayList("Son croatas", "no se que mas poner porque no se nada de croacia"))
+		cro.lugares(newArrayList(new Embajada,new Biblioteca,new Club))
+		
+		this.conexiones += arg
+		this.conexiones += ita
+		this.conexiones += bra
+		this.conexiones += hai
+		this.conexiones += cro
+		this.conexiones += uru
+		
+	}
+	
+	
+	
 	def Pais buscarPais(Pais string) {
-		print(string)
 		conexiones.filter[p| p.nombre == string.nombre].get(0)
 	}
 	
@@ -134,5 +128,18 @@ class Juego {
 		casoSeleccionado = casos.get(x)
 	}
 	
+	def seleccionarPais(String n){
+		conexiones.filter[it | it.nombre == n].get(0)
+	}
+	
+	def seleccionarVillano(){
+		 _villano = villanos.get((Math.random * villanos.size) as int)
+	}
+	
+	def iniciarJuego(){
+		detective.paisActual=villano.planDeEscape.get(0)
+		villano.visitarPais
+	}
+		
 	
 }

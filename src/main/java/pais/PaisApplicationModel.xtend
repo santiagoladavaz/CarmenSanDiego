@@ -1,6 +1,7 @@
 package pais
 
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
 
 @Observable
 class PaisApplicationModel {
@@ -18,11 +19,21 @@ class PaisApplicationModel {
 	
 	
 	def agregarConexion(){
-		paisModel.agregarConexion(paisElegido)
+		if (paisElegido != null){
+			paisModel.agregarConexion(paisElegido)
+			paisElegido.agregarConexion(paisModel)
+			paisElegido = null
+		}else
+			throw new UserException("Debes seleccionar un pais para agregar")
 	}
 	
 	def eliminarConexion(){
-		paisModel.eliminarConexion(paisElegido)
+		val p = paisElegido
+		if (p != null){
+			paisModel.eliminarConexion(p)
+			p.eliminarConexion(paisModel)
+		}else
+			throw new UserException ("Debes seleccionar un pais antes de eliminar")
 	}
 	
 	def agregarLugar(){
@@ -30,6 +41,10 @@ class PaisApplicationModel {
 	}
 	
 	def eliminarLugar(){
+		if (lugarElegido != null){
 		paisModel.eliminarLugar(lugarElegido)
+		}
+		else
+			throw new UserException("Debes seleccionar un lugar antes de eliminar")
 	}
 }

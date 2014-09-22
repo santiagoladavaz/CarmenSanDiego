@@ -5,10 +5,12 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
@@ -65,17 +67,17 @@ public class Pais {
   }
   
   public Pais(final String n, final List<String> caracts, final List<Pais> conex, final List<Lugar> l) {
-    this.setNombre(n);
-    this.setCaract(caracts);
-    this.setConexiones(conex);
-    this.setLugares(l);
+    this._nombre = n;
+    this._caract = caracts;
+    this._conexiones = conex;
+    this._lugares = l;
   }
   
   public Pais() {
   }
   
   public Pais(final String string) {
-    this.setNombre(string);
+    this._nombre = string;
   }
   
   public String toString() {
@@ -90,13 +92,13 @@ public class Pais {
     boolean _notEquals = (!Objects.equal(pais, null));
     if (_notEquals) {
       List<Lugar> _lugares = this.getLugares();
-      final Consumer<Lugar> _function = new Consumer<Lugar>() {
-        public void accept(final Lugar it) {
+      final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
+        public void apply(final Lugar it) {
           List<String> _dame2Pistas = pais.dame2Pistas();
           it.pasoLadron(villano, _dame2Pistas);
         }
       };
-      _lugares.forEach(_function);
+      IterableExtensions.<Lugar>forEach(_lugares, _function);
     } else {
       List<Lugar> _lugares_1 = this.getLugares();
       Lugar _get = _lugares_1.get(0);
@@ -107,9 +109,11 @@ public class Pais {
   public List<String> dame2Pistas() {
     List<String> _caract = this.getCaract();
     String _get = _caract.get(0);
+    String _plus = ("Caracteristica del pais: " + _get);
     List<String> _caract_1 = this.getCaract();
     String _get_1 = _caract_1.get(1);
-    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_get, _get_1));
+    String _plus_1 = ("Caracteristica del pais: " + _get_1);
+    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_plus, _plus_1));
   }
   
   /**
@@ -180,11 +184,13 @@ public class Pais {
       List<String> _caract_1 = this.getCaract();
       String _caracteristica_1 = this.getCaracteristica();
       _caract_1.remove(_caracteristica_1);
+      List<String> _caract_2 = this.getCaract();
+      ObservableUtils.firePropertyChanged(this, "caract", _caract_2);
+      boolean _isConsistente = this.isConsistente();
+      ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+    } else {
+      throw new UserException("No existe caracteristica");
     }
-    List<String> _caract_2 = this.getCaract();
-    ObservableUtils.firePropertyChanged(this, "caract", _caract_2);
-    boolean _isConsistente = this.isConsistente();
-    ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
   }
   
   public List<String> conexionesToString() {
@@ -207,15 +213,22 @@ public class Pais {
   }
   
   public void agregarConexion(final Pais p) {
-    boolean _equals = Objects.equal(p, null);
-    boolean _not = (!_equals);
+    List<Pais> _conexiones = this.getConexiones();
+    boolean _contains = _conexiones.contains(p);
+    boolean _not = (!_contains);
     if (_not) {
-      List<Pais> _conexiones = this.getConexiones();
-      _conexiones.add(p);
       List<Pais> _conexiones_1 = this.getConexiones();
-      ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_1);
+      _conexiones_1.add(p);
+      List<Pais> _conexiones_2 = this.getConexiones();
+      ObservableUtils.firePropertyChanged(this, "conexiones", _conexiones_2);
       boolean _isConsistente = this.isConsistente();
       ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+    } else {
+      String _nombre = p.getNombre();
+      String _plus = ("El pais \'" + _nombre);
+      String _plus_1 = (_plus + "\' ");
+      String _plus_2 = (_plus_1 + "ya existe");
+      throw new UserException(_plus_2);
     }
   }
   
@@ -226,12 +239,29 @@ public class Pais {
   }
   
   public void eliminarLugar(final Lugar lugar) {
-    List<Lugar> _lugares = this.getLugares();
-    _lugares.remove(lugar);
-    List<Lugar> _lugares_1 = this.getLugares();
-    ObservableUtils.firePropertyChanged(this, "lugares", _lugares_1);
-    boolean _isConsistente = this.isConsistente();
-    ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+    boolean _notEquals = (!Objects.equal(lugar, null));
+    if (_notEquals) {
+      List<Lugar> _lugares = this.getLugares();
+      final Function1<Lugar, Boolean> _function = new Function1<Lugar, Boolean>() {
+        public Boolean apply(final Lugar it) {
+          String _string = it.toString();
+          String _string_1 = lugar.toString();
+          return Boolean.valueOf(Objects.equal(_string, _string_1));
+        }
+      };
+      final Iterable<Lugar> l = IterableExtensions.<Lugar>filter(_lugares, _function);
+      boolean _isEmpty = IterableExtensions.isEmpty(l);
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        List<Lugar> _lugares_1 = this.getLugares();
+        Object _get = ((Object[])Conversions.unwrapArray(l, Object.class))[0];
+        _lugares_1.remove(_get);
+        List<Lugar> _lugares_2 = this.getLugares();
+        ObservableUtils.firePropertyChanged(this, "lugares", _lugares_2);
+        boolean _isConsistente = this.isConsistente();
+        ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+      }
+    }
   }
   
   public boolean isConsistente() {
@@ -265,5 +295,17 @@ public class Pais {
       _and = _not_2;
     }
     return _and;
+  }
+  
+  public List<String> caract(final ArrayList<String> strings) {
+    return this._caract = strings;
+  }
+  
+  public List<Pais> conexiones(final ArrayList<Pais> paises) {
+    return this._conexiones = paises;
+  }
+  
+  public List<Lugar> lugares(final ArrayList<Lugar> lugars) {
+    return this._lugares = lugars;
   }
 }

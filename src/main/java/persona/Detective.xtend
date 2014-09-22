@@ -22,8 +22,9 @@ class Detective {
 	
 	def setPaisActual(Pais p){
 		_paisActual = p
+		_recorridoCriminal += p.nombre
 		ObservableUtils.firePropertyChanged(this,"paisActual",paisActual);
-		
+		ObservableUtils.firePropertyChanged(this,"recorridoCriminal",recorridoCriminal)		
 	}
 
 	

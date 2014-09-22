@@ -8,7 +8,7 @@ import persona.Detective;
 @Observable
 @SuppressWarnings("all")
 public class DetectiveApplicationModel {
-  private Juego _juego = Juego.getInstance();
+  private Juego _juego;
   
   public Juego getJuego() {
     return this._juego;
@@ -24,10 +24,15 @@ public class DetectiveApplicationModel {
     return this._nuevoDestino;
   }
   
-  public DetectiveApplicationModel() {
+  public void setNuevoDestino(final Pais nuevoDestino) {
+    this._nuevoDestino = nuevoDestino;
   }
   
-  public void setNuevoDestino() {
+  public DetectiveApplicationModel(final Juego j) {
+    this._juego = j;
+  }
+  
+  public void viajar() {
     Juego _juego = this.getJuego();
     Detective _detective = _juego.getDetective();
     Pais _nuevoDestino = this.getNuevoDestino();
