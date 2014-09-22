@@ -225,17 +225,7 @@ public class Juego {
       ArrayList<Lugar> _newArrayList_17 = CollectionLiterals.<Lugar>newArrayList(_embajada_4, _biblioteca_5, _club_4);
       cro.lugares(_newArrayList_17);
       List<Pais> _conexiones = this.getConexiones();
-      _conexiones.add(arg);
-      List<Pais> _conexiones_1 = this.getConexiones();
-      _conexiones_1.add(ita);
-      List<Pais> _conexiones_2 = this.getConexiones();
-      _conexiones_2.add(bra);
-      List<Pais> _conexiones_3 = this.getConexiones();
-      _conexiones_3.add(hai);
-      List<Pais> _conexiones_4 = this.getConexiones();
-      _conexiones_4.add(cro);
-      List<Pais> _conexiones_5 = this.getConexiones();
-      _xblockexpression = _conexiones_5.add(uru);
+      _xblockexpression = CollectionExtensions.<Pais>addAll(_conexiones, arg, ita, bra, hai, cro, uru);
     }
     return _xblockexpression;
   }

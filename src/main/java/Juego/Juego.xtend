@@ -90,20 +90,16 @@ class Juego {
 		cro.caract(newArrayList("Son croatas", "no se que mas poner porque no se nada de croacia"))
 		cro.lugares(newArrayList(new Embajada,new Biblioteca,new Club))
 		
-		this.conexiones += arg
-		this.conexiones += ita
-		this.conexiones += bra
-		this.conexiones += hai
-		this.conexiones += cro
-		this.conexiones += uru
+		conexiones.addAll(arg,ita,bra,hai,cro,uru)
+	
 		
 	}
-	
 	
 	
 	def Pais buscarPais(Pais string) {
 		conexiones.filter[p| p.nombre == string.nombre].get(0)
 	}
+	
 	
 	def eliminarPais(Pais pais) {
 		if(this.conexiones.contains(pais)){
@@ -112,28 +108,34 @@ class Juego {
 		}			
 	}
 	
+	
 	def agregarPais(Pais pais) {
 		conexiones += pais
 		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
 	}
+	
 	
 	def agregarVillano(Villano villano) {
 		villanos += villano
 		ObservableUtils.firePropertyChanged(this,"villanos",villanos)
 	}
 	
+	
 	def seleccionarCaso(){
 		val x =  (Math.random * casos.size) as int
 		casoSeleccionado = casos.get(x)
 	}
 	
+	
 	def seleccionarPais(String n){
 		conexiones.filter[it | it.nombre == n].get(0)
 	}
 	
+	
 	def seleccionarVillano(){
 		 _villano = villanos.get((Math.random * villanos.size) as int)
 	}
+	
 	
 	def iniciarJuego(){
 		detective.paisActual=villano.planDeEscape.get(0)
