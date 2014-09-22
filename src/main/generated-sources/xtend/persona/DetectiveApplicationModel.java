@@ -38,4 +38,10 @@ public class DetectiveApplicationModel {
     Pais _nuevoDestino = this.getNuevoDestino();
     _detective.setPaisActual(_nuevoDestino);
   }
+  
+  public void volver() {
+    Juego _juego = this.getJuego();
+    Detective _detective = _juego.getDetective();
+    _detective.volver();
+  }
 }

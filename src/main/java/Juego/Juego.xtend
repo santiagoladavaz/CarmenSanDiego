@@ -61,8 +61,7 @@ class Juego {
 		detective = new Detective()
 		this.seleccionarVillano
 		this.iniciarJuego
-	//	detective.recorridoCriminal.addAll("Brasil,Uruguay")  // Puesto para probar !
-	//	detective.destinosFallidos.addAll("Japon","Alemania") // Puesto para probar !
+
 	}
 	
 	def crearPaises(){

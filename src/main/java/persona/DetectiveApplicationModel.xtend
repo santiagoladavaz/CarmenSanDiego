@@ -24,4 +24,9 @@ class DetectiveApplicationModel {
 		
 	}
 	
+	
+	def volver(){
+		juego.detective.volver
+	}
+	
 }
