@@ -15,8 +15,9 @@ class Pais {
 	@Property List<String> caract = newArrayList
 	@Property List<Pais> conexiones = newArrayList
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
-	//@Property String caracteristica  // Hay que sacarlo y usar modelAPP !! 
-	
+	@Property Lugar primerLugar 
+	@Property Lugar segundoLugar 
+	@Property Lugar tercerLugar 	
 	
 	// Constructor completo para pais
 	new(String n,List<String> caracts,List<Pais>conex,List<Lugar>l){
@@ -24,6 +25,9 @@ class Pais {
 		_caract = caracts
 		_conexiones = conex
 		_lugares = l
+		primerLugar = lugares.get(0)
+		segundoLugar = lugares.get(1)
+		tercerLugar = lugares.get(2)
 	}
 	
 	new(){

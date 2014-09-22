@@ -56,11 +56,50 @@ public class Pais {
     this._lugares = lugares;
   }
   
+  private Lugar _primerLugar;
+  
+  public Lugar getPrimerLugar() {
+    return this._primerLugar;
+  }
+  
+  public void setPrimerLugar(final Lugar primerLugar) {
+    this._primerLugar = primerLugar;
+  }
+  
+  private Lugar _segundoLugar;
+  
+  public Lugar getSegundoLugar() {
+    return this._segundoLugar;
+  }
+  
+  public void setSegundoLugar(final Lugar segundoLugar) {
+    this._segundoLugar = segundoLugar;
+  }
+  
+  private Lugar _tercerLugar;
+  
+  public Lugar getTercerLugar() {
+    return this._tercerLugar;
+  }
+  
+  public void setTercerLugar(final Lugar tercerLugar) {
+    this._tercerLugar = tercerLugar;
+  }
+  
   public Pais(final String n, final List<String> caracts, final List<Pais> conex, final List<Lugar> l) {
     this._nombre = n;
     this._caract = caracts;
     this._conexiones = conex;
     this._lugares = l;
+    List<Lugar> _lugares = this.getLugares();
+    Lugar _get = _lugares.get(0);
+    this.setPrimerLugar(_get);
+    List<Lugar> _lugares_1 = this.getLugares();
+    Lugar _get_1 = _lugares_1.get(1);
+    this.setSegundoLugar(_get_1);
+    List<Lugar> _lugares_2 = this.getLugares();
+    Lugar _get_2 = _lugares_2.get(2);
+    this.setTercerLugar(_get_2);
   }
   
   public Pais() {
