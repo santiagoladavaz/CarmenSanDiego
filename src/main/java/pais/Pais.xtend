@@ -15,7 +15,7 @@ class Pais {
 	@Property List<String> caract = newArrayList
 	@Property List<Pais> conexiones = newArrayList
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
-	@Property String caracteristica  // Hay que sacarlo y usar modelAPP !! 
+	//@Property String caracteristica  // Hay que sacarlo y usar modelAPP !! 
 	
 	
 	// Constructor completo para pais
@@ -61,10 +61,9 @@ class Pais {
     * @METODOS DE LA INTERFAZ
     */
 	
-	def void agregarCaract(){
-		if (! (this.caracteristica==null) && !this.caracteristica.startsWith(" ")){
-			caract+=this.caracteristica
-			this.caracteristica = null
+	def void agregarCaract(String caracteristica){
+		if (! (caracteristica==null) && !caracteristica.startsWith(" ")){
+			caract+=caracteristica
 			ObservableUtils.firePropertyChanged(this,"caract",caract);
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 		}
@@ -83,9 +82,9 @@ class Pais {
    		}
    	}
    		
-	def void eliminarCaract(){
-		if(caract.contains(this.caracteristica)){
-			caract.remove(this.caracteristica)
+	def void eliminarCaract(String caracteristica){
+		if(caract.contains(caracteristica)){
+			caract.remove(caracteristica)
 			ObservableUtils.firePropertyChanged(this,"caract",caract)
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
  		}else

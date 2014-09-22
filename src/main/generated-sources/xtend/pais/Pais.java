@@ -56,16 +56,6 @@ public class Pais {
     this._lugares = lugares;
   }
   
-  private String _caracteristica;
-  
-  public String getCaracteristica() {
-    return this._caracteristica;
-  }
-  
-  public void setCaracteristica(final String caracteristica) {
-    this._caracteristica = caracteristica;
-  }
-  
   public Pais(final String n, final List<String> caracts, final List<Pais> conex, final List<Lugar> l) {
     this._nombre = n;
     this._caract = caracts;
@@ -119,24 +109,20 @@ public class Pais {
   /**
    * @METODOS DE LA INTERFAZ
    */
-  public void agregarCaract() {
+  public void agregarCaract(final String caracteristica) {
     boolean _and = false;
-    String _caracteristica = this.getCaracteristica();
-    boolean _equals = Objects.equal(_caracteristica, null);
+    boolean _equals = Objects.equal(caracteristica, null);
     boolean _not = (!_equals);
     if (!_not) {
       _and = false;
     } else {
-      String _caracteristica_1 = this.getCaracteristica();
-      boolean _startsWith = _caracteristica_1.startsWith(" ");
+      boolean _startsWith = caracteristica.startsWith(" ");
       boolean _not_1 = (!_startsWith);
       _and = _not_1;
     }
     if (_and) {
       List<String> _caract = this.getCaract();
-      String _caracteristica_2 = this.getCaracteristica();
-      _caract.add(_caracteristica_2);
-      this.setCaracteristica(null);
+      _caract.add(caracteristica);
       List<String> _caract_1 = this.getCaract();
       ObservableUtils.firePropertyChanged(this, "caract", _caract_1);
       boolean _isConsistente = this.isConsistente();
@@ -176,14 +162,12 @@ public class Pais {
     }
   }
   
-  public void eliminarCaract() {
+  public void eliminarCaract(final String caracteristica) {
     List<String> _caract = this.getCaract();
-    String _caracteristica = this.getCaracteristica();
-    boolean _contains = _caract.contains(_caracteristica);
+    boolean _contains = _caract.contains(caracteristica);
     if (_contains) {
       List<String> _caract_1 = this.getCaract();
-      String _caracteristica_1 = this.getCaracteristica();
-      _caract_1.remove(_caracteristica_1);
+      _caract_1.remove(caracteristica);
       List<String> _caract_2 = this.getCaract();
       ObservableUtils.firePropertyChanged(this, "caract", _caract_2);
       boolean _isConsistente = this.isConsistente();

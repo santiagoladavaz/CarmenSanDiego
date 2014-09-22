@@ -39,14 +39,24 @@ public class PaisApplicationModel {
     this._paisModel = paisModel;
   }
   
-  private String _caracteristica;
+  private String _caracteristicaAAgregar;
   
-  public String getCaracteristica() {
-    return this._caracteristica;
+  public String getCaracteristicaAAgregar() {
+    return this._caracteristicaAAgregar;
   }
   
-  public void setCaracteristica(final String caracteristica) {
-    this._caracteristica = caracteristica;
+  public void setCaracteristicaAAgregar(final String caracteristicaAAgregar) {
+    this._caracteristicaAAgregar = caracteristicaAAgregar;
+  }
+  
+  private String _caracteristicaAEliminar;
+  
+  public String getCaracteristicaAEliminar() {
+    return this._caracteristicaAEliminar;
+  }
+  
+  public void setCaracteristicaAEliminar(final String caracteristicaAEliminar) {
+    this._caracteristicaAEliminar = caracteristicaAEliminar;
   }
   
   public PaisApplicationModel(final Pais p) {
@@ -97,6 +107,27 @@ public class PaisApplicationModel {
       _paisModel.eliminarLugar(_lugarElegido_1);
     } else {
       throw new UserException("Debes seleccionar un lugar antes de eliminar");
+    }
+  }
+  
+  public void agregarCaract() {
+    String _caracteristicaAAgregar = this.getCaracteristicaAAgregar();
+    boolean _notEquals = (!Objects.equal(_caracteristicaAAgregar, null));
+    if (_notEquals) {
+      Pais _paisModel = this.getPaisModel();
+      String _caracteristicaAAgregar_1 = this.getCaracteristicaAAgregar();
+      _paisModel.agregarCaract(_caracteristicaAAgregar_1);
+      this.setCaracteristicaAAgregar(null);
+    }
+  }
+  
+  public void eliminarCaract() {
+    String _caracteristicaAEliminar = this.getCaracteristicaAEliminar();
+    boolean _notEquals = (!Objects.equal(_caracteristicaAEliminar, null));
+    if (_notEquals) {
+      Pais _paisModel = this.getPaisModel();
+      String _caracteristicaAEliminar_1 = this.getCaracteristicaAEliminar();
+      _paisModel.eliminarCaract(_caracteristicaAEliminar_1);
     }
   }
 }

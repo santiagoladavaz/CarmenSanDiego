@@ -9,9 +9,8 @@ class PaisApplicationModel {
 	@Property Pais paisElegido
 	@Property Lugar lugarElegido
 	@Property Pais paisModel
-	@Property String caracteristica // por el momento no se usa, despues se tiene que usar esta y borrarla de la clase
-									// pais
-	
+	@Property String caracteristicaAAgregar
+	@Property String caracteristicaAEliminar
 	
 	new (Pais p){
 		paisModel = p
@@ -40,11 +39,31 @@ class PaisApplicationModel {
 		paisModel.agregarLugar(lugarElegido)
 	}
 	
+	
+	
 	def eliminarLugar(){
 		if (lugarElegido != null){
-		paisModel.eliminarLugar(lugarElegido)
+			paisModel.eliminarLugar(lugarElegido)
 		}
 		else
 			throw new UserException("Debes seleccionar un lugar antes de eliminar")
 	}
+	
+	
+	
+	def agregarCaract(){
+		if(caracteristicaAAgregar != null){
+			paisModel.agregarCaract(caracteristicaAAgregar)
+			caracteristicaAAgregar = null
+		}
+	}
+	
+	def eliminarCaract(){
+		if(caracteristicaAEliminar != null){
+			paisModel.eliminarCaract(caracteristicaAEliminar)
+		}
+	}
+
+
+
 }
