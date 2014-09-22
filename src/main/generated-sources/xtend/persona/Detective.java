@@ -6,6 +6,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
+import pais.Lugar;
 import pais.Pais;
 import persona.Villano;
 
@@ -64,6 +65,15 @@ public class Detective {
     this._paisActual = p;
     String _nombre = p.getNombre();
     this._recorridoCriminal.add(_nombre);
+    List<Lugar> _lugares = p.getLugares();
+    Lugar _get = _lugares.get(0);
+    p.setPrimerLugar(_get);
+    List<Lugar> _lugares_1 = p.getLugares();
+    Lugar _get_1 = _lugares_1.get(1);
+    p.setSegundoLugar(_get_1);
+    List<Lugar> _lugares_2 = p.getLugares();
+    Lugar _get_2 = _lugares_2.get(2);
+    p.setTercerLugar(_get_2);
     Pais _paisActual_1 = this.getPaisActual();
     ObservableUtils.firePropertyChanged(this, "paisActual", _paisActual_1);
     List<String> _recorridoCriminal = this.getRecorridoCriminal();

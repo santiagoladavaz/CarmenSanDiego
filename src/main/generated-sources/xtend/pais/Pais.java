@@ -5,12 +5,12 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
@@ -62,28 +62,16 @@ public class Pais {
     return this._primerLugar;
   }
   
-  public void setPrimerLugar(final Lugar primerLugar) {
-    this._primerLugar = primerLugar;
-  }
-  
   private Lugar _segundoLugar;
   
   public Lugar getSegundoLugar() {
     return this._segundoLugar;
   }
   
-  public void setSegundoLugar(final Lugar segundoLugar) {
-    this._segundoLugar = segundoLugar;
-  }
-  
   private Lugar _tercerLugar;
   
   public Lugar getTercerLugar() {
     return this._tercerLugar;
-  }
-  
-  public void setTercerLugar(final Lugar tercerLugar) {
-    this._tercerLugar = tercerLugar;
   }
   
   public Pais(final String n, final List<String> caracts, final List<Pais> conex, final List<Lugar> l) {
@@ -113,6 +101,24 @@ public class Pais {
     return this.getNombre();
   }
   
+  public void setPrimerLugar(final Lugar l) {
+    this._primerLugar = l;
+    Lugar _primerLugar = this.getPrimerLugar();
+    ObservableUtils.firePropertyChanged(this, "primerLugar", _primerLugar);
+  }
+  
+  public void setSegundoLugar(final Lugar l) {
+    this._segundoLugar = l;
+    Lugar _segundoLugar = this.getSegundoLugar();
+    ObservableUtils.firePropertyChanged(this, "segundoLugar", _segundoLugar);
+  }
+  
+  public void setTercerLugar(final Lugar l) {
+    this._tercerLugar = l;
+    Lugar _tercerLugar = this.getTercerLugar();
+    ObservableUtils.firePropertyChanged(this, "tercerLugar", _tercerLugar);
+  }
+  
   /**
    * @METODOS DEL DOMINIO
    */
@@ -121,13 +127,13 @@ public class Pais {
     boolean _notEquals = (!Objects.equal(pais, null));
     if (_notEquals) {
       List<Lugar> _lugares = this.getLugares();
-      final Consumer<Lugar> _function = new Consumer<Lugar>() {
-        public void accept(final Lugar it) {
+      final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
+        public void apply(final Lugar it) {
           List<String> _dame2Pistas = pais.dame2Pistas();
           it.pasoLadron(villano, _dame2Pistas);
         }
       };
-      _lugares.forEach(_function);
+      IterableExtensions.<Lugar>forEach(_lugares, _function);
     } else {
       List<Lugar> _lugares_1 = this.getLugares();
       Lugar _get = _lugares_1.get(0);

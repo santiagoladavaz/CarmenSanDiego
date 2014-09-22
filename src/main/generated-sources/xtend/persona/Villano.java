@@ -3,9 +3,10 @@ package persona;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
@@ -89,12 +90,12 @@ public class Villano extends Persona {
    */
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
-    final Consumer<Pais> _function = new Consumer<Pais>() {
-      public void accept(final Pais it) {
+    final Procedure1<Pais> _function = new Procedure1<Pais>() {
+      public void apply(final Pais it) {
         it.visitar(Villano.this);
       }
     };
-    _planDeEscape.forEach(_function);
+    IterableExtensions.<Pais>forEach(_planDeEscape, _function);
   }
   
   public String toString() {

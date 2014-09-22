@@ -28,6 +28,9 @@ class Detective {
 		_paisAnterior = paisActual
 		_paisActual = p
 		_recorridoCriminal += p.nombre
+		p.primerLugar = p.lugares.get(0)
+		p.segundoLugar = p.lugares.get(1)
+		p.tercerLugar = p.lugares.get(2)
 		ObservableUtils.firePropertyChanged(this,"paisActual",paisActual);
 		ObservableUtils.firePropertyChanged(this,"recorridoCriminal",recorridoCriminal)		
 	}

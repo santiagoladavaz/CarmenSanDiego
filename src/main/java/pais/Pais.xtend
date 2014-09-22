@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable
 import persona.Villano
 import java.util.ArrayList
 import org.uqbar.commons.model.UserException
+import org.uqbar.arena.bindings.ObservableProperty
 
 @Observable
 class Pais {
@@ -42,6 +43,21 @@ class Pais {
 	
 	override toString(){
 		return nombre
+	}
+	
+	def setPrimerLugar(Lugar l){
+		_primerLugar = l
+		ObservableUtils.firePropertyChanged(this,"primerLugar",primerLugar)
+	}
+	
+	def setSegundoLugar(Lugar l){
+		_segundoLugar = l
+		ObservableUtils.firePropertyChanged(this,"segundoLugar",segundoLugar)
+	}
+	
+	def setTercerLugar(Lugar l){
+		_tercerLugar = l
+		ObservableUtils.firePropertyChanged(this,"tercerLugar",tercerLugar)
 	}
 	
 	/**
