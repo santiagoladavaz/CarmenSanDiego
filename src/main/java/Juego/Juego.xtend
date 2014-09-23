@@ -25,16 +25,19 @@ class Juego {
 	@Property Detective detective 	
 	@Property Villano villano
  	
-  def static Juego getInstance(){
- 	return  JUEGO
- }
+  	
+  	def static Juego getInstance(){
+ 		return  JUEGO
+ 	}
 	
 	
+	//Crea todo el juego
 	new(){
+		
 		this.crearPaises		
-		lugares =>[ 
-					addAll(new Banco,new Biblioteca,new Club,new Embajada)
-				  ]
+		
+		lugares.addAll(new Banco,new Biblioteca,new Club,new Embajada)
+				  
 		
 		
 		villanos =>[
@@ -64,6 +67,8 @@ class Juego {
 
 	}
 	
+	
+	//Crea los respectivos paises del juego
 	def crearPaises(){
 		val arg = new Pais("Argentina")
 		val bra = new Pais("Brasil")
@@ -91,8 +96,6 @@ class Juego {
 		cro.lugares(newArrayList(new Embajada,new Biblioteca,new Club))
 		
 		conexiones.addAll(arg,ita,bra,hai,cro,uru)
-	
-		
 	}
 	
 	

@@ -104,18 +104,13 @@ public class Juego {
   public Juego() {
     this.crearPaises();
     List<Lugar> _lugares = this.getLugares();
-    final Procedure1<List<Lugar>> _function = new Procedure1<List<Lugar>>() {
-      public void apply(final List<Lugar> it) {
-        Banco _banco = new Banco();
-        Biblioteca _biblioteca = new Biblioteca();
-        Club _club = new Club();
-        Embajada _embajada = new Embajada();
-        CollectionExtensions.<Lugar>addAll(it, _banco, _biblioteca, _club, _embajada);
-      }
-    };
-    ObjectExtensions.<List<Lugar>>operator_doubleArrow(_lugares, _function);
+    Banco _banco = new Banco();
+    Biblioteca _biblioteca = new Biblioteca();
+    Club _club = new Club();
+    Embajada _embajada = new Embajada();
+    CollectionExtensions.<Lugar>addAll(_lugares, _banco, _biblioteca, _club, _embajada);
     List<Villano> _villanos = this.getVillanos();
-    final Procedure1<List<Villano>> _function_1 = new Procedure1<List<Villano>>() {
+    final Procedure1<List<Villano>> _function = new Procedure1<List<Villano>>() {
       public void apply(final List<Villano> it) {
         ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("Jugar tenis", "Pintar Cuadros");
         ArrayList<String> _newArrayList_1 = CollectionLiterals.<String>newArrayList("Alta", "Flaca");
@@ -143,9 +138,9 @@ public class Juego {
         it.add(_villano_2);
       }
     };
-    ObjectExtensions.<List<Villano>>operator_doubleArrow(_villanos, _function_1);
+    ObjectExtensions.<List<Villano>>operator_doubleArrow(_villanos, _function);
     List<Caso> _casos = this.getCasos();
-    final Procedure1<List<Caso>> _function_2 = new Procedure1<List<Caso>>() {
+    final Procedure1<List<Caso>> _function_1 = new Procedure1<List<Caso>>() {
       public void apply(final List<Caso> it) {
         Caso _caso = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
         it.add(_caso);
@@ -153,7 +148,7 @@ public class Juego {
         it.add(_caso_1);
       }
     };
-    ObjectExtensions.<List<Caso>>operator_doubleArrow(_casos, _function_2);
+    ObjectExtensions.<List<Caso>>operator_doubleArrow(_casos, _function_1);
     this.seleccionarCaso();
     Detective _detective = new Detective();
     this.setDetective(_detective);
