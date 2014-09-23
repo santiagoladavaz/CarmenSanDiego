@@ -33,37 +33,18 @@ class Juego {
 	
 	//Crea todo el juego
 	new(){
-		
-		this.crearPaises		
-		
-		lugares.addAll(new Banco,new Biblioteca,new Club,new Embajada)
-				  
-		
-		
-		villanos =>[
-				add(new Villano
-				("Bonnie","Femenino",newArrayList("Jugar tenis","Pintar Cuadros"),newArrayList("Alta","Flaca"),newArrayList(seleccionarPais("Argentina"),seleccionarPais("Brasil"),seleccionarPais("Haiti"))))
-				add(new Villano
-					("Al Capone","Masculino",newArrayList("comer pizza","extorsionar"),newArrayList("barrigon","pelado"),newArrayList(seleccionarPais("Argentina"),seleccionarPais("Uruguay"),seleccionarPais("Croacia"))))
-				add(new Villano
-					("Gordo Valor","Masculino",newArrayList("Andar en bici"),newArrayList("Tartamudo","Bajito"),newArrayList(seleccionarPais("Italia"),seleccionarPais("Haiti"),seleccionarPais("Brasil"))))
-			       ]
-			
-		casos => [
-			add(new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.
-						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
-						  es descifrar el responsable de tal crimen y apresarlo"))
-			add(new Caso("Robo de las joyas" , "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.
-						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
-						  es descifrar el responsable de tal crimen y apresarlo") )
-			]
+		crearPaises		
+		crearLugares
+		crearVillanos
+		crearCasos
+		crearDetective
 		
 		//Seleccion aleatoriamente un caso
 		seleccionarCaso
 		
-		detective = new Detective()
-		this.seleccionarVillano
-		this.iniciarJuego
+		//Selecciona una villano aleatoriamente
+		seleccionarVillano
+		iniciarJuego
 
 	}
 	
@@ -76,28 +57,86 @@ class Juego {
 		val hai = new Pais("Haiti")
 		val ita = new Pais("Italia")
 		val uru = new Pais("Uruguay")
-		arg.caract(newArrayList("Grande","Inseguro","Tiene una provincia Llamada Buenos Aires","se creen el centro del mundo"))
+		arg.caract(newArrayList("Grande","Inseguro","Tiene una provincia Llamada Buenos Aires","Se creen el centro del mundo"))
 		arg.conexiones(newArrayList(uru,bra))
 		arg.lugares(newArrayList(new Banco,new Biblioteca,new Club))
 		bra.caract(newArrayList("Caluroso","Festivo","Hablan Portugues","Son Grones!","Usan Reales"))
 		bra.conexiones(newArrayList(arg,hai))
-		bra.lugares(newArrayList(new Embajada,new Biblioteca,new Club))
-		uru.caract(newArrayList("Materos","Con muchas playas","Dicen 'vo'", "tienen a Forlan"))
+		bra.lugares(newArrayList(new Club,new Biblioteca,new Embajada))
+		uru.caract(newArrayList("Materos","Con muchas playas","Dicen 'bo'", "Tienen a Forlan"))
 		uru.conexiones(newArrayList(arg,cro))
-		uru.lugares(newArrayList(new Embajada,new Club,new Biblioteca))
-		hai.caract(newArrayList("Pobre","Poca poblacion","Cultivan cocos","Les cabio un terremoto"))
+		uru.lugares(newArrayList(new Embajada,new Club,new Banco))
+		hai.caract(newArrayList("Pobre","Poca poblacion","Cultivan cocos","Tuvieron un terremoto"))
 		hai.conexiones(newArrayList(bra,ita))
-		hai.lugares(newArrayList(new Embajada,new Club,new Biblioteca))
+		hai.lugares(newArrayList(new Club,new Embajada,new Biblioteca))
 		ita.caract(newArrayList("Forma de bota","Comen pizza","Son Mafiosos"))
 		ita.conexiones(newArrayList(cro,hai))
-		ita.lugares(newArrayList(new Embajada,new Banco,new Biblioteca))
+		ita.lugares(newArrayList(new Embajada,new Biblioteca,new Banco))
 		cro.conexiones(newArrayList(uru,ita))
-		cro.caract(newArrayList("Son croatas", "no se que mas poner porque no se nada de croacia"))
-		cro.lugares(newArrayList(new Embajada,new Biblioteca,new Club))
+		cro.caract(newArrayList("Su capital es Zagreb", "Su camiseta de futbol parece un mantel"))
+		cro.lugares(newArrayList(new Biblioteca,new Club,new Embajada))
 		
 		conexiones.addAll(arg,ita,bra,hai,cro,uru)
 	}
 	
+	
+	//Crea los villanos del juego
+	def crearVillanos(){
+		val bonnie = new Villano
+						("Bonnie","Femenino",
+						newArrayList("Jugar tenis","Pintar Cuadros"),
+						newArrayList("Alta","Flaca"),
+						newArrayList(seleccionarPais("Argentina"),seleccionarPais("Brasil"),seleccionarPais("Haiti")))
+		
+		val capone = new Villano
+					("Al Capone","Masculino",
+					newArrayList("Comer pizza","Extorsionar"),
+					newArrayList("Barrigon","Pelado"),
+					newArrayList(seleccionarPais("Argentina"),seleccionarPais("Uruguay"),seleccionarPais("Croacia")))
+				
+		val gordo = new Villano
+					("Gordo Valor","Masculino",
+						newArrayList("Andar en bici"),
+						newArrayList("Tartamudo","Bajito"),
+						newArrayList(seleccionarPais("Italia"),seleccionarPais("Haiti"),seleccionarPais("Brasil")))
+						
+		val burns = new Villano
+					("Sr. Burns","Masculino",
+						newArrayList("Presumir su fortuna","Menospreciar pobres"),
+						newArrayList("Rico","Tiene el sindrome de los 3 chiflados","Dueño de una planta nuclear"),
+						newArrayList(seleccionarPais("Croacia"),seleccionarPais("Uruguay"),seleccionarPais("Argentina")))
+		
+		val moria = new Villano
+					("Moria Casan","Femenino",
+						newArrayList("Pelearse delante de las camaras","Modelar"),
+						newArrayList("Usa peluca","Se opero 32 veces"),
+						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))
+		
+		villanos.addAll(bonnie,capone,gordo,burns,moria)		
+	}
+	
+	
+	def crearCasos(){
+		val caso1 = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.
+						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
+						  es descifrar el responsable de tal crimen y apresarlo")
+		
+		val caso2 = new Caso("Robo de las joyas" , "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.
+						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
+						  es descifrar el responsable de tal crimen y apresarlo")
+		
+		casos.addAll(caso1,caso2)
+	}
+	
+	
+	def crearDetective(){
+		detective = new Detective
+	}
+	
+	
+	def crearLugares(){
+		lugares.addAll(new Banco,new Biblioteca,new Club,new Embajada)
+	}
 	
 	def Pais buscarPais(Pais string) {
 		conexiones.filter[p| p.nombre == string.nombre].get(0)
@@ -136,7 +175,7 @@ class Juego {
 	
 	
 	def seleccionarVillano(){
-		 _villano = villanos.get((Math.random * villanos.size) as int)
+		 villano = villanos.get((Math.random * villanos.size) as int)
 	}
 	
 	
