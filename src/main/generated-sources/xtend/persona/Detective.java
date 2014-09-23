@@ -61,10 +61,8 @@ public class Detective {
   
   public void setPaisActual(final Pais p) {
     Pais _paisActual = this.getPaisActual();
-    this._paisAnterior = _paisActual;
+    this.setPaisAnterior(_paisActual);
     this._paisActual = p;
-    String _nombre = p.getNombre();
-    this._recorridoCriminal.add(_nombre);
     List<Lugar> _lugares = p.getLugares();
     Lugar _get = _lugares.get(0);
     p.setPrimerLugar(_get);
@@ -76,8 +74,6 @@ public class Detective {
     p.setTercerLugar(_get_2);
     Pais _paisActual_1 = this.getPaisActual();
     ObservableUtils.firePropertyChanged(this, "paisActual", _paisActual_1);
-    List<String> _recorridoCriminal = this.getRecorridoCriminal();
-    ObservableUtils.firePropertyChanged(this, "recorridoCriminal", _recorridoCriminal);
   }
   
   public void volver() {
@@ -88,6 +84,38 @@ public class Detective {
       this.setPaisActual(_paisAnterior_1);
     } else {
       throw new UserException("Es el primer pais que visita !");
+    }
+  }
+  
+  public void agregarRecoCriminal() {
+    List<String> _recorridoCriminal = this.getRecorridoCriminal();
+    Pais _paisActual = this.getPaisActual();
+    String _nombre = _paisActual.getNombre();
+    boolean _contains = _recorridoCriminal.contains(_nombre);
+    boolean _not = (!_contains);
+    if (_not) {
+      List<String> _recorridoCriminal_1 = this.getRecorridoCriminal();
+      Pais _paisActual_1 = this.getPaisActual();
+      String _nombre_1 = _paisActual_1.getNombre();
+      _recorridoCriminal_1.add(_nombre_1);
+      List<String> _recorridoCriminal_2 = this.getRecorridoCriminal();
+      ObservableUtils.firePropertyChanged(this, "recorridoCriminal", _recorridoCriminal_2);
+    }
+  }
+  
+  public void agregarDestinosFallidos() {
+    List<String> _destinosFallidos = this.getDestinosFallidos();
+    Pais _paisActual = this.getPaisActual();
+    String _nombre = _paisActual.getNombre();
+    boolean _contains = _destinosFallidos.contains(_nombre);
+    boolean _not = (!_contains);
+    if (_not) {
+      List<String> _destinosFallidos_1 = this.getDestinosFallidos();
+      Pais _paisActual_1 = this.getPaisActual();
+      String _nombre_1 = _paisActual_1.getNombre();
+      _destinosFallidos_1.add(_nombre_1);
+      List<String> _destinosFallidos_2 = this.getDestinosFallidos();
+      ObservableUtils.firePropertyChanged(this, "destinosFallidos", _destinosFallidos_2);
     }
   }
 }

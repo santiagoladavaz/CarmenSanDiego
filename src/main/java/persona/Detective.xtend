@@ -25,14 +25,12 @@ class Detective {
 	List<String> destinosFallidos = newArrayList
 	
 	def setPaisActual(Pais p){
-		_paisAnterior = paisActual
+		paisAnterior = paisActual
 		_paisActual = p
-		_recorridoCriminal += p.nombre
 		p.primerLugar = p.lugares.get(0)
 		p.segundoLugar = p.lugares.get(1)
 		p.tercerLugar = p.lugares.get(2)
-		ObservableUtils.firePropertyChanged(this,"paisActual",paisActual);
-		ObservableUtils.firePropertyChanged(this,"recorridoCriminal",recorridoCriminal)		
+		ObservableUtils.firePropertyChanged(this,"paisActual",paisActual);	
 	}
 
 
@@ -42,7 +40,22 @@ class Detective {
 		}else{
 			throw new UserException ("Es el primer pais que visita !")
 		}
-		
+	}
+	
+	
+	def agregarRecoCriminal(){
+		if(!recorridoCriminal.contains(paisActual.nombre)){
+			recorridoCriminal+=paisActual.nombre
+			ObservableUtils.firePropertyChanged(this,"recorridoCriminal",recorridoCriminal)	
+		}
+	}
+	
+	
+	def agregarDestinosFallidos(){
+		if(!destinosFallidos.contains(paisActual.nombre)){
+			destinosFallidos+=paisActual.nombre
+			ObservableUtils.firePropertyChanged(this,"destinosFallidos",destinosFallidos)	
+		}
 	}
 	
 }
