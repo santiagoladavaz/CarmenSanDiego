@@ -22,10 +22,10 @@ class Pais {
 	
 	// Constructor completo para pais
 	new(String n,List<String> caracts,List<Pais>conex,List<Lugar>l){
-		_nombre = n
-		_caract = caracts
-		_conexiones = conex
-		_lugares = l
+		nombre = n
+		caract = caracts
+		conexiones = conex
+		lugares = l
 		primerLugar = lugares.get(0)
 		segundoLugar = lugares.get(1)
 		tercerLugar = lugares.get(2)
@@ -82,7 +82,7 @@ class Pais {
     */
 	
 	def void agregarCaract(String caracteristica){
-		if (! (caracteristica==null) && !caracteristica.startsWith(" ")){
+		if ( caracteristica!=null && !caracteristica.startsWith(" ")){
 			caract+=caracteristica
 			ObservableUtils.firePropertyChanged(this,"caract",caract);
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
@@ -149,8 +149,10 @@ class Pais {
 	}
 	
 	def isConsistente(){
-		return nombre != null && ! caract.empty &&
-			   ! lugares.empty && ! conexiones.empty
+		return nombre != null
+     		   && !caract.empty 
+     		   && lugares.size.equals(3)
+     		   &&  !conexiones.empty
 	}
 	
 	def caract(ArrayList<String> strings) {
@@ -164,6 +166,8 @@ class Pais {
 	def lugares(ArrayList<Lugar> lugars) {
 		_lugares = lugars
 	}
+	
+	
 	
 	
 	

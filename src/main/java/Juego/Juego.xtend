@@ -49,10 +49,10 @@ class Juego {
 		casos => [
 			add(new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.
 						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
-						  es desifrar el responsable de tal crimen y apresarlo"))
+						  es descifrar el responsable de tal crimen y apresarlo"))
 			add(new Caso("Robo de las joyas" , "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.
 						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
-						  es desifrar el responsable de tal crimen y apresarlo") )
+						  es descifrar el responsable de tal crimen y apresarlo") )
 			]
 		
 		//Seleccion aleatoriamente un caso

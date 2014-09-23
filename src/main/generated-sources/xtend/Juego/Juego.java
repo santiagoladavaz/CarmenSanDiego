@@ -147,9 +147,9 @@ public class Juego {
     List<Caso> _casos = this.getCasos();
     final Procedure1<List<Caso>> _function_2 = new Procedure1<List<Caso>>() {
       public void apply(final List<Caso> it) {
-        Caso _caso = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es desifrar el responsable de tal crimen y apresarlo");
+        Caso _caso = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
         it.add(_caso);
-        Caso _caso_1 = new Caso("Robo de las joyas", "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es desifrar el responsable de tal crimen y apresarlo");
+        Caso _caso_1 = new Caso("Robo de las joyas", "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
         it.add(_caso_1);
       }
     };

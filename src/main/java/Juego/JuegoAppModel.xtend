@@ -6,6 +6,7 @@ import org.uqbar.commons.utils.Observable
 
 @Observable
 class JuegoAppModel {
+	
 	@Property
 	Juego juego = Juego.getInstance()
 	
