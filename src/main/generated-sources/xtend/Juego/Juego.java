@@ -19,6 +19,7 @@ import pais.Embajada;
 import pais.Lugar;
 import pais.Pais;
 import persona.Detective;
+import persona.Persona;
 import persona.Villano;
 
 @Observable
@@ -338,6 +339,49 @@ public class Juego {
     Detective _detective = this.getDetective();
     Villano _ordenDeArresto = _detective.getOrdenDeArresto();
     return _villano.equals(_ordenDeArresto);
+  }
+  
+  public boolean gano(final Pais p, final Lugar lugar) {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _ultimoPaisDelVillano = this.ultimoPaisDelVillano(p);
+    if (!_ultimoPaisDelVillano) {
+      _and_1 = false;
+    } else {
+      boolean _villanoCorrecto = this.villanoCorrecto();
+      _and_1 = _villanoCorrecto;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      Persona _okupa = lugar.getOkupa();
+      Villano _villano = this.getVillano();
+      boolean _equals = _okupa.equals(_villano);
+      _and = _equals;
+    }
+    return _and;
+  }
+  
+  public boolean perdio(final Pais p, final Lugar lugar) {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _ultimoPaisDelVillano = this.ultimoPaisDelVillano(p);
+    if (!_ultimoPaisDelVillano) {
+      _and_1 = false;
+    } else {
+      boolean _villanoCorrecto = this.villanoCorrecto();
+      boolean _not = (!_villanoCorrecto);
+      _and_1 = _not;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      Persona _okupa = lugar.getOkupa();
+      Villano _villano = this.getVillano();
+      boolean _equals = _okupa.equals(_villano);
+      _and = _equals;
+    }
+    return _and;
   }
   
   public void iniciarJuego() {

@@ -193,6 +193,14 @@ class Juego {
 		villano.equals(detective.ordenDeArresto)
 	}
 	
+	def gano(Pais p,Lugar lugar){
+		ultimoPaisDelVillano(p) && villanoCorrecto && lugar.okupa.equals(villano)
+	}
+	
+	def perdio(Pais p,Lugar lugar){
+		ultimoPaisDelVillano(p) && !villanoCorrecto && lugar.okupa.equals(villano)
+	}
+	
 	
 	def iniciarJuego(){
 		detective.paisActual=villano.planDeEscape.get(0)
