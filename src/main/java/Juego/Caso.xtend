@@ -9,10 +9,11 @@ class Caso {
 	
 	@Property
 	String descripcion
+	 
 	
-	new(String nomb, String desc){
+	new(String nomb, String desc, String nombrePais, String desc2){
 		this.nombre= nomb
-		this.descripcion = desc
+		this.descripcion = desc + nombrePais + desc2
 	}
 	
 }

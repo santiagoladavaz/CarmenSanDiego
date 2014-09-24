@@ -107,9 +107,13 @@ public class Juego {
     this.crearLugares();
     this.crearVillanos();
     this.crearDetective();
-    this.crearCasos();
-    this.seleccionarCaso();
     this.seleccionarVillano();
+    Villano _villano = this.getVillano();
+    List<Pais> _planDeEscape = _villano.getPlanDeEscape();
+    Pais _get = _planDeEscape.get(0);
+    String _nombre = _get.getNombre();
+    this.crearCasos(_nombre);
+    this.seleccionarCaso();
     this.iniciarJuego();
   }
   
@@ -226,11 +230,11 @@ public class Juego {
     return _xblockexpression;
   }
   
-  public boolean crearCasos() {
+  public boolean crearCasos(final String nombre) {
     boolean _xblockexpression = false;
     {
-      final Caso caso1 = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en la ciudad de Springfield se robaron el billete del trillon de dolares.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
-      final Caso caso2 = new Caso("Robo de las joyas", "A las 4 de la tarde en la ciudad de Asuncion se robaron unas valiosas joyas.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
+      final Caso caso1 = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en ", nombre, " se robaron el billete del trillon de dolares.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
+      final Caso caso2 = new Caso("Robo de las joyas", "A las 4 de la tarde en ", nombre, "se robaron unas valiosas joyas.\n\t\t\t\t\t\t  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective\n\t\t\t\t\t\t  es descifrar el responsable de tal crimen y apresarlo");
       List<Caso> _casos = this.getCasos();
       _xblockexpression = CollectionExtensions.<Caso>addAll(_casos, caso1, caso2);
     }

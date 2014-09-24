@@ -25,8 +25,8 @@ public class Caso {
     this._descripcion = descripcion;
   }
   
-  public Caso(final String nomb, final String desc) {
+  public Caso(final String nomb, final String desc, final String nombrePais, final String desc2) {
     this.setNombre(nomb);
-    this.setDescripcion(desc);
+    this.setDescripcion(((desc + nombrePais) + desc2));
   }
 }
