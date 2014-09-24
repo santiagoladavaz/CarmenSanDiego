@@ -113,7 +113,7 @@ class Pais {
    		val n = dame2Randoms
    		val p1 = caract.get(n.get(0))
    		val p2 = caract.get(n.get(1))
-   		return #["Caracteristica del pais: "+p1+"\n"+"Caracteristica del pais: "+p2+"\n"]
+   		return #["Pregunto por un pais "+p1+"\n"+"y "+p2+"\n"]
    }
    
    /**

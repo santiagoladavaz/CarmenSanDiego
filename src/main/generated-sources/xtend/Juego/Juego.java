@@ -105,8 +105,8 @@ public class Juego {
     this.crearPaises();
     this.crearLugares();
     this.crearVillanos();
-    this.crearCasos();
     this.crearDetective();
+    this.crearCasos();
     this.seleccionarCaso();
     this.seleccionarVillano();
     this.iniciarJuego();
@@ -121,7 +121,7 @@ public class Juego {
       final Pais hai = new Pais("Haiti");
       final Pais ita = new Pais("Italia");
       final Pais uru = new Pais("Uruguay");
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("Grande", "Inseguro", "Tiene una provincia Llamada Buenos Aires", "Se creen el centro del mundo");
+      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("grande", "inseguro", "que tiene una provincia Llamada Buenos Aires", "donde se creen el centro del mundo");
       arg.caract(_newArrayList);
       ArrayList<Pais> _newArrayList_1 = CollectionLiterals.<Pais>newArrayList(uru, bra);
       arg.conexiones(_newArrayList_1);
@@ -130,7 +130,7 @@ public class Juego {
       Club _club = new Club();
       ArrayList<Lugar> _newArrayList_2 = CollectionLiterals.<Lugar>newArrayList(_banco, _biblioteca, _club);
       arg.setLugares(_newArrayList_2);
-      ArrayList<String> _newArrayList_3 = CollectionLiterals.<String>newArrayList("Caluroso", "Festivo", "Hablan Portugues", "Son Grones!", "Usan Reales");
+      ArrayList<String> _newArrayList_3 = CollectionLiterals.<String>newArrayList("caluroso", "festivo", "donde hablan Portugues", "son morenos", "donde usan Reales");
       bra.caract(_newArrayList_3);
       ArrayList<Pais> _newArrayList_4 = CollectionLiterals.<Pais>newArrayList(arg, hai);
       bra.conexiones(_newArrayList_4);
@@ -139,7 +139,7 @@ public class Juego {
       Embajada _embajada = new Embajada();
       ArrayList<Lugar> _newArrayList_5 = CollectionLiterals.<Lugar>newArrayList(_club_1, _biblioteca_1, _embajada);
       bra.setLugares(_newArrayList_5);
-      ArrayList<String> _newArrayList_6 = CollectionLiterals.<String>newArrayList("Materos", "Con muchas playas", "Dicen \'bo\'", "Tienen a Forlan");
+      ArrayList<String> _newArrayList_6 = CollectionLiterals.<String>newArrayList("matero", "Con muchas playas", "donde dicen \'bo\'", "donde esta Forlan");
       uru.caract(_newArrayList_6);
       ArrayList<Pais> _newArrayList_7 = CollectionLiterals.<Pais>newArrayList(arg, cro);
       uru.conexiones(_newArrayList_7);
@@ -148,7 +148,7 @@ public class Juego {
       Banco _banco_1 = new Banco();
       ArrayList<Lugar> _newArrayList_8 = CollectionLiterals.<Lugar>newArrayList(_embajada_1, _club_2, _banco_1);
       uru.setLugares(_newArrayList_8);
-      ArrayList<String> _newArrayList_9 = CollectionLiterals.<String>newArrayList("Pobre", "Poca poblacion", "Cultivan cocos", "Tuvieron un terremoto");
+      ArrayList<String> _newArrayList_9 = CollectionLiterals.<String>newArrayList("pobre", "con poca poblacion", "que cultiva cocos", "que tuvo un terremoto");
       hai.caract(_newArrayList_9);
       ArrayList<Pais> _newArrayList_10 = CollectionLiterals.<Pais>newArrayList(bra, ita);
       hai.conexiones(_newArrayList_10);
@@ -157,7 +157,7 @@ public class Juego {
       Biblioteca _biblioteca_2 = new Biblioteca();
       ArrayList<Lugar> _newArrayList_11 = CollectionLiterals.<Lugar>newArrayList(_club_3, _embajada_2, _biblioteca_2);
       hai.setLugares(_newArrayList_11);
-      ArrayList<String> _newArrayList_12 = CollectionLiterals.<String>newArrayList("Forma de bota", "Comen pizza", "Son Mafiosos");
+      ArrayList<String> _newArrayList_12 = CollectionLiterals.<String>newArrayList("con forma de bota", "donde comen pizza", "donde suele haber mafiosos");
       ita.caract(_newArrayList_12);
       ArrayList<Pais> _newArrayList_13 = CollectionLiterals.<Pais>newArrayList(cro, hai);
       ita.conexiones(_newArrayList_13);
@@ -168,7 +168,7 @@ public class Juego {
       ita.setLugares(_newArrayList_14);
       ArrayList<Pais> _newArrayList_15 = CollectionLiterals.<Pais>newArrayList(uru, ita);
       cro.conexiones(_newArrayList_15);
-      ArrayList<String> _newArrayList_16 = CollectionLiterals.<String>newArrayList("Su capital es Zagreb", "Su camiseta de futbol parece un mantel");
+      ArrayList<String> _newArrayList_16 = CollectionLiterals.<String>newArrayList("que su capital es Zagreb", "su camiseta de futbol parece un mantel");
       cro.caract(_newArrayList_16);
       Biblioteca _biblioteca_4 = new Biblioteca();
       Club _club_4 = new Club();

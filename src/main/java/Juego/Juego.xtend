@@ -36,9 +36,8 @@ class Juego {
 		crearPaises		
 		crearLugares
 		crearVillanos
-		crearCasos
 		crearDetective
-		
+		crearCasos
 		//Seleccion aleatoriamente un caso
 		seleccionarCaso
 		
@@ -57,23 +56,23 @@ class Juego {
 		val hai = new Pais("Haiti")
 		val ita = new Pais("Italia")
 		val uru = new Pais("Uruguay")
-		arg.caract(newArrayList("Grande","Inseguro","Tiene una provincia Llamada Buenos Aires","Se creen el centro del mundo"))
+		arg.caract(newArrayList("grande","inseguro","que tiene una provincia Llamada Buenos Aires","donde se creen el centro del mundo"))
 		arg.conexiones(newArrayList(uru,bra))
 		arg.setLugares(newArrayList(new Banco,new Biblioteca,new Club))
-		bra.caract(newArrayList("Caluroso","Festivo","Hablan Portugues","Son Grones!","Usan Reales"))
+		bra.caract(newArrayList("caluroso","festivo","donde hablan Portugues","son morenos","donde usan Reales"))
 		bra.conexiones(newArrayList(arg,hai))
 		bra.setLugares(newArrayList(new Club,new Biblioteca,new Embajada))
-		uru.caract(newArrayList("Materos","Con muchas playas","Dicen 'bo'", "Tienen a Forlan"))
+		uru.caract(newArrayList("matero","Con muchas playas","donde dicen 'bo'", "donde esta Forlan"))
 		uru.conexiones(newArrayList(arg,cro))
 		uru.setLugares(newArrayList(new Embajada,new Club,new Banco))
-		hai.caract(newArrayList("Pobre","Poca poblacion","Cultivan cocos","Tuvieron un terremoto"))
+		hai.caract(newArrayList("pobre","con poca poblacion","que cultiva cocos","que tuvo un terremoto"))
 		hai.conexiones(newArrayList(bra,ita))
 		hai.setLugares(newArrayList(new Club,new Embajada,new Biblioteca))
-		ita.caract(newArrayList("Forma de bota","Comen pizza","Son Mafiosos"))
+		ita.caract(newArrayList("con forma de bota","donde comen pizza","donde suele haber mafiosos"))
 		ita.conexiones(newArrayList(cro,hai))
 		ita.setLugares(newArrayList(new Embajada,new Biblioteca,new Banco))
 		cro.conexiones(newArrayList(uru,ita))
-		cro.caract(newArrayList("Su capital es Zagreb", "Su camiseta de futbol parece un mantel"))
+		cro.caract(newArrayList("que su capital es Zagreb", "su camiseta de futbol parece un mantel"))
 		cro.setLugares(newArrayList(new Biblioteca,new Club,new Embajada))
 		
 		conexiones.addAll(arg,ita,bra,hai,cro,uru)

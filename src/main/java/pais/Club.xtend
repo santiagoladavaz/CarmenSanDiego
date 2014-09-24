@@ -44,7 +44,7 @@ class Club extends Lugar {
 		val villano = new Villano() => [nombre="Pepe"
 										sexo="Masculino"
 										hobbie = #["el ladron juega tennis"," el ladron come manzanas"]	
-										señas = #["es un trolaso ","no tiene idea de la vida"]
+										señas = #["es un nabo ","no tiene idea de la vida"]
 										planDeEscape = #[pais,pais2]
 					]
 		villano.visitarPais()

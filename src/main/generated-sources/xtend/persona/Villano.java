@@ -56,11 +56,11 @@ public class Villano extends Persona {
     this._planDeEscape = planDeEscape;
   }
   
-  public Villano(final String n, final String s, final List<String> hobbies, final List<String> señas, final List<Pais> plan) {
+  public Villano(final String n, final String s, final List<String> hobbies, final List<String> señasl, final List<Pais> plan) {
     this._nombre = n;
     this._sexo = s;
     this._hobbie = hobbies;
-    this._señas = señas;
+    this._señas = señasl;
     this._planDeEscape = plan;
   }
   
@@ -100,10 +100,6 @@ public class Villano extends Persona {
     _planDeEscape.forEach(_function);
   }
   
-  public String toString() {
-    return this._nombre;
-  }
-  
   public Pais obtenerSiguientePais(final Pais p) {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
     final int x = _planDeEscape.indexOf(p);
@@ -134,12 +130,12 @@ public class Villano extends Persona {
       final ArrayList<String> lista = CollectionLiterals.<String>newArrayList();
       List<String> _señas_1 = this.getSeñas();
       String _get = _señas_1.get(i);
-      String _plus = ("Una de mis señas es: " + _get);
+      String _plus = ("Una de sus señas es: " + _get);
       String _plus_1 = (_plus + "\n");
       lista.add(_plus_1);
       List<String> _hobbie_1 = this.getHobbie();
       String _get_1 = _hobbie_1.get(y);
-      String _plus_2 = ("Unos de mis Hobbies es: " + _get_1);
+      String _plus_2 = ("Uno de sus Hobbies es: " + _get_1);
       String _plus_3 = (_plus_2 + "\n");
       lista.add(_plus_3);
       _xblockexpression = lista;
@@ -257,5 +253,9 @@ public class Villano extends Persona {
       _and = _not_1;
     }
     return _and;
+  }
+  
+  public String toString() {
+    return this._nombre;
   }
 }

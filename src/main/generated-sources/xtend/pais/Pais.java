@@ -210,7 +210,7 @@ public class Pais {
     List<String> _caract_1 = this.getCaract();
     Integer _get_1 = n.get(1);
     final String p2 = _caract_1.get((_get_1).intValue());
-    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(((((("Caracteristica del pais: " + p1) + "\n") + "Caracteristica del pais: ") + p2) + "\n")));
+    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(((((("Pregunto por un pais " + p1) + "\n") + "y ") + p2) + "\n")));
   }
   
   /**

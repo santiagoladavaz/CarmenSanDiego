@@ -14,11 +14,11 @@ class Villano extends Persona{
 	@Property List<String> señas
 	@Property List<Pais> planDeEscape; 
 	 
-	 new (String n, String s,List<String> hobbies,List<String>señas,List<Pais> plan){
+	 new (String n, String s,List<String> hobbies,List<String>señasl,List<Pais> plan){
 		_nombre = n
 		_sexo = s
 		_hobbie = hobbies 
-		_señas = señas  
+		_señas = señasl  
 		_planDeEscape = plan 
 	}
 	
@@ -37,22 +37,23 @@ class Villano extends Persona{
 		_planDeEscape = new ArrayList<Pais> 
 	}
 	
+	
 	/**
 	 * @METODOS DEL DOMINIO
 	 */
-	 override avisarEmboscada() {
+	 
+	override avisarEmboscada() {
 		/**
 		 * DO NOTHING
 		 */
 	}
 	
+	
 	def visitarPais(){
 		planDeEscape.forEach[visitar(this)]
 	}
 	
-	override def toString(){
-		return _nombre
-	}
+
 	
 	def obtenerSiguientePais(Pais p){
 		val x = planDeEscape.indexOf(p)
@@ -68,14 +69,15 @@ class Villano extends Persona{
 		val i = (Math.random * señas.size) as int
 		val y = (Math.random * hobbie.size) as int
 		val lista = newArrayList
-		lista.add("Una de mis señas es: "+ señas.get(i)+ "\n")
-		lista.add("Unos de mis Hobbies es: "+ hobbie.get(y) + "\n")
+		lista.add("Una de sus señas es: "+ señas.get(i)+ "\n")
+		lista.add("Uno de sus Hobbies es: "+ hobbie.get(y) + "\n")
 		lista
 	}
 	
 	override informar() {
 		return "ALTO AHI" 
 	}
+	
 	
 	/**
 	 * @METODOS DE LA INTERFAZ
@@ -89,6 +91,7 @@ class Villano extends Persona{
 		}
 	}
 	
+	
 	def eliminarValor(String s,String propertyName, List<String> lista){
 		if(lista.contains(s))
 			lista-=s
@@ -96,18 +99,18 @@ class Villano extends Persona{
 		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
 	
+	
 	def cumpleCondicion(String n){
 		return (n == "Femenino" || n == "Masculino" || n == "Hermafrodita") && n !=null
 	}
+	
 	
 	def setSexo(String n){
 		_sexo = n
 		ObservableUtils.firePropertyChanged(this,sexo,sexo);
 		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}
-	// PREGUNTAR COMO CREAR UN CARTELITO QUE MUESTRE LA EXCEPCION
-	//else
-	//		throw new RuntimeException("El sexo debe ser 'Masculino', 'Femenino' o 'Hermafrodita'")
+	
 	
 	
 	def setNombre(String n){
@@ -116,8 +119,13 @@ class Villano extends Persona{
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 	}	
 	
+	
 	def isConsistente(){
 		return nombre !=null && cumpleCondicion(sexo) && !señas.empty && !hobbie.empty
+	}
+	
+	override def toString(){
+		return _nombre
 	}
 	
 }

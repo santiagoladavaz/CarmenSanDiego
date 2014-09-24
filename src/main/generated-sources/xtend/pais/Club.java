@@ -70,7 +70,7 @@ public class Club extends Lugar {
         it.setNombre("Pepe");
         it.setSexo("Masculino");
         it.setHobbie(Collections.<String>unmodifiableList(Lists.<String>newArrayList("el ladron juega tennis", " el ladron come manzanas")));
-        it.setSeñas(Collections.<String>unmodifiableList(Lists.<String>newArrayList("es un trolaso ", "no tiene idea de la vida")));
+        it.setSeñas(Collections.<String>unmodifiableList(Lists.<String>newArrayList("es un nabo ", "no tiene idea de la vida")));
         it.setPlanDeEscape(Collections.<Pais>unmodifiableList(Lists.<Pais>newArrayList(pais, pais2)));
       }
     };
