@@ -14,9 +14,13 @@ class Informante extends Persona {
 	override informar() {
 		var s = "" 
 		for(p:pistas){
-			s = s+" , "+p
+			s = s+" "+p
 		}
 		return s
+	}
+	
+	override avisarEmboscada() {
+		_pistas = #["El ladron se encuentra en la ciudad"]
 	}
 	
 }

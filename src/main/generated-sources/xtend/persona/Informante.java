@@ -1,5 +1,7 @@
 package persona;
 
+import com.google.common.collect.Lists;
+import java.util.Collections;
 import java.util.List;
 import persona.Persona;
 
@@ -23,8 +25,12 @@ public class Informante extends Persona {
     String s = "";
     List<String> _pistas = this.getPistas();
     for (final String p : _pistas) {
-      s = ((s + " , ") + p);
+      s = ((s + " ") + p);
     }
     return s;
+  }
+  
+  public void avisarEmboscada() {
+    this._pistas = Collections.<String>unmodifiableList(Lists.<String>newArrayList("El ladron se encuentra en la ciudad"));
   }
 }

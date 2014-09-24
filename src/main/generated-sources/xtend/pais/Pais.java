@@ -5,12 +5,12 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
@@ -52,10 +52,6 @@ public class Pais {
     return this._lugares;
   }
   
-  public void setLugares(final List<Lugar> lugares) {
-    this._lugares = lugares;
-  }
-  
   private Lugar _primerLugar;
   
   public Lugar getPrimerLugar() {
@@ -79,22 +75,33 @@ public class Pais {
     this.setCaract(caracts);
     this.setConexiones(conex);
     this.setLugares(l);
-    List<Lugar> _lugares = this.getLugares();
-    Lugar _get = _lugares.get(0);
+    Lugar _get = l.get(0);
     this.setPrimerLugar(_get);
-    List<Lugar> _lugares_1 = this.getLugares();
-    Lugar _get_1 = _lugares_1.get(1);
+    Lugar _get_1 = l.get(1);
     this.setSegundoLugar(_get_1);
-    List<Lugar> _lugares_2 = this.getLugares();
-    Lugar _get_2 = _lugares_2.get(2);
+    Lugar _get_2 = l.get(2);
     this.setTercerLugar(_get_2);
   }
   
-  public Pais() {
+  public Lugar setLugares(final List<Lugar> l) {
+    Lugar _xblockexpression = null;
+    {
+      this._lugares = l;
+      Lugar _get = l.get(0);
+      this._primerLugar = _get;
+      Lugar _get_1 = l.get(1);
+      this._segundoLugar = _get_1;
+      Lugar _get_2 = l.get(2);
+      _xblockexpression = this._tercerLugar = _get_2;
+    }
+    return _xblockexpression;
   }
   
   public Pais(final String string) {
     this._nombre = string;
+  }
+  
+  public Pais() {
   }
   
   public String toString() {
@@ -127,28 +134,83 @@ public class Pais {
     boolean _notEquals = (!Objects.equal(pais, null));
     if (_notEquals) {
       List<Lugar> _lugares = this.getLugares();
-      final Consumer<Lugar> _function = new Consumer<Lugar>() {
-        public void accept(final Lugar it) {
+      final Procedure1<Lugar> _function = new Procedure1<Lugar>() {
+        public void apply(final Lugar it) {
           List<String> _dame2Pistas = pais.dame2Pistas();
           it.pasoLadron(villano, _dame2Pistas);
         }
       };
-      _lugares.forEach(_function);
+      IterableExtensions.<Lugar>forEach(_lugares, _function);
     } else {
-      List<Lugar> _lugares_1 = this.getLugares();
-      Lugar _get = _lugares_1.get(0);
-      _get.esconderVillano(villano);
+      this.esconderLadron(villano);
     }
   }
   
-  public List<String> dame2Pistas() {
+  private void esconderLadron(final Villano v) {
+    double _random = Math.random();
+    List<Lugar> _lugares = this.getLugares();
+    int _size = _lugares.size();
+    double _multiply = (_random * _size);
+    final int i = ((int) _multiply);
+    switch (i) {
+      case 0:
+        Lugar _primerLugar = this.getPrimerLugar();
+        _primerLugar.esconderVillano(v);
+        Lugar _segundoLugar = this.getSegundoLugar();
+        _segundoLugar.avisarEmboscada();
+        Lugar _tercerLugar = this.getTercerLugar();
+        _tercerLugar.avisarEmboscada();
+        break;
+      case 1:
+        Lugar _primerLugar_1 = this.getPrimerLugar();
+        _primerLugar_1.avisarEmboscada();
+        Lugar _segundoLugar_1 = this.getSegundoLugar();
+        _segundoLugar_1.esconderVillano(v);
+        Lugar _tercerLugar_1 = this.getTercerLugar();
+        _tercerLugar_1.avisarEmboscada();
+        break;
+      default:
+        {
+          Lugar _primerLugar_2 = this.getPrimerLugar();
+          _primerLugar_2.avisarEmboscada();
+          Lugar _segundoLugar_2 = this.getSegundoLugar();
+          _segundoLugar_2.avisarEmboscada();
+          Lugar _tercerLugar_2 = this.getTercerLugar();
+          _tercerLugar_2.esconderVillano(v);
+        }
+        break;
+    }
+  }
+  
+  private List<Integer> dame2Randoms() {
+    double _random = Math.random();
     List<String> _caract = this.getCaract();
-    String _get = _caract.get(0);
-    String _plus = ("Caracteristica del pais: " + _get);
+    int _size = _caract.size();
+    double _multiply = (_random * _size);
+    final int i = ((int) _multiply);
+    double _random_1 = Math.random();
     List<String> _caract_1 = this.getCaract();
-    String _get_1 = _caract_1.get(1);
-    String _plus_1 = ("Caracteristica del pais: " + _get_1);
-    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(_plus, _plus_1));
+    int _size_1 = _caract_1.size();
+    double _multiply_1 = (_random_1 * _size_1);
+    final int y = ((int) _multiply_1);
+    if ((y != i)) {
+      return Collections.<Integer>unmodifiableList(Lists.<Integer>newArrayList(Integer.valueOf(y), Integer.valueOf(i)));
+    }
+    List<String> _caract_2 = this.getCaract();
+    int _size_2 = _caract_2.size();
+    int _minus = (_size_2 - 1);
+    return Collections.<Integer>unmodifiableList(Lists.<Integer>newArrayList(Integer.valueOf(0), Integer.valueOf(_minus)));
+  }
+  
+  public List<String> dame2Pistas() {
+    final List<Integer> n = this.dame2Randoms();
+    List<String> _caract = this.getCaract();
+    Integer _get = n.get(0);
+    final String p1 = _caract.get((_get).intValue());
+    List<String> _caract_1 = this.getCaract();
+    Integer _get_1 = n.get(1);
+    final String p2 = _caract_1.get((_get_1).intValue());
+    return Collections.<String>unmodifiableList(Lists.<String>newArrayList(((((("Caracteristica del pais: " + p1) + "\n") + "Caracteristica del pais: ") + p2) + "\n")));
   }
   
   /**

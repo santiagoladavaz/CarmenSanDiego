@@ -39,4 +39,9 @@ public abstract class Lugar {
   public void esconderVillano(final Villano villano) {
     this.setOkupa(villano);
   }
+  
+  public void avisarEmboscada() {
+    Persona _okupa = this.getOkupa();
+    _okupa.avisarEmboscada();
+  }
 }

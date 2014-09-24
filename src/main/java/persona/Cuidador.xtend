@@ -3,8 +3,14 @@ package persona
 
 class Cuidador extends Persona {
 	
+	String dialogo = "El ladron no paso por aqui"
+	
 	override informar() {
-		return "El ladron no paso por aqui"
+		return dialogo
+	}
+	
+	override avisarEmboscada() {
+		dialogo = "Ten cuidado! El ladron esta en la ciudad"
 	}
 	
 }

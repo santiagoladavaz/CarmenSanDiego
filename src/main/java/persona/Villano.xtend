@@ -40,6 +40,11 @@ class Villano extends Persona{
 	/**
 	 * @METODOS DEL DOMINIO
 	 */
+	 override avisarEmboscada() {
+		/**
+		 * DO NOTHING
+		 */
+	}
 	
 	def visitarPais(){
 		planDeEscape.forEach[visitar(this)]
@@ -57,16 +62,19 @@ class Villano extends Persona{
 		return null
 	}
 	
+
+	
 	def dameLasPistas(){
-		//modificar para elegir pistas de manera aleatoria
+		val i = (Math.random * señas.size) as int
+		val y = (Math.random * hobbie.size) as int
 		val lista = newArrayList
-		lista.add("Una de mis señas es: "+ señas.get(0))
-		lista.add("Una de mis Señas es: "+ señas.get(1))
+		lista.add("Una de mis señas es: "+ señas.get(i)+ "\n")
+		lista.add("Unos de mis Hobbies es: "+ hobbie.get(y) + "\n")
 		lista
 	}
 	
 	override informar() {
-		return "Felicidades me atrapaste"
+		return nombre+": " + "Felicidades me atrapaste"
 	}
 	
 	/**
@@ -111,5 +119,5 @@ class Villano extends Persona{
 	def isConsistente(){
 		return nombre !=null && cumpleCondicion(sexo) && !señas.empty && !hobbie.empty
 	}
-
+	
 }

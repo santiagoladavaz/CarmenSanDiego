@@ -59,22 +59,22 @@ class Juego {
 		val uru = new Pais("Uruguay")
 		arg.caract(newArrayList("Grande","Inseguro","Tiene una provincia Llamada Buenos Aires","Se creen el centro del mundo"))
 		arg.conexiones(newArrayList(uru,bra))
-		arg.lugares(newArrayList(new Banco,new Biblioteca,new Club))
+		arg.setLugares(newArrayList(new Banco,new Biblioteca,new Club))
 		bra.caract(newArrayList("Caluroso","Festivo","Hablan Portugues","Son Grones!","Usan Reales"))
 		bra.conexiones(newArrayList(arg,hai))
-		bra.lugares(newArrayList(new Club,new Biblioteca,new Embajada))
+		bra.setLugares(newArrayList(new Club,new Biblioteca,new Embajada))
 		uru.caract(newArrayList("Materos","Con muchas playas","Dicen 'bo'", "Tienen a Forlan"))
 		uru.conexiones(newArrayList(arg,cro))
-		uru.lugares(newArrayList(new Embajada,new Club,new Banco))
+		uru.setLugares(newArrayList(new Embajada,new Club,new Banco))
 		hai.caract(newArrayList("Pobre","Poca poblacion","Cultivan cocos","Tuvieron un terremoto"))
 		hai.conexiones(newArrayList(bra,ita))
-		hai.lugares(newArrayList(new Club,new Embajada,new Biblioteca))
+		hai.setLugares(newArrayList(new Club,new Embajada,new Biblioteca))
 		ita.caract(newArrayList("Forma de bota","Comen pizza","Son Mafiosos"))
 		ita.conexiones(newArrayList(cro,hai))
-		ita.lugares(newArrayList(new Embajada,new Biblioteca,new Banco))
+		ita.setLugares(newArrayList(new Embajada,new Biblioteca,new Banco))
 		cro.conexiones(newArrayList(uru,ita))
 		cro.caract(newArrayList("Su capital es Zagreb", "Su camiseta de futbol parece un mantel"))
-		cro.lugares(newArrayList(new Biblioteca,new Club,new Embajada))
+		cro.setLugares(newArrayList(new Biblioteca,new Club,new Embajada))
 		
 		conexiones.addAll(arg,ita,bra,hai,cro,uru)
 	}
@@ -181,6 +181,7 @@ class Juego {
 	
 	def iniciarJuego(){
 		detective.paisActual=villano.planDeEscape.get(0)
+		print(villano)
 		villano.visitarPais
 	}
 		

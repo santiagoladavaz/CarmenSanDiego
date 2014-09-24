@@ -26,18 +26,24 @@ class Pais {
 		caract = caracts
 		conexiones = conex
 		lugares = l
-		primerLugar = lugares.get(0)
-		segundoLugar = lugares.get(1)
-		tercerLugar = lugares.get(2)
+		primerLugar = l.get(0)
+		segundoLugar = l.get(1)
+		tercerLugar = l.get(2)
 	}
 	
-	new(){
-		
+	def setLugares(List<Lugar>l){
+		_lugares = l
+		_primerLugar = l.get(0)
+		_segundoLugar = l.get(1)
+		_tercerLugar = l.get(2)
 	}
 	
 	
 	new(String string) {
 		_nombre=string
+	}
+	
+	new() {
 	}
 	
 	
@@ -70,11 +76,44 @@ class Pais {
 		if(pais != null)
 			lugares.forEach[pasoLadron(villano,pais.dame2Pistas)]
 		else
-			lugares.get(0).esconderVillano(villano)
+			esconderLadron(villano)
+	}
+	
+	private def esconderLadron(Villano v){
+		val i = (Math.random * lugares.size) as int
+		switch i {
+			case 0 :{			     
+						primerLugar.esconderVillano(v)
+						segundoLugar.avisarEmboscada
+						tercerLugar.avisarEmboscada
+			}
+		    case 1  :{
+		   	 		    primerLugar.avisarEmboscada
+		   	 		    segundoLugar.esconderVillano(v)
+		   	 		    tercerLugar.avisarEmboscada
+		    }
+		    default :{
+		   				primerLugar.avisarEmboscada
+		   				segundoLugar.avisarEmboscada
+		   				tercerLugar.esconderVillano(v)
+		    } 
+			
+		}
+	}
+	
+	private def dame2Randoms(){
+		val i = (Math.random * caract.size) as int
+		val y = (Math.random * caract.size) as int
+		if ( y != i)
+			return #[y,i]
+		return #[0,caract.size-1]
 	}
 	
    def  dame2Pistas(){
-   		return #["Caracteristica del pais: "+caract.get(0),"Caracteristica del pais: " + caract.get(1)]
+   		val n = dame2Randoms
+   		val p1 = caract.get(n.get(0))
+   		val p2 = caract.get(n.get(1))
+   		return #["Caracteristica del pais: "+p1+"\n"+"Caracteristica del pais: "+p2+"\n"]
    }
    
    /**

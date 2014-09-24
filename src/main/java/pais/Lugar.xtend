@@ -24,6 +24,10 @@ abstract class Lugar {
 		okupa = villano
 	}
 	
+	def avisarEmboscada(){
+		okupa.avisarEmboscada
+	}
+	
 
 	
 }

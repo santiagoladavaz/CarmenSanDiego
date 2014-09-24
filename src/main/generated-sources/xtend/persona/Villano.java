@@ -3,9 +3,10 @@ package persona;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 import pais.Pais;
@@ -87,14 +88,17 @@ public class Villano extends Persona {
   /**
    * @METODOS DEL DOMINIO
    */
+  public void avisarEmboscada() {
+  }
+  
   public void visitarPais() {
     List<Pais> _planDeEscape = this.getPlanDeEscape();
-    final Consumer<Pais> _function = new Consumer<Pais>() {
-      public void accept(final Pais it) {
+    final Procedure1<Pais> _function = new Procedure1<Pais>() {
+      public void apply(final Pais it) {
         it.visitar(Villano.this);
       }
     };
-    _planDeEscape.forEach(_function);
+    IterableExtensions.<Pais>forEach(_planDeEscape, _function);
   }
   
   public String toString() {
@@ -118,22 +122,36 @@ public class Villano extends Persona {
   public ArrayList<String> dameLasPistas() {
     ArrayList<String> _xblockexpression = null;
     {
-      final ArrayList<String> lista = CollectionLiterals.<String>newArrayList();
+      double _random = Math.random();
       List<String> _señas = this.getSeñas();
-      String _get = _señas.get(0);
-      String _plus = ("Una de mis señas es: " + _get);
-      lista.add(_plus);
+      int _size = _señas.size();
+      double _multiply = (_random * _size);
+      final int i = ((int) _multiply);
+      double _random_1 = Math.random();
+      List<String> _hobbie = this.getHobbie();
+      int _size_1 = _hobbie.size();
+      double _multiply_1 = (_random_1 * _size_1);
+      final int y = ((int) _multiply_1);
+      final ArrayList<String> lista = CollectionLiterals.<String>newArrayList();
       List<String> _señas_1 = this.getSeñas();
-      String _get_1 = _señas_1.get(1);
-      String _plus_1 = ("Una de mis Señas es: " + _get_1);
+      String _get = _señas_1.get(i);
+      String _plus = ("Una de mis señas es: " + _get);
+      String _plus_1 = (_plus + "\n");
       lista.add(_plus_1);
+      List<String> _hobbie_1 = this.getHobbie();
+      String _get_1 = _hobbie_1.get(y);
+      String _plus_2 = ("Unos de mis Hobbies es: " + _get_1);
+      String _plus_3 = (_plus_2 + "\n");
+      lista.add(_plus_3);
       _xblockexpression = lista;
     }
     return _xblockexpression;
   }
   
   public String informar() {
-    return "Felicidades me atrapaste";
+    String _nombre = this.getNombre();
+    String _plus = (_nombre + ": ");
+    return (_plus + "Felicidades me atrapaste");
   }
   
   /**

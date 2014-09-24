@@ -8,6 +8,7 @@ import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
@@ -127,7 +128,7 @@ public class Juego {
       Biblioteca _biblioteca = new Biblioteca();
       Club _club = new Club();
       ArrayList<Lugar> _newArrayList_2 = CollectionLiterals.<Lugar>newArrayList(_banco, _biblioteca, _club);
-      arg.lugares(_newArrayList_2);
+      arg.setLugares(_newArrayList_2);
       ArrayList<String> _newArrayList_3 = CollectionLiterals.<String>newArrayList("Caluroso", "Festivo", "Hablan Portugues", "Son Grones!", "Usan Reales");
       bra.caract(_newArrayList_3);
       ArrayList<Pais> _newArrayList_4 = CollectionLiterals.<Pais>newArrayList(arg, hai);
@@ -136,7 +137,7 @@ public class Juego {
       Biblioteca _biblioteca_1 = new Biblioteca();
       Embajada _embajada = new Embajada();
       ArrayList<Lugar> _newArrayList_5 = CollectionLiterals.<Lugar>newArrayList(_club_1, _biblioteca_1, _embajada);
-      bra.lugares(_newArrayList_5);
+      bra.setLugares(_newArrayList_5);
       ArrayList<String> _newArrayList_6 = CollectionLiterals.<String>newArrayList("Materos", "Con muchas playas", "Dicen \'bo\'", "Tienen a Forlan");
       uru.caract(_newArrayList_6);
       ArrayList<Pais> _newArrayList_7 = CollectionLiterals.<Pais>newArrayList(arg, cro);
@@ -145,7 +146,7 @@ public class Juego {
       Club _club_2 = new Club();
       Banco _banco_1 = new Banco();
       ArrayList<Lugar> _newArrayList_8 = CollectionLiterals.<Lugar>newArrayList(_embajada_1, _club_2, _banco_1);
-      uru.lugares(_newArrayList_8);
+      uru.setLugares(_newArrayList_8);
       ArrayList<String> _newArrayList_9 = CollectionLiterals.<String>newArrayList("Pobre", "Poca poblacion", "Cultivan cocos", "Tuvieron un terremoto");
       hai.caract(_newArrayList_9);
       ArrayList<Pais> _newArrayList_10 = CollectionLiterals.<Pais>newArrayList(bra, ita);
@@ -154,7 +155,7 @@ public class Juego {
       Embajada _embajada_2 = new Embajada();
       Biblioteca _biblioteca_2 = new Biblioteca();
       ArrayList<Lugar> _newArrayList_11 = CollectionLiterals.<Lugar>newArrayList(_club_3, _embajada_2, _biblioteca_2);
-      hai.lugares(_newArrayList_11);
+      hai.setLugares(_newArrayList_11);
       ArrayList<String> _newArrayList_12 = CollectionLiterals.<String>newArrayList("Forma de bota", "Comen pizza", "Son Mafiosos");
       ita.caract(_newArrayList_12);
       ArrayList<Pais> _newArrayList_13 = CollectionLiterals.<Pais>newArrayList(cro, hai);
@@ -163,7 +164,7 @@ public class Juego {
       Biblioteca _biblioteca_3 = new Biblioteca();
       Banco _banco_2 = new Banco();
       ArrayList<Lugar> _newArrayList_14 = CollectionLiterals.<Lugar>newArrayList(_embajada_3, _biblioteca_3, _banco_2);
-      ita.lugares(_newArrayList_14);
+      ita.setLugares(_newArrayList_14);
       ArrayList<Pais> _newArrayList_15 = CollectionLiterals.<Pais>newArrayList(uru, ita);
       cro.conexiones(_newArrayList_15);
       ArrayList<String> _newArrayList_16 = CollectionLiterals.<String>newArrayList("Su capital es Zagreb", "Su camiseta de futbol parece un mantel");
@@ -172,7 +173,7 @@ public class Juego {
       Club _club_4 = new Club();
       Embajada _embajada_4 = new Embajada();
       ArrayList<Lugar> _newArrayList_17 = CollectionLiterals.<Lugar>newArrayList(_biblioteca_4, _club_4, _embajada_4);
-      cro.lugares(_newArrayList_17);
+      cro.setLugares(_newArrayList_17);
       List<Pais> _conexiones = this.getConexiones();
       _xblockexpression = CollectionExtensions.<Pais>addAll(_conexiones, arg, ita, bra, hai, cro, uru);
     }
@@ -326,6 +327,8 @@ public class Juego {
     Pais _get = _planDeEscape.get(0);
     _detective.setPaisActual(_get);
     Villano _villano_1 = this.getVillano();
-    _villano_1.visitarPais();
+    InputOutput.<Villano>print(_villano_1);
+    Villano _villano_2 = this.getVillano();
+    _villano_2.visitarPais();
   }
 }
