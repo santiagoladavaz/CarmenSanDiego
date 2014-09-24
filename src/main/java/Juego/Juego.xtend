@@ -12,6 +12,7 @@ import persona.Detective
 import pais.Biblioteca
 import pais.Club
 import pais.Embajada
+import org.uqbar.commons.model.UserException
 
 @Observable
 class Juego {
@@ -38,6 +39,7 @@ class Juego {
 		crearVillanos
 		crearDetective
 		crearCasos
+		
 		//Seleccion aleatoriamente un caso
 		seleccionarCaso
 		
@@ -189,7 +191,12 @@ class Juego {
 	 * Devuelve True si el villano que hizo el robo es el de la orden de arresto
 	 */
 	def villanoCorrecto(){
-		villano.equals(detective.ordenDeArresto)
+		if(detective.ordenDeArresto == null){
+			throw new UserException("Apurese a emitir una orden de arresto!")
+		}else{
+			villano.equals(detective.ordenDeArresto)
+		}
+		
 	}
 	
 	def gano(Pais p,Lugar lugar){

@@ -11,6 +11,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 import pais.Banco;
 import pais.Biblioteca;
@@ -335,10 +336,19 @@ public class Juego {
    * Devuelve True si el villano que hizo el robo es el de la orden de arresto
    */
   public boolean villanoCorrecto() {
-    Villano _villano = this.getVillano();
+    boolean _xifexpression = false;
     Detective _detective = this.getDetective();
     Villano _ordenDeArresto = _detective.getOrdenDeArresto();
-    return _villano.equals(_ordenDeArresto);
+    boolean _equals = Objects.equal(_ordenDeArresto, null);
+    if (_equals) {
+      throw new UserException("Apurese a emitir una orden de arresto!");
+    } else {
+      Villano _villano = this.getVillano();
+      Detective _detective_1 = this.getDetective();
+      Villano _ordenDeArresto_1 = _detective_1.getOrdenDeArresto();
+      _xifexpression = _villano.equals(_ordenDeArresto_1);
+    }
+    return _xifexpression;
   }
   
   public boolean gano(final Pais p, final Lugar lugar) {
