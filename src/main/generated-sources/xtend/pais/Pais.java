@@ -261,11 +261,15 @@ public class Pais {
       _lugares_2.add(l);
       List<Lugar> _lugares_3 = this.getLugares();
       ObservableUtils.firePropertyChanged(this, "lugares", _lugares_3);
-      boolean _isConsistente = this.isConsistente();
-      ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+      this.cambioConsistente();
     } else {
       throw new UserException("Los lugares deben ser 3 y no deben estar repetidos");
     }
+  }
+  
+  public void cambioConsistente() {
+    boolean _isConsistente = this.isConsistente();
+    ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
   }
   
   public void eliminarCaract(final String caracteristica) {
@@ -276,8 +280,7 @@ public class Pais {
       _caract_1.remove(caracteristica);
       List<String> _caract_2 = this.getCaract();
       ObservableUtils.firePropertyChanged(this, "caract", _caract_2);
-      boolean _isConsistente = this.isConsistente();
-      ObservableUtils.firePropertyChanged(this, "consistente", Boolean.valueOf(_isConsistente));
+      this.cambioConsistente();
     } else {
       throw new UserException("No existe caracteristica");
     }

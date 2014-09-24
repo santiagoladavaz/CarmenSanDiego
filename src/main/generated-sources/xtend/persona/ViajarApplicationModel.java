@@ -7,7 +7,7 @@ import persona.Detective;
 
 @Observable
 @SuppressWarnings("all")
-public class DetectiveApplicationModel {
+public class ViajarApplicationModel {
   private Juego _juego;
   
   public Juego getJuego() {
@@ -28,7 +28,7 @@ public class DetectiveApplicationModel {
     this._nuevoDestino = nuevoDestino;
   }
   
-  public DetectiveApplicationModel(final Juego j) {
+  public ViajarApplicationModel(final Juego j) {
     this._juego = j;
   }
   

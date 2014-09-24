@@ -56,4 +56,10 @@ public class LugarApplicationModel {
       _detective_2.agregarDestinosFallidos();
     }
   }
+  
+  public boolean isGano() {
+    Juego _juego = this.getJuego();
+    Lugar _lugar = this.getLugar();
+    return _juego.gano(_lugar);
+  }
 }

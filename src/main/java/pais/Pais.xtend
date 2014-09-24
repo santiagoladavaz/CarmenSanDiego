@@ -1,13 +1,13 @@
 
 package pais
 
+import java.util.ArrayList
 import java.util.List
-import org.uqbar.commons.model.ObservableUtils
+import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
 import persona.Villano
-import java.util.ArrayList
-import org.uqbar.commons.model.UserException
-import org.uqbar.arena.bindings.ObservableProperty
+
+import static org.uqbar.commons.model.ObservableUtils.firePropertyChanged
 
 @Observable
 class Pais {
@@ -53,17 +53,17 @@ class Pais {
 	
 	def setPrimerLugar(Lugar l){
 		_primerLugar = l
-		ObservableUtils.firePropertyChanged(this,"primerLugar",primerLugar)
+		firePropertyChanged(this,"primerLugar",primerLugar)
 	}
 	
 	def setSegundoLugar(Lugar l){
 		_segundoLugar = l
-		ObservableUtils.firePropertyChanged(this,"segundoLugar",segundoLugar)
+		firePropertyChanged(this,"segundoLugar",segundoLugar)
 	}
 	
 	def setTercerLugar(Lugar l){
 		_tercerLugar = l
-		ObservableUtils.firePropertyChanged(this,"tercerLugar",tercerLugar)
+		firePropertyChanged(this,"tercerLugar",tercerLugar)
 	}
 	
 	/**
@@ -123,8 +123,8 @@ class Pais {
 	def void agregarCaract(String caracteristica){
 		if ( caracteristica!=null && !caracteristica.startsWith(" ")){
 			caract+=caracteristica
-			ObservableUtils.firePropertyChanged(this,"caract",caract);
-			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+			firePropertyChanged(this,"caract",caract);
+			firePropertyChanged(this,"consistente",consistente)
 		}
    }
    
@@ -133,19 +133,23 @@ class Pais {
    def void agregarLugar(Lugar l){
    		if (l != null && lugares.size<3 && !lugares.contains(l)){
    			lugares+=l
-   			ObservableUtils.firePropertyChanged(this,"lugares",lugares)
-   			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+   			firePropertyChanged(this,"lugares",lugares)
+   			cambioConsistente()
    		}
    		else{
    			throw new UserException("Los lugares deben ser 3 y no deben estar repetidos")
    		}
    	}
+				
+	def cambioConsistente() {
+		firePropertyChanged(this, "consistente", consistente)
+	}
    		
 	def void eliminarCaract(String caracteristica){
 		if(caract.contains(caracteristica)){
 			caract.remove(caracteristica)
-			ObservableUtils.firePropertyChanged(this,"caract",caract)
-			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+			firePropertyChanged(this,"caract",caract)
+			cambioConsistente()
  		}else
  			throw new UserException("No existe caracteristica")
 	}
@@ -156,15 +160,15 @@ class Pais {
 	
 	def eliminarConexion(Pais p){
 		conexiones -= p
-		ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
-		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+		firePropertyChanged(this,"conexiones",conexiones)
+		firePropertyChanged(this,"consistente",consistente)
 	}
 	
 	def agregarConexion(Pais p) {
 		if (!conexiones.contains(p)){
 			conexiones+=p
-			ObservableUtils.firePropertyChanged(this,"conexiones",conexiones)
-			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+			firePropertyChanged(this,"conexiones",conexiones)
+			firePropertyChanged(this,"consistente",consistente)
 		}else
 			throw new UserException("El pais '"+p.nombre+"' "+ "ya existe")
 	}
@@ -173,7 +177,7 @@ class Pais {
 	
 	def setNombre(String nombre){
 		_nombre = nombre
-		ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+		firePropertyChanged(this,"consistente",consistente)
 	}
 	
 	def eliminarLugar(Lugar lugar) {
@@ -181,8 +185,8 @@ class Pais {
 			val l = lugares.filter[it | it.toString() == lugar.toString]
 			if (! l.empty){
 				lugares.remove(l.get(0))
-				ObservableUtils.firePropertyChanged(this,"lugares",lugares)
-				ObservableUtils.firePropertyChanged(this,"consistente",consistente)
+				firePropertyChanged(this,"lugares",lugares)
+				firePropertyChanged(this,"consistente",consistente)
 			}
 		}
 	}

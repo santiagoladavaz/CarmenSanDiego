@@ -5,28 +5,24 @@ import pais.Pais
 import org.uqbar.commons.utils.Observable
 
 @Observable
-class DetectiveApplicationModel {
-	
+class ViajarApplicationModel {
+
 	@Property
-	Juego juego 
-	
+	Juego juego
+
 	@Property
 	Pais nuevoDestino
-	
-	
-	new(Juego j){
+
+	new(Juego j) {
 		_juego = j
 	}
-	
-	
-	def viajar(){
+
+	def viajar() {
 		juego.detective.setPaisActual(nuevoDestino)
-		
 	}
-	
-	
-	def volver(){
+
+	def volver() {
 		juego.detective.volver
 	}
-	
+
 }

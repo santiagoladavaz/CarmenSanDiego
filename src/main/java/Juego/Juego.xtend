@@ -204,6 +204,10 @@ class Juego {
 		ultimoPaisDelVillano(p) && villanoCorrecto && lugar.okupa.equals(villano)
 	}
 	
+	def gano(Lugar lugar) {
+		gano(detective.paisActual, lugar)
+	}
+	
 	def perdio(Pais p,Lugar lugar){
 		ultimoPaisDelVillano(p) && !villanoCorrecto && lugar.okupa.equals(villano)
 	}

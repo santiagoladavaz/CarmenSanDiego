@@ -30,5 +30,9 @@ class LugarApplicationModel {
 		}
 	}
 	
+	def isGano() {
+		juego.gano(lugar)
+	}
+	
 	
 }

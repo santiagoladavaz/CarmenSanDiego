@@ -1,8 +1,7 @@
 package Juego
 
-import pais.Pais
-import persona.Villano
 import org.uqbar.commons.utils.Observable
+import pais.Pais
 
 @Observable
 class JuegoAppModel {
@@ -13,12 +12,8 @@ class JuegoAppModel {
 	@Property
 	Pais paisSeleccionado
 	
-	@Property
-	Villano expedienteSeleccionado
-	
 	def eliminarPais() {
-			juego.eliminarPais(this.paisSeleccionado)
+		juego.eliminarPais(this.paisSeleccionado)
 	}
-	
 	
 }

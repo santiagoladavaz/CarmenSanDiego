@@ -376,6 +376,12 @@ public class Juego {
     return _and;
   }
   
+  public boolean gano(final Lugar lugar) {
+    Detective _detective = this.getDetective();
+    Pais _paisActual = _detective.getPaisActual();
+    return this.gano(_paisActual, lugar);
+  }
+  
   public boolean perdio(final Pais p, final Lugar lugar) {
     boolean _and = false;
     boolean _and_1 = false;
