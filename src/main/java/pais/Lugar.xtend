@@ -17,7 +17,7 @@ abstract class Lugar {
 	}
 	
 	def ocupanteInforma(){
-		_okupa.informar()
+		_okupa.informar
 	}
 	
 	def void esconderVillano(Villano villano){

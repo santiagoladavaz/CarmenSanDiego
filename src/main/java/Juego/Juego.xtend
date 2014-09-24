@@ -179,6 +179,21 @@ class Juego {
 	}
 	
 	
+	/*
+	 * Dado un pais me dice si es el ultimo destino del viallano
+	 */
+	def ultimoPaisDelVillano(Pais p){
+		villano.planDeEscape.last.equals(p)
+	}
+	
+	/*
+	 * Devuelve True si el villano que hizo el robo es el de la orden de arresto
+	 */
+	def villanoCorrecto(){
+		villano.equals(detective.ordenDeArresto)
+	}
+	
+	
 	def iniciarJuego(){
 		detective.paisActual=villano.planDeEscape.get(0)
 		print(villano)

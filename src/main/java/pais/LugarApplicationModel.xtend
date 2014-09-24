@@ -18,7 +18,7 @@ class LugarApplicationModel {
 	
 	
 	def ocupanteInforma(){
-		lugar.ocupanteInforma
+		lugar.ocupanteInforma()
 	}
 		
 	

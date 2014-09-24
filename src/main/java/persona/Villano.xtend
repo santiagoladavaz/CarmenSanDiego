@@ -74,7 +74,7 @@ class Villano extends Persona{
 	}
 	
 	override informar() {
-		return nombre+": " + "Felicidades me atrapaste"
+		return "ALTO AHI" 
 	}
 	
 	/**

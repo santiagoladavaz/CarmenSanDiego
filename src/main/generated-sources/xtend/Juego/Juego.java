@@ -320,6 +320,26 @@ public class Juego {
     this.setVillano(_get);
   }
   
+  /**
+   * Dado un pais me dice si es el ultimo destino del viallano
+   */
+  public boolean ultimoPaisDelVillano(final Pais p) {
+    Villano _villano = this.getVillano();
+    List<Pais> _planDeEscape = _villano.getPlanDeEscape();
+    Pais _last = IterableExtensions.<Pais>last(_planDeEscape);
+    return _last.equals(p);
+  }
+  
+  /**
+   * Devuelve True si el villano que hizo el robo es el de la orden de arresto
+   */
+  public boolean villanoCorrecto() {
+    Villano _villano = this.getVillano();
+    Detective _detective = this.getDetective();
+    Villano _ordenDeArresto = _detective.getOrdenDeArresto();
+    return _villano.equals(_ordenDeArresto);
+  }
+  
   public void iniciarJuego() {
     Detective _detective = this.getDetective();
     Villano _villano = this.getVillano();
