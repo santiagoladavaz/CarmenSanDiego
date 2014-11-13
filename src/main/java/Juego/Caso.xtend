@@ -1,9 +1,10 @@
 package Juego
 
 import org.uqbar.commons.utils.Observable
+import java.io.Serializable
 
 @Observable
-class Caso {
+class Caso implements Serializable{
 	@Property 
 	String nombre
 	

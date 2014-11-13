@@ -8,9 +8,10 @@ import org.uqbar.commons.utils.Observable
 import persona.Villano
 
 import static org.uqbar.commons.model.ObservableUtils.firePropertyChanged
+import java.io.Serializable
 
 @Observable
-class Pais {
+class Pais implements Serializable {
 	
 	@Property String nombre
 	@Property List<String> caract = newArrayList
@@ -44,11 +45,6 @@ class Pais {
 	}
 	
 	new() {
-	}
-	
-	
-	override toString(){
-		return nombre
 	}
 	
 	def setPrimerLugar(Lugar l){
@@ -208,6 +204,10 @@ class Pais {
 	
 	def lugares(ArrayList<Lugar> lugars) {
 		_lugares = lugars
+	}
+	
+	def getLugar(String nombreLugar){
+		return lugares.filter[l | l.nombre == nombreLugar].get(0)
 	}
 	
 	

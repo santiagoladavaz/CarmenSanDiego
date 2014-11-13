@@ -1,9 +1,9 @@
 package pais
 
 import Juego.Juego
+import java.io.Serializable
 
-
-class LugarApplicationModel {
+class LugarApplicationModel  implements Serializable{
 	
 	@Property 
 	Juego juego = Juego.getInstance

@@ -1,9 +1,10 @@
 package persona
 
+import java.io.Serializable
 
-class Cuidador extends Persona {
+class Cuidador extends Persona  implements Serializable{
 	
-	String dialogo = "El ladron no paso por aqui"
+	@Property String dialogo = "El ladron no paso por aqui"
 	
 	override informar() {
 		return dialogo

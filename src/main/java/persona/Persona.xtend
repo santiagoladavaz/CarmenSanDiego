@@ -1,7 +1,8 @@
 package persona
 
+import java.io.Serializable
 
-abstract class Persona {
+abstract class Persona implements Serializable{
 	
 	
 	def abstract String informar()

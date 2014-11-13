@@ -2,9 +2,10 @@ package Juego
 
 import org.uqbar.commons.utils.Observable
 import pais.Pais
+import java.io.Serializable
 
 @Observable
-class JuegoAppModel {
+class JuegoAppModel implements Serializable {
 	
 	@Property
 	Juego juego = Juego.getInstance()

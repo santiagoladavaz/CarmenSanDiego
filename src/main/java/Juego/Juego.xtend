@@ -13,9 +13,10 @@ import pais.Biblioteca
 import pais.Club
 import pais.Embajada
 import org.uqbar.commons.model.UserException
+import java.io.Serializable
 
 @Observable
-class Juego {
+class Juego implements Serializable {
 		
 	private static Juego JUEGO = new Juego
 	@Property  List<Pais> conexiones = new ArrayList<Pais>
@@ -25,6 +26,11 @@ class Juego {
  	@Property Caso casoSeleccionado
 	@Property Detective detective 	
 	@Property Villano villano
+	@Property Pais paisActual
+	@Property Villano autorDelRobo;
+	@Property List<Pais> paisesFallidos = new ArrayList<Pais>;
+	@Property List<Pais>recorridoCriminal = new ArrayList<Pais>;
+	@Property String descripcionDeLaPista;
  	
   	
   	def static Juego getInstance(){
@@ -43,6 +49,8 @@ class Juego {
 		//Selecciona una villano aleatoriamente
 		seleccionarVillano
 		crearCasos(villano.planDeEscape.get(0).nombre)
+		paisActual = villano.planDeEscape.get(0)
+		autorDelRobo = villano
 
 		//Seleccion aleatoriamente un caso
 		seleccionarCaso
@@ -64,19 +72,19 @@ class Juego {
 		arg.setLugares(newArrayList(new Banco,new Biblioteca,new Club))
 		bra.caract(newArrayList("caluroso","festivo","donde hablan Portugues","son morenos","donde usan Reales"))
 		bra.conexiones(newArrayList(arg,hai))
-		bra.setLugares(newArrayList(new Club,new Biblioteca,new Embajada))
+		bra.setLugares(newArrayList(new Club,new Biblioteca,new Banco))
 		uru.caract(newArrayList("matero","Con muchas playas","donde dicen 'bo'", "donde esta Forlan"))
 		uru.conexiones(newArrayList(arg,cro))
-		uru.setLugares(newArrayList(new Embajada,new Club,new Banco))
+		uru.setLugares(newArrayList(new Biblioteca,new Club,new Banco))
 		hai.caract(newArrayList("pobre","con poca poblacion","que cultiva cocos","que tuvo un terremoto"))
 		hai.conexiones(newArrayList(bra,ita))
-		hai.setLugares(newArrayList(new Club,new Embajada,new Biblioteca))
+		hai.setLugares(newArrayList(new Club,new Banco,new Biblioteca))
 		ita.caract(newArrayList("con forma de bota","donde comen pizza","donde suele haber mafiosos"))
 		ita.conexiones(newArrayList(cro,hai))
-		ita.setLugares(newArrayList(new Embajada,new Biblioteca,new Banco))
+		ita.setLugares(newArrayList(new Club ,new Biblioteca,new Banco))
 		cro.conexiones(newArrayList(uru,ita))
 		cro.caract(newArrayList("que su capital es Zagreb", "su camiseta de futbol parece un mantel"))
-		cro.setLugares(newArrayList(new Biblioteca,new Club,new Embajada))
+		cro.setLugares(newArrayList(new Biblioteca,new Club,new Banco))
 		
 		conexiones.addAll(arg,ita,bra,hai,cro,uru)
 	}
@@ -91,39 +99,51 @@ class Juego {
 						newArrayList(seleccionarPais("Argentina"),seleccionarPais("Brasil"),seleccionarPais("Haiti")))
 		
 		val capone = new Villano
-					("Al Capone","Masculino",
+					("AlCapone","Masculino",
 					newArrayList("Comer pizza","Extorsionar"),
 					newArrayList("Barrigon","Pelado"),
 					newArrayList(seleccionarPais("Argentina"),seleccionarPais("Uruguay"),seleccionarPais("Croacia")))
 				
 		val gordo = new Villano
-					("Gordo Valor","Masculino",
+					("GordoValor","Masculino",
 						newArrayList("Andar en bici"),
 						newArrayList("Tartamudo","Bajito"),
 						newArrayList(seleccionarPais("Italia"),seleccionarPais("Haiti"),seleccionarPais("Brasil")))
 						
 		val burns = new Villano
-					("Sr. Burns","Masculino",
+					("Sr.Burns","Masculino",
 						newArrayList("Presumir su fortuna","Menospreciar pobres"),
 						newArrayList("Rico","Tiene el sindrome de los 3 chiflados","Dueño de una planta nuclear"),
 						newArrayList(seleccionarPais("Croacia"),seleccionarPais("Uruguay"),seleccionarPais("Argentina")))
 		
 		val moria = new Villano
-					("Moria Casan","Femenino",
+					("MoriaCasan","Femenino",
 						newArrayList("Pelearse delante de las camaras","Modelar"),
 						newArrayList("Usa peluca","Se opero 32 veces"),
 						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))
 		
-		villanos.addAll(bonnie,capone,gordo,burns,moria)		
+		
+		val biffPasado = new Villano ("BiffPasado","Masculino",
+						newArrayList("Decirle gallina a Martin","Es medio boludo"),
+						newArrayList("vive en 1950","choco contra un camion de estiercol"),
+						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))
+						
+		
+		val biffFuturo = new Villano ("BiffPresenteAlterno","Masculino",
+						newArrayList("vive en un presente paralelo a 1985","tiene un casino"),
+						newArrayList("esta casado con la mama de martin","esta en un jacuzzi con muchas modelos en una peli "),
+						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))				
+		
+		villanos.addAll(bonnie,capone,gordo,burns,moria,biffFuturo,biffPasado)		
 	}
 	
 	
 	def crearCasos(String nombre){
-		val caso1 = new Caso("Robo del billete del Trillon", "A las 9 de la mañana en ",nombre ," se robaron el billete del trillon de dolares.
+		val caso1 = new Caso("Robo del billete del Trillon", "A las 9 de la mañana  ", nombre ," se robaron el billete del trillon de dolares.
 						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
 						  es descifrar el responsable de tal crimen y apresarlo")
 		
-		val caso2 = new Caso("Robo de las joyas" , "A las 4 de la tarde en ", nombre , "se robaron unas valiosas joyas.
+		val caso2 = new Caso("Robo de las joyas" , "A las 4 de la tarde ", nombre , "se robaron unas valiosas joyas.
 						  El criminal fue muy prolijo y la escena del crimen no contaba con pista alguna,su mision como detective
 						  es descifrar el responsable de tal crimen y apresarlo")
 		
@@ -142,6 +162,10 @@ class Juego {
 	
 	def Pais buscarPais(Pais string) {
 		conexiones.filter[p| p.nombre == string.nombre].get(0)
+	}
+	
+	def Pais buscarPais(String paisNombre){
+		conexiones.filter[p|p.nombre == paisNombre].get(0)
 	}
 	
 	
@@ -215,8 +239,35 @@ class Juego {
 	
 	def iniciarJuego(){
 		detective.paisActual=villano.planDeEscape.get(0)
-		print(villano)
 		villano.visitarPais
+	}
+	
+	def buscarVillano(String nombre){
+		return villanos.filter[v | v.nombre.equals(nombre)].get(0);
+	}
+	
+	def visitarLugar(String nombrePais,String nombreLugar){
+		val p = buscarPais(nombrePais)
+		val l = p.getLugar(nombreLugar)
+		var x = l.ocupanteInforma
+		print(x);
+		if(x.startsWith("ALTO")){
+			if(villano.nombre == autorDelRobo.nombre ){
+				print(villano.nombre == autorDelRobo.nombre)
+				x.concat("                               Felicidades Atrapaste al ladron!")
+			}else
+				x.concat("                    Mala suerte!, el villano al cual le emitiste la orden de arresto no coincide con
+				el autor del crimen")
+		}
+		descripcionDeLaPista = x;	
+		if(!recorridoCriminal.exists[pais | pais.nombre == nombrePais]){
+			recorridoCriminal += p
+		}
+		if(descripcionDeLaPista.startsWith("El ladron no")){
+			if(!paisesFallidos.exists[it | it.nombre == nombrePais ]){
+				paisesFallidos += p
+			}
+		}	
 	}
 		
 	

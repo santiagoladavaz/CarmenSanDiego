@@ -1,8 +1,9 @@
 package persona
 
 import java.util.List
+import java.io.Serializable
 
-class Informante extends Persona {
+class Informante extends Persona implements Serializable{
 	
 	@Property List<String> pistas
 	

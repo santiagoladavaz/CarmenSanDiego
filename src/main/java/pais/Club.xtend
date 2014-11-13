@@ -4,8 +4,9 @@ import persona.Villano
 import java.util.List
 import persona.Informante
 import java.util.ArrayList
+import java.io.Serializable
 
-class Club extends Lugar {
+class Club extends Lugar implements Serializable {
 	
 	new(){
 		_nombre = "Club"

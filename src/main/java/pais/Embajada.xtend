@@ -4,8 +4,9 @@ import persona.Cuidador
 import persona.Villano
 import java.util.List
 import persona.Informante
+import java.io.Serializable
 
-class Embajada extends Lugar {
+class Embajada extends Lugar implements Serializable {
 	
 	new(){
 		_nombre = "Embajada"

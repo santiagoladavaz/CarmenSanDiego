@@ -3,17 +3,14 @@ package pais
 import java.util.List
 import persona.Persona
 import persona.Villano
+import java.io.Serializable
 
-abstract class Lugar {
+abstract class Lugar  implements Serializable{
 	
 	@Property protected String nombre
 	@Property protected Persona okupa
 	
     def abstract void pasoLadron(Villano villano,List<String>pistas)
-	
-	override toString(){
-		return nombre
-	}
 	
 	def ocupanteInforma(){
 		_okupa.informar
@@ -26,7 +23,5 @@ abstract class Lugar {
 	def avisarEmboscada(){
 		okupa.avisarEmboscada
 	}
-	
-
 	
 }

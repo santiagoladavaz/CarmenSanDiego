@@ -4,9 +4,10 @@ import org.uqbar.commons.utils.Observable
 import pais.Pais
 import java.util.ArrayList
 import org.uqbar.commons.model.ObservableUtils
+import java.io.Serializable
 
 @Observable
-class Villano extends Persona{
+class Villano extends Persona implements Serializable{
 	
 	@Property String nombre
 	@Property String sexo
@@ -122,10 +123,6 @@ class Villano extends Persona{
 	
 	def isConsistente(){
 		return nombre !=null && cumpleCondicion(sexo) && !señas.empty && !hobbie.empty
-	}
-	
-	override def toString(){
-		return _nombre
 	}
 	
 }

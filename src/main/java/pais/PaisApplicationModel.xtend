@@ -2,9 +2,10 @@ package pais
 
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.UserException
+import java.io.Serializable
 
 @Observable
-class PaisApplicationModel {
+class PaisApplicationModel  implements Serializable{
 	
 	@Property Pais paisElegido
 	@Property Lugar lugarElegido

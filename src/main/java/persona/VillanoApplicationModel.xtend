@@ -3,9 +3,10 @@ package persona
 import Juego.Juego
 import java.util.List
 import org.uqbar.commons.utils.Observable
+import java.io.Serializable
 
 @Observable
-class VillanoApplicationModel {
+class VillanoApplicationModel implements Serializable {
 	
 	
 	@Property Villano villano	

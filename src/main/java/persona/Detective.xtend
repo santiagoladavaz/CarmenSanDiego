@@ -5,9 +5,10 @@ import java.util.List
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.model.UserException
+import java.io.Serializable
 
 @Observable
-class Detective {
+class Detective  implements Serializable{
 	
 	@Property
 	Pais paisActual
