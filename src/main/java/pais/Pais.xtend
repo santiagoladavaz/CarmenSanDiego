@@ -27,18 +27,21 @@ class Pais implements Serializable {
 		caract = caracts
 		conexiones = conex
 		lugares = l
-		primerLugar = l.get(0)
-		segundoLugar = l.get(1)
-		tercerLugar = l.get(2)
+//		primerLugar = l.get(0)
+//		segundoLugar = l.get(1)
+//		tercerLugar = l.get(2)
 	}
 	
 	def setLugares(List<Lugar>l){
 		_lugares = l
+
+	}
+	
+	def setPosicionesLugares(List<Lugar> l){
 		_primerLugar = l.get(0)
 		_segundoLugar = l.get(1)
 		_tercerLugar = l.get(2)
 	}
-	
 	
 	new(String string) {
 		_nombre=string
@@ -71,31 +74,31 @@ class Pais implements Serializable {
 		val pais = villano.obtenerSiguientePais(this)
 		if(pais != null)
 			lugares.forEach[pasoLadron(villano,pais.dame2Pistas)]
-		else
-			esconderLadron(villano)
+		//else
+			//esconderLadron(villano)
 	}
 	
-	private def esconderLadron(Villano v){
-		val i = (Math.random * lugares.size) as int
-		switch i {
-			case 0 :{			     
-						primerLugar.esconderVillano(v)
-						segundoLugar.avisarEmboscada
-						tercerLugar.avisarEmboscada
-			}
-		    case 1  :{
-		   	 		    primerLugar.avisarEmboscada
-		   	 		    segundoLugar.esconderVillano(v)
-		   	 		    tercerLugar.avisarEmboscada
-		    }
-		    default :{
-		   				primerLugar.avisarEmboscada
-		   				segundoLugar.avisarEmboscada
-		   				tercerLugar.esconderVillano(v)
-		    } 
-			
-		}
-	}
+//	private def esconderLadron(Villano v){
+//		val i = (Math.random * lugares.size) as int
+//		switch i {
+//			case 0 :{			     
+//						primerLugar.esconderVillano(v)
+//						segundoLugar.avisarEmboscada
+//						tercerLugar.avisarEmboscada
+//			}
+//		    case 1  :{
+//		   	 		    primerLugar.avisarEmboscada
+//		   	 		    segundoLugar.esconderVillano(v)
+//		   	 		    tercerLugar.avisarEmboscada
+//		    }
+//		    default :{
+//		   				primerLugar.avisarEmboscada
+//		   				segundoLugar.avisarEmboscada
+//		   				tercerLugar.esconderVillano(v)
+//		    } 
+//			
+//		}
+//	}
 	
 	private def dame2Randoms(){
 		val i = (Math.random * caract.size) as int
