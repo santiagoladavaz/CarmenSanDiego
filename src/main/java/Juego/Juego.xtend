@@ -269,6 +269,14 @@ class Juego implements Serializable {
 			}
 		}	
 	}
+	
+	def eliminarVillano(Villano villano) {
+		if(this.villanos.contains(villano)){
+			this.villanos.remove(villano)
+			ObservableUtils.firePropertyChanged(this,"villanos",villanos)
+			
+		}	
+	}
 		
 	
 }

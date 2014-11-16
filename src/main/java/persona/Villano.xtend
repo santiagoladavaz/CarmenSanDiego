@@ -38,6 +38,13 @@ class Villano extends Persona implements Serializable{
 		_planDeEscape = new ArrayList<Pais> 
 	}
 	
+	new(String n){
+		_nombre = n
+		_hobbie = new ArrayList<String> 
+		_señas = new ArrayList<String>  
+		_planDeEscape = new ArrayList<Pais>
+	}
+	
 	
 	/**
 	 * @METODOS DEL DOMINIO
