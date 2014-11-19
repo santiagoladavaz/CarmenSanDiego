@@ -34,18 +34,18 @@ class Club extends Lugar implements Serializable {
 		lugaresSinPasar+=embajada
 		val pais = new Pais() =>[lugares = lugaress
 				 nombre = "Argentina"
-				 caract.add("hablan español")
-				 caract.add("son gays")
+//				 caract.add("hablan español")
+//				 caract.add("son gays")
 		]
 		val pais2 = new Pais() =>[ nombre = "sarasa"
 								   lugares = lugaresSinPasar
-								   caract.add("sarasa1")
-								   caract.add("sarasa2")
+//								   caract.add("sarasa1")
+//								   caract.add("sarasa2")
 		]
 		val villano = new Villano() => [nombre="Pepe"
 										sexo="Masculino"
-										hobbie = #["el ladron juega tennis"," el ladron come manzanas"]	
-										señas = #["es un nabo ","no tiene idea de la vida"]
+//										hobbie = #["el ladron juega tennis"," el ladron come manzanas"]	
+//										señas = #["es un nabo ","no tiene idea de la vida"]
 										planDeEscape = #[pais,pais2]
 					]
 		villano.visitarPais()

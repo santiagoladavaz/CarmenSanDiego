@@ -10,13 +10,16 @@ class PaisApplicationModel  implements Serializable{
 	@Property Pais paisElegido
 	@Property Lugar lugarElegido
 	@Property Pais paisModel
-	@Property String caracteristicaAAgregar
-	@Property String caracteristicaAEliminar
+	@Property Caracteristica caracteristicaAAgregar
+	@Property Caracteristica caracteristicaAEliminar
 	
 	new (Pais p){
 		paisModel = p
 	}
 	
+	new(){
+		
+	}
 	
 	def agregarConexion(){
 		if (paisElegido != null){

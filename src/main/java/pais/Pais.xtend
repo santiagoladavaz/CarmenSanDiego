@@ -2,6 +2,8 @@
 package pais
 
 import java.util.ArrayList
+import org.uqbar.commons.model.Entity
+
 import java.util.List
 import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
@@ -14,7 +16,7 @@ import java.io.Serializable
 class Pais implements Serializable {
 	
 	@Property String nombre
-	@Property List<String> caract = newArrayList
+	@Property List<Caracteristica> caract = newArrayList
 	@Property List<Pais> conexiones = newArrayList
 	@Property List<Lugar> lugares = new ArrayList<Lugar>()
 	@Property Lugar primerLugar 
@@ -22,7 +24,7 @@ class Pais implements Serializable {
 	@Property Lugar tercerLugar 	
 	
 	// Constructor completo para pais
-	new(String n,List<String> caracts,List<Pais>conex,List<Lugar>l){
+	new(String n,List<Caracteristica> caracts,List<Pais>conex,List<Lugar>l){
 		nombre = n
 		caract = caracts
 		conexiones = conex
@@ -119,8 +121,8 @@ class Pais implements Serializable {
     * @METODOS DE LA INTERFAZ
     */
 	
-	def void agregarCaract(String caracteristica){
-		if ( caracteristica!=null && !caracteristica.startsWith(" ")){
+	def void agregarCaract(Caracteristica caracteristica){
+		if ( caracteristica!=null){
 			caract+=caracteristica
 			firePropertyChanged(this,"caract",caract);
 			firePropertyChanged(this,"consistente",consistente)
@@ -144,7 +146,7 @@ class Pais implements Serializable {
 		firePropertyChanged(this, "consistente", consistente)
 	}
    		
-	def void eliminarCaract(String caracteristica){
+	def void eliminarCaract(Caracteristica caracteristica){
 		if(caract.contains(caracteristica)){
 			caract.remove(caracteristica)
 			firePropertyChanged(this,"caract",caract)
@@ -197,7 +199,7 @@ class Pais implements Serializable {
      		   &&  !conexiones.empty
 	}
 	
-	def caract(ArrayList<String> strings) {
+	def caract(ArrayList<Caracteristica> strings) {
 		_caract = strings
 	}
 	

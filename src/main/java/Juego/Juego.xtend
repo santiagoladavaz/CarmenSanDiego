@@ -14,9 +14,11 @@ import pais.Club
 import pais.Embajada
 import org.uqbar.commons.model.UserException
 import java.io.Serializable
+import pais.Caracteristica
+import org.uqbar.commons.model.Entity
 
 @Observable
-class Juego implements Serializable {
+class Juego extends Entity implements Serializable {
 		
 	private static Juego JUEGO = new Juego
 	@Property  List<Pais> conexiones = new ArrayList<Pais>
@@ -67,23 +69,62 @@ class Juego implements Serializable {
 		val hai = new Pais("Haiti")
 		val ita = new Pais("Italia")
 		val uru = new Pais("Uruguay")
-		arg.caract(newArrayList("grande","inseguro","que tiene una provincia Llamada Buenos Aires","donde se creen el centro del mundo"))
+		//ARGENTINA
+		val ArrayList<Caracteristica> listArg = new ArrayList<Caracteristica>
+		listArg.add(new Caracteristica("Grande"))
+		listArg.add(new Caracteristica("Inseguro"))
+		listArg.add(new Caracteristica("Que tiene una provincia Llamada Buenos Aires"))
+		listArg.add(new Caracteristica("Donde se creen el centro del mundo"))
+		arg.caract(listArg)
 		arg.conexiones(newArrayList(uru,bra))
 		arg.setLugares(newArrayList(new Banco,new Biblioteca,new Club))
-		bra.caract(newArrayList("caluroso","festivo","donde hablan Portugues","son morenos","donde usan Reales"))
+		
+		//BRASIL
+		val ArrayList<Caracteristica> listBra = new ArrayList<Caracteristica>
+		listBra.add(new Caracteristica("Caluroso"))
+		listBra.add(new Caracteristica("Festivo"))
+		listBra.add(new Caracteristica("Donde hablan Portugues"))
+		listBra.add(new Caracteristica("Son morenos"))
+		listBra.add(new Caracteristica("Donde usan Reales"))
+		bra.caract(listBra)
 		bra.conexiones(newArrayList(arg,hai))
 		bra.setLugares(newArrayList(new Club,new Biblioteca,new Banco))
-		uru.caract(newArrayList("matero","Con muchas playas","donde dicen 'bo'", "donde esta Forlan"))
+		
+		//URUGUAY
+		val ArrayList<Caracteristica> listUru = new ArrayList<Caracteristica>
+		listUru.add(new Caracteristica("Matero"))
+		listUru.add(new Caracteristica("Con muchas playas"))
+		listUru.add(new Caracteristica("Donde dicen 'bo'"))
+		listUru.add(new Caracteristica("Donde esta Forlan"))
+		uru.caract(listUru)
 		uru.conexiones(newArrayList(arg,cro))
 		uru.setLugares(newArrayList(new Biblioteca,new Club,new Banco))
-		hai.caract(newArrayList("pobre","con poca poblacion","que cultiva cocos","que tuvo un terremoto"))
+		
+		//HAITI
+		val ArrayList<Caracteristica> listHai = new ArrayList<Caracteristica>
+		listHai.add(new Caracteristica("Pobre"))
+		listHai.add(new Caracteristica("Con poca poblacion"))
+		listHai.add(new Caracteristica("Que cultiva cocos"))
+		listHai.add(new Caracteristica("Que tuvo un terremoto"))
+		hai.caract(listHai)
 		hai.conexiones(newArrayList(bra,ita))
 		hai.setLugares(newArrayList(new Club,new Banco,new Biblioteca))
-		ita.caract(newArrayList("con forma de bota","donde comen pizza","donde suele haber mafiosos"))
+		
+		//ITALIA
+		val ArrayList<Caracteristica> listIta = new ArrayList<Caracteristica>
+		listIta.add(new Caracteristica("Con forma de bota"))
+		listIta.add(new Caracteristica("Donde comen pizza"))
+		listIta.add(new Caracteristica("Donde suele haber mafiosos"))
+		ita.caract(listIta)
 		ita.conexiones(newArrayList(cro,hai))
 		ita.setLugares(newArrayList(new Club ,new Biblioteca,new Banco))
+		
+		//CROACIA
+		val ArrayList<Caracteristica> listCro = new ArrayList<Caracteristica>
+		listCro.add(new Caracteristica("Que su capital es Zagreb"))
+		listCro.add(new Caracteristica("Su camiseta de futbol parece un mantel"))
 		cro.conexiones(newArrayList(uru,ita))
-		cro.caract(newArrayList("que su capital es Zagreb", "su camiseta de futbol parece un mantel"))
+		cro.caract(listCro)
 		cro.setLugares(newArrayList(new Biblioteca,new Club,new Banco))
 		
 		conexiones.addAll(arg,ita,bra,hai,cro,uru)
@@ -92,46 +133,86 @@ class Juego implements Serializable {
 	
 	//Crea los villanos del juego
 	def crearVillanos(){
+		val ArrayList<Caracteristica> listHobbieBonnie = new ArrayList<Caracteristica>
+		listHobbieBonnie.add(new Caracteristica("Jugar tenis"))
+		listHobbieBonnie.add(new Caracteristica("Pintar Cuadros"))
+		val ArrayList<Caracteristica> listSeñaBonnie = new ArrayList<Caracteristica>
+		listSeñaBonnie.add(new Caracteristica("Alta"))
+		listSeñaBonnie.add(new Caracteristica("Flaca"))
 		val bonnie = new Villano
-						("Bonnie","Femenino",
-						newArrayList("Jugar tenis","Pintar Cuadros"),
-						newArrayList("Alta","Flaca"),
+						("Bonnie","Femenino", 
+						listHobbieBonnie, 
+						listSeñaBonnie,
 						newArrayList(seleccionarPais("Argentina"),seleccionarPais("Brasil"),seleccionarPais("Haiti")))
 		
+		val ArrayList<Caracteristica> listHobbieCapone = new ArrayList<Caracteristica>
+		listHobbieCapone.add(new Caracteristica("Comer pizza"))
+		listHobbieCapone.add(new Caracteristica("Extorsionar"))
+		val ArrayList<Caracteristica> listSeñaCapone = new ArrayList<Caracteristica>
+		listSeñaCapone.add(new Caracteristica("Barrigon"))
+		listSeñaCapone.add(new Caracteristica("Pelado"))
 		val capone = new Villano
 					("AlCapone","Masculino",
-					newArrayList("Comer pizza","Extorsionar"),
-					newArrayList("Barrigon","Pelado"),
+					listHobbieCapone,
+					listSeñaCapone,
 					newArrayList(seleccionarPais("Argentina"),seleccionarPais("Uruguay"),seleccionarPais("Croacia")))
-				
+		
+		val ArrayList<Caracteristica> listHobbieGordo = new ArrayList<Caracteristica>
+		listHobbieGordo.add(new Caracteristica("Andar en bici"))
+		val ArrayList<Caracteristica> listSeñaGordo = new ArrayList<Caracteristica>
+		listSeñaGordo.add(new Caracteristica("Tartamudo"))
+		listSeñaGordo.add(new Caracteristica("Bajito"))		
 		val gordo = new Villano
 					("GordoValor","Masculino",
-						newArrayList("Andar en bici"),
-						newArrayList("Tartamudo","Bajito"),
+						listHobbieGordo,
+						listSeñaGordo,
 						newArrayList(seleccionarPais("Italia"),seleccionarPais("Haiti"),seleccionarPais("Brasil")))
-						
+		
+		val ArrayList<Caracteristica> listHobbieBurns = new ArrayList<Caracteristica>
+		listHobbieBurns.add(new Caracteristica("Presumir su fortuna"))
+		listHobbieBurns.add(new Caracteristica("Menospreciar pobres"))
+		val ArrayList<Caracteristica> listSeñaBurns = new ArrayList<Caracteristica>
+		listSeñaBurns.add(new Caracteristica("Tiene el sindrome de los 3 chiflados"))
+		listSeñaBurns.add(new Caracteristica("Rico"))
+		listSeñaBurns.add(new Caracteristica("Dueño de una planta nuclear"))						
 		val burns = new Villano
 					("Sr.Burns","Masculino",
-						newArrayList("Presumir su fortuna","Menospreciar pobres"),
-						newArrayList("Rico","Tiene el sindrome de los 3 chiflados","Dueño de una planta nuclear"),
+						listHobbieBurns,
+						listSeñaBurns,
 						newArrayList(seleccionarPais("Croacia"),seleccionarPais("Uruguay"),seleccionarPais("Argentina")))
 		
+		val ArrayList<Caracteristica> listHobbieMoria = new ArrayList<Caracteristica>
+		listHobbieMoria.add(new Caracteristica("Pelearse delante de las camaras"))
+		listHobbieMoria.add(new Caracteristica("Modelar"))
+		val ArrayList<Caracteristica> listSeñaMoria = new ArrayList<Caracteristica>
+		listSeñaMoria.add(new Caracteristica("Usa peluca"))
+		listSeñaMoria.add(new Caracteristica("Se opero 32 veces"))
 		val moria = new Villano
 					("MoriaCasan","Femenino",
-						newArrayList("Pelearse delante de las camaras","Modelar"),
-						newArrayList("Usa peluca","Se opero 32 veces"),
+						listHobbieMoria,
+						listSeñaMoria,
 						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))
 		
-		
+		val ArrayList<Caracteristica> listHobbieBiffPasado = new ArrayList<Caracteristica>
+		listHobbieBiffPasado.add(new Caracteristica("Decirle gallina a Martin"))
+		listHobbieBiffPasado.add(new Caracteristica("Es medio boludo"))
+		val ArrayList<Caracteristica> listSeñaBiffPasado = new ArrayList<Caracteristica>
+		listSeñaBiffPasado.add(new Caracteristica("vive en 1950"))
+		listSeñaBiffPasado.add(new Caracteristica("choco contra un camion de estiercol"))
 		val biffPasado = new Villano ("BiffPasado","Masculino",
-						newArrayList("Decirle gallina a Martin","Es medio boludo"),
-						newArrayList("vive en 1950","choco contra un camion de estiercol"),
+						listHobbieBiffPasado,
+						listSeñaBiffPasado,
 						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))
 						
-		
+		val ArrayList<Caracteristica> listHobbieBiffFuturo = new ArrayList<Caracteristica>
+		listHobbieBiffFuturo.add(new Caracteristica("vive en un presente paralelo a 1985"))
+		listHobbieBiffFuturo.add(new Caracteristica("tiene un casino"))
+		val ArrayList<Caracteristica> listSeñaBiffFuturo = new ArrayList<Caracteristica>
+		listSeñaBiffFuturo.add(new Caracteristica("esta casado con la mama de martin"))
+		listSeñaBiffFuturo.add(new Caracteristica("esta en un jacuzzi con muchas modelos en una peli "))
 		val biffFuturo = new Villano ("BiffPresenteAlterno","Masculino",
-						newArrayList("vive en un presente paralelo a 1985","tiene un casino"),
-						newArrayList("esta casado con la mama de martin","esta en un jacuzzi con muchas modelos en una peli "),
+						listHobbieBiffFuturo,
+						listSeñaBiffFuturo,
 						newArrayList(seleccionarPais("Haiti"),seleccionarPais("Italia"),seleccionarPais("Croacia")))				
 		
 		villanos.addAll(bonnie,capone,gordo,burns,moria,biffFuturo,biffPasado)		

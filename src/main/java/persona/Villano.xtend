@@ -5,43 +5,44 @@ import pais.Pais
 import java.util.ArrayList
 import org.uqbar.commons.model.ObservableUtils
 import java.io.Serializable
+import pais.Caracteristica
 
 @Observable
 class Villano extends Persona implements Serializable{
 	
 	@Property String nombre
 	@Property String sexo
-	@Property List<String> hobbie
-	@Property List<String> señas
+	@Property List<Caracteristica> hobbie
+	@Property List<Caracteristica> senias
 	@Property List<Pais> planDeEscape; 
 	 
-	 new (String n, String s,List<String> hobbies,List<String>señasl,List<Pais> plan){
+	 new (String n, String s,List<Caracteristica> hobbies,List<Caracteristica> señasl,List<Pais> plan){
 		_nombre = n
 		_sexo = s
 		_hobbie = hobbies 
-		_señas = señasl  
+		_senias = señasl  
 		_planDeEscape = plan 
 	}
 	
 
 	new (){
-		_hobbie = new ArrayList<String> 
-		_señas = new ArrayList<String>  
+		_hobbie = new ArrayList<Caracteristica> 
+		_senias = new ArrayList<Caracteristica>  
 		_planDeEscape = new ArrayList<Pais> 
 	}
 	
 	new (String n, String s){
 		_nombre = n
 		_sexo = s
-		_hobbie = new ArrayList<String> 
-		_señas = new ArrayList<String>  
+		_hobbie = new ArrayList<Caracteristica> 
+		_senias = new ArrayList<Caracteristica>  
 		_planDeEscape = new ArrayList<Pais> 
 	}
 	
 	new(String n){
 		_nombre = n
-		_hobbie = new ArrayList<String> 
-		_señas = new ArrayList<String>  
+		_hobbie = new ArrayList<Caracteristica> 
+		_senias = new ArrayList<Caracteristica>  
 		_planDeEscape = new ArrayList<Pais>
 	}
 	
@@ -74,10 +75,10 @@ class Villano extends Persona implements Serializable{
 
 	
 	def dameLasPistas(){
-		val i = (Math.random * señas.size) as int
+		val i = (Math.random * senias.size) as int
 		val y = (Math.random * hobbie.size) as int
 		val lista = newArrayList
-		lista.add("Una de sus señas es: "+ señas.get(i)+ "\n")
+		lista.add("Una de sus señas es: "+ senias.get(i)+ "\n")
 		lista.add("Uno de sus Hobbies es: "+ hobbie.get(y) + "\n")
 		lista
 	}
@@ -129,7 +130,22 @@ class Villano extends Persona implements Serializable{
 	
 	
 	def isConsistente(){
-		return nombre !=null && cumpleCondicion(sexo) && !señas.empty && !hobbie.empty
+		return nombre !=null && cumpleCondicion(sexo) && !senias.empty && !hobbie.empty
+	}
+	
+	def eliminarHobbie(Caracteristica hobbie) {
+		if(this.hobbie.contains(hobbie)){
+			this.hobbie.remove(hobbie)
+			ObservableUtils.firePropertyChanged(this,"hobbie",hobbie)
+			}	 	
+	}
+	
+	def eliminarSeña(Caracteristica seña) {
+		if(this.senias.contains(seña)){
+			this.senias.remove(seña)
+			ObservableUtils.firePropertyChanged(this,"señas",senias)
+			
+		}
 	}
 	
 }
