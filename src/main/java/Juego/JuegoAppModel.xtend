@@ -20,7 +20,7 @@ class JuegoAppModel  extends Entity  implements Serializable {
 	
 	@Property Villano villanoSeleccionado
 
-	@Property Caracteristica caracteristicaAAgregar
+	@Property Caracteristica valorAAgregar
 	@Property Caracteristica caracteristicaAEliminar
 
 	@Property Caracteristica señaSeleccionada 
@@ -56,9 +56,9 @@ class JuegoAppModel  extends Entity  implements Serializable {
 	}
 
 	def agregarCaract() {
-		if (caracteristicaAAgregar != null) {
-			paisSeleccionado.agregarCaract(caracteristicaAAgregar)
-			caracteristicaAAgregar = null
+		if (valorAAgregar != null) {
+			paisSeleccionado.agregarCaract(valorAAgregar)
+			valorAAgregar = null
 		}
 	}
 
