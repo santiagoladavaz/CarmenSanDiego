@@ -19,7 +19,8 @@ class JuegoAppModel  extends Entity  implements Serializable {
 	@Property Pais paisElegido
 	
 	@Property Villano villanoSeleccionado
-
+	@Property String valor
+    @Property String valorA
 	@Property Caracteristica valorAAgregar
 	@Property Caracteristica caracteristicaAEliminar
 
@@ -28,6 +29,11 @@ class JuegoAppModel  extends Entity  implements Serializable {
 	
 	@Property Lugar lugarElegido
 
+	def agregarValor(List<Caracteristica> lista ){
+		this.villanoSeleccionado.agregarValor(this.valorAAgregar,lista)	
+		valorAAgregar = null	
+	}
+	
 	def eliminarHobbie(){
 		villanoSeleccionado.eliminarHobbie(this.hobbieSeleccionado)
 	}
@@ -56,10 +62,17 @@ class JuegoAppModel  extends Entity  implements Serializable {
 	}
 
 	def agregarCaract() {
-		if (valorAAgregar != null) {
+			valorAAgregar = new Caracteristica(valor)
 			paisSeleccionado.agregarCaract(valorAAgregar)
 			valorAAgregar = null
-		}
+	
+	}
+	
+	def agregarSenia() {
+			valorAAgregar = new Caracteristica(valor)
+			villanoSeleccionado.agregarValor(valorAAgregar, this.villanoSeleccionado.senias)
+			valorAAgregar = null
+	
 	}
 
 	def eliminarCaract() {
@@ -86,5 +99,11 @@ class JuegoAppModel  extends Entity  implements Serializable {
 		}else
 			throw new UserException ("Debes seleccionar un pais antes de eliminar")
 	}
+	
+	def agregarHobbie() {
+		valorAAgregar = new Caracteristica(valorA)
+			villanoSeleccionado.agregarValor(valorAAgregar, this.villanoSeleccionado.hobbie)
+			valorAAgregar = null	
+		}
 
 }

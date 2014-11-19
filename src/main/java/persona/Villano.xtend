@@ -92,10 +92,10 @@ class Villano extends Persona implements Serializable{
 	 * @METODOS DE LA INTERFAZ
 	 */
 	
-	def agregarValor(String s,String propertyName, List<String> lista){
-		if( !(s == null) && !(s.startsWith(" "))){
+	def agregarValor(Caracteristica s, List<Caracteristica> lista){
+		if( !(s == null) ){
 			lista+=s
-			ObservableUtils.firePropertyChanged(this,propertyName,lista)
+			//ObservableUtils.firePropertyChanged(this,propertyName,lista)
 			ObservableUtils.firePropertyChanged(this,"consistente",consistente)
 		}
 	}
